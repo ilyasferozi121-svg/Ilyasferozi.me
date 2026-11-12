@@ -1,0 +1,848 @@
+{
+  "schemaVersion": 1,
+  "preparedOn": "2026-11-07",
+  "purpose": "Private build-time inventory. Never publish source URLs, unselected originals or this file wholesale.",
+  "summary": {
+    "certificateFiles": 26,
+    "pdfFiles": 22,
+    "rasterCertificateFiles": 4,
+    "renderedPdfPages": 31,
+    "privacyEligibleCertificateFiles": 22,
+    "needsPublicCopy": 4,
+    "portraitFiles": 1
+  },
+  "portrait": {
+    "id": "portrait-ilyas",
+    "path": "source-assets/portrait/mohammad-ilyas.jpg",
+    "width": 864,
+    "height": 1097,
+    "mimeType": "image/jpeg",
+    "bytes": 750097,
+    "sha256": "5335d5f8d22c677b4e5da4e5a8cb35c7f6c25502b3c90e994148d2611a691afb",
+    "alt": "Portrait of Mohammad Ilyas",
+    "privacyEligibility": "eligible_as_provided",
+    "treatment": "Use the supplied photo. CSS framing is allowed; retain identity and original appearance."
+  },
+  "certificates": [
+    {
+      "id": "asset-information-technology",
+      "certificateId": "cert-information-technology",
+      "originalPath": "source-assets/certificates/information-technology.png",
+      "originalFilename": "information-technology.png",
+      "mimeType": "image/png",
+      "bytes": 3415552,
+      "sha256": "000fb5e87522bc070c37e750a5986fb8ae657a4f04941c655ace0256bf825904",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "source-assets/certificates/information-technology.png",
+          "width": 2048,
+          "height": 1534,
+          "bytes": 3415552,
+          "sha256": "000fb5e87522bc070c37e750a5986fb8ae657a4f04941c655ace0256bf825904"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1rdd865skKBuyPaiZTuBL7-f2dBmVWiCl/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "needs_public_display_copy",
+      "privacyFields": [
+        {
+          "category": "relative_name",
+          "field": "S/o. D/o."
+        }
+      ],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Keep the original and its unredacted previews private. Use text metadata until a labeled public copy without the relative-name field is available.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-youth-workshop",
+      "certificateId": "cert-youth-workshop",
+      "originalPath": "source-assets/certificates/youth-workshop.jpg",
+      "originalFilename": "youth-workshop.jpg",
+      "mimeType": "image/jpeg",
+      "bytes": 167149,
+      "sha256": "ff0b68900011dd4b56b0b749948103ab9f27c901cd0307132e533786dbc5fe12",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "source-assets/certificates/youth-workshop.jpg",
+          "width": 1280,
+          "height": 928,
+          "bytes": 167149,
+          "sha256": "ff0b68900011dd4b56b0b749948103ab9f27c901cd0307132e533786dbc5fe12"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1I8IRPp27c7f2HTIcZutlGhbw_vYyayjQ/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-teacher-training",
+      "certificateId": "cert-teacher-training",
+      "originalPath": "source-assets/certificates/teacher-training.pdf",
+      "originalFilename": "teacher-training.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 316132,
+      "sha256": "cce402cc98841a89b2a36e2c5227dcae5fbad6c4dbc051299eb96acd97feb2b8",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/teacher-training-page-1.jpg",
+          "width": 1684,
+          "height": 1190,
+          "bytes": 235812,
+          "sha256": "a1d62a8da5408f0cdbfaec4ae83cfa59427ddceaf0eb6c8b9b211321c52dcc2e"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1v9L7jQXZLtFaYYs4eG17vwDeLMNgmQPW/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-climate-fellowship",
+      "certificateId": "cert-climate-fellowship",
+      "originalPath": "source-assets/certificates/climate-fellowship.png",
+      "originalFilename": "climate-fellowship.png",
+      "mimeType": "image/png",
+      "bytes": 1143777,
+      "sha256": "61c32cf2e852c0056d6fe2529ffb9836889d490bc9c52bfe7d314fbe2e74899f",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "source-assets/certificates/climate-fellowship.png",
+          "width": 2000,
+          "height": 1414,
+          "bytes": 1143777,
+          "sha256": "61c32cf2e852c0056d6fe2529ffb9836889d490bc9c52bfe7d314fbe2e74899f"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1YvylBC-PXtXDtinDY11Lr-F1zG7daR66/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-records-experience",
+      "certificateId": "cert-records-experience",
+      "originalPath": "source-assets/certificates/records-experience.pdf",
+      "originalFilename": "records-experience.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 3443770,
+      "sha256": "f4f9ed634e753f84c2e34e8d1fbdaf209893be4c82696f660320b2a5478d3c22",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/records-experience-page-1.jpg",
+          "width": 1685,
+          "height": 1191,
+          "bytes": 305816,
+          "sha256": "28d7ab657839aa1e49ebd82c8b9782c66f50bd58208f36a92685ff54d68e7682"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1-XP9TSMKM2HBkLY1dFuux9hzKbFeglj0/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "needs_public_display_copy",
+      "privacyFields": [
+        {
+          "category": "relative_name",
+          "field": "son of"
+        }
+      ],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Keep the original and its unredacted previews private. Use text metadata until a labeled public copy without the relative-name field is available.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-ispr-internship",
+      "certificateId": "cert-ispr-internship",
+      "originalPath": "source-assets/certificates/ispr-internship.jpg",
+      "originalFilename": "ispr-internship.jpg",
+      "mimeType": "image/jpeg",
+      "bytes": 149424,
+      "sha256": "576ad05cb9f55ff2ea75966275ad1c3da03550a0cc1afe4dd3c40b669de4764c",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "source-assets/certificates/ispr-internship.jpg",
+          "width": 1280,
+          "height": 937,
+          "bytes": 149424,
+          "sha256": "576ad05cb9f55ff2ea75966275ad1c3da03550a0cc1afe4dd3c40b669de4764c"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1B601UiVQOlrtkxYliu141nhQfTY2FLDX/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "needs_public_display_copy",
+      "privacyFields": [
+        {
+          "category": "relative_name",
+          "field": "S/o / D/o"
+        }
+      ],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Keep the original and its unredacted previews private. Use text metadata until a labeled public copy without the relative-name field is available.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-teaching-experience",
+      "certificateId": "cert-teaching-experience",
+      "originalPath": "source-assets/certificates/teaching-experience.pdf",
+      "originalFilename": "teaching-experience.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 359478,
+      "sha256": "3b47a5f67c0f81fe76d7c20faf13c9e90860d1f8b4c418eb84c0f3f66d4de687",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/teaching-experience-page-1.jpg",
+          "width": 1190,
+          "height": 1684,
+          "bytes": 256519,
+          "sha256": "25559ff55f0c6be6823f65cf513acb1e61c7e8428ecd16e075d820b24fa26c0f"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1iivIWIPg23sxrUt_Icm7BnYr9lA4sQ3D/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "needs_public_display_copy",
+      "privacyFields": [
+        {
+          "category": "relative_name",
+          "field": "S/O"
+        }
+      ],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Keep the original and its unredacted previews private. Use text metadata until a labeled public copy without the relative-name field is available.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-01",
+      "certificateId": "cert-research-methodology-01",
+      "originalPath": "source-assets/certificates/research-methodology-01.pdf",
+      "originalFilename": "672-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 426804,
+      "sha256": "d7568be200317436b9853a38988364417630c8afb3f77c5d74520fd1bcd089b3",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-01-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 180845,
+          "sha256": "c7c92b4251a275e1828e7c582a4582778299101568d0bbba7486dd433599728c"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1LRu1t6IHRrA8nJP9gCTx_YWrEAb8ux0B/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-02",
+      "certificateId": "cert-research-methodology-02",
+      "originalPath": "source-assets/certificates/research-methodology-02.pdf",
+      "originalFilename": "659-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 424422,
+      "sha256": "b2e89b458d9df58d3d22e467731db8c9480a90ba968853e90fe50371855366c6",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-02-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 175937,
+          "sha256": "558fa9397e41501020a10600568e98405bda80af10a53484778fd5a42ae268ad"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1RN0k2tz0Q4L5PxQRFhBzLx3JzEcf98p_/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-03",
+      "certificateId": "cert-research-methodology-03",
+      "originalPath": "source-assets/certificates/research-methodology-03.pdf",
+      "originalFilename": "730-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 427735,
+      "sha256": "fc52a1eaa68014e9478bd6ccab89132911197a371f517c6d1356b8836e8aac16",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-03-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 185438,
+          "sha256": "e483da43616abe4c083a35c91b8eef21438a0bfe1a18a6c54931850872ce295b"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1ftxmHbk89EZA5gI-bV7Sfnz9t4ex5Gov/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-04",
+      "certificateId": "cert-research-methodology-04",
+      "originalPath": "source-assets/certificates/research-methodology-04.pdf",
+      "originalFilename": "644-Muhammad Ilyas  Certificate_2.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 426752,
+      "sha256": "dd597db8cec9655e452cf98ed83e19ec6185baa7f468dcd1dc7810af93c67214",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-04-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 176316,
+          "sha256": "172436126eeb23a3cea1bf56d1a717d1b4414f0e7536c08a6128b1c2162bdc2a"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1YNQ98MdcaHdClnX_8Vuljfsg85gmSeh-/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-05",
+      "certificateId": "cert-research-methodology-05",
+      "originalPath": "source-assets/certificates/research-methodology-05.pdf",
+      "originalFilename": "644-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 427585,
+      "sha256": "1c5b88b285e8fb09d78697d0a9026b206590a8eec582cd72297881e93ce8cb75",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-05-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 178244,
+          "sha256": "5c900b4aea9d88278c74614897275a190da2ad32af243b489ee469afdf9ef2a2"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1UcQ-OEOo2NgtjtRcRasa8x8TrMB_KI0h/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-06",
+      "certificateId": "cert-research-methodology-06",
+      "originalPath": "source-assets/certificates/research-methodology-06.pdf",
+      "originalFilename": "734-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 426193,
+      "sha256": "07713b43159c71f2fc3270ba0b7080a6d22d6e776beca100ff933efa4a7d0637",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-06-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 173146,
+          "sha256": "4020650d4e8f443d73e9a58db673c37bcf30c0f24ded1cb8a7b905b9ad1cb200"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1gN_dLypubDqTWY7Ou4AUFmG50ZT3PULC/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-07",
+      "certificateId": "cert-research-methodology-07",
+      "originalPath": "source-assets/certificates/research-methodology-07.pdf",
+      "originalFilename": "783-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 422972,
+      "sha256": "a8072b5c52eab52b2b2dd9795dd70b6bac5aa9d5e6fdfc00897b369f5fcac7f2",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-07-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 167674,
+          "sha256": "d84d92ece7ad7562f7befc3b1302a87abc3f22868bf8df514847eda50fbc0d65"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1hC-ZH2tZkN1xqzq5ZUZJC2FZUnGRWQ6E/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-08",
+      "certificateId": "cert-research-methodology-08",
+      "originalPath": "source-assets/certificates/research-methodology-08.pdf",
+      "originalFilename": "578-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 427682,
+      "sha256": "d1ff8b0441201734ee2171caf1865a00ae78c1cd22e4d440dd18e0892a901a1c",
+      "pageCount": 2,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-08-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 164619,
+          "sha256": "836bbf75374598801ce8e35f0fab8592ac49b981c7170f34c53b5d7d2cea8b67"
+        },
+        {
+          "page": 2,
+          "path": "certificate-previews/research-methodology-08-page-2.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 44744,
+          "sha256": "2401fa1faf5ace2759dd7541b2d49d88a5e2a444985267fe07e2f7f6346d0fa0"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1XeoDBlookVu1j4AaR2v-kdX1AIAswW__/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-09",
+      "certificateId": "cert-research-methodology-09",
+      "originalPath": "source-assets/certificates/research-methodology-09.pdf",
+      "originalFilename": "585-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 426156,
+      "sha256": "1be8f8faee1a31af201b25cd93de10abaa9578681fe27a4b1b2e5c2cdfbb633f",
+      "pageCount": 2,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-09-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 180483,
+          "sha256": "02d8016aa7e4a714377a6520d457a5896563f9df11db97819ef3527f7ef9bfe6"
+        },
+        {
+          "page": 2,
+          "path": "certificate-previews/research-methodology-09-page-2.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 44744,
+          "sha256": "2401fa1faf5ace2759dd7541b2d49d88a5e2a444985267fe07e2f7f6346d0fa0"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1wmzmj1WXJhuc4EH5U7KenYOv_UnxItpq/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-10",
+      "certificateId": "cert-research-methodology-10",
+      "originalPath": "source-assets/certificates/research-methodology-10.pdf",
+      "originalFilename": "754-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 426314,
+      "sha256": "5b8bd0ef5f468823a19434fee9432b0a0acf05dfd017884240513cafdcc09ca8",
+      "pageCount": 2,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-10-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 166803,
+          "sha256": "e6522e999041219e4697a2875c697d9878978ee3a6742a371a614591b6505c2f"
+        },
+        {
+          "page": 2,
+          "path": "certificate-previews/research-methodology-10-page-2.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 44744,
+          "sha256": "2401fa1faf5ace2759dd7541b2d49d88a5e2a444985267fe07e2f7f6346d0fa0"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1HKbtZuykleuZtRtKvz8PSGhDRmDiJdGJ/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-11",
+      "certificateId": "cert-research-methodology-11",
+      "originalPath": "source-assets/certificates/research-methodology-11.pdf",
+      "originalFilename": "96-Muhammad Ilyas Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 424959,
+      "sha256": "168967bae67910c03fb5022fb48c53ba0bef1b46da330f70b8bbfa44db4a6883",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-11-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 171526,
+          "sha256": "b5b653f5b13ed8f7c7def8d9de116414dfe85db5a85de2de2e383aa45e5ef0a4"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1kvMseEVkcQ0Xa4FnWPRC7cEKTqgmHwmt/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-12",
+      "certificateId": "cert-research-methodology-12",
+      "originalPath": "source-assets/certificates/research-methodology-12.pdf",
+      "originalFilename": "656-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 426289,
+      "sha256": "0bb43de2f04636a5a17ecb45d4a0ab3845732a0e4c5e640b768038173d5c84ac",
+      "pageCount": 2,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-12-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 170226,
+          "sha256": "4223081480e5c3690df9df65e97c1b6a8f9657f7ba8a0b81bd4405dcaf253a3a"
+        },
+        {
+          "page": 2,
+          "path": "certificate-previews/research-methodology-12-page-2.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 44744,
+          "sha256": "2401fa1faf5ace2759dd7541b2d49d88a5e2a444985267fe07e2f7f6346d0fa0"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/11yZb0nys2ZkCkjgbaHNs9cATjATDGlvl/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-13",
+      "certificateId": "cert-research-methodology-13",
+      "originalPath": "source-assets/certificates/research-methodology-13.pdf",
+      "originalFilename": "599-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 427177,
+      "sha256": "abbd4c00f92a80afdbac60c28dc08f4734f0e1fe1337369395a46f0c0ee67c4e",
+      "pageCount": 2,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-13-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 166457,
+          "sha256": "9f6bcfaa548f5ae2e007a3d3a5dd368f5cced64de83f42afe41831820e7243a5"
+        },
+        {
+          "page": 2,
+          "path": "certificate-previews/research-methodology-13-page-2.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 44744,
+          "sha256": "2401fa1faf5ace2759dd7541b2d49d88a5e2a444985267fe07e2f7f6346d0fa0"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1D3fgivOBuSLmZ6nunIyNJDQ-iYTtVBXM/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-14",
+      "certificateId": "cert-research-methodology-14",
+      "originalPath": "source-assets/certificates/research-methodology-14.pdf",
+      "originalFilename": "554-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 427356,
+      "sha256": "3404bd5de459110d9c49968c0fa9a3c1d98b9b9c178d9033db924b70de1add0d",
+      "pageCount": 2,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-14-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 173747,
+          "sha256": "5508763acb19e174480383d59d577053e3ededcb495cd354861911d69b25ff1a"
+        },
+        {
+          "page": 2,
+          "path": "certificate-previews/research-methodology-14-page-2.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 44744,
+          "sha256": "2401fa1faf5ace2759dd7541b2d49d88a5e2a444985267fe07e2f7f6346d0fa0"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1Sbo8mD4MPdDiRtFy2W9wk8gfjTHak98N/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-15",
+      "certificateId": "cert-research-methodology-15",
+      "originalPath": "source-assets/certificates/research-methodology-15.pdf",
+      "originalFilename": "497-Muhammad Ilyas  Certificate_2.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 427202,
+      "sha256": "294c24804bc1d52c3bc3f7488ba6030c6ecbf4c80676f9e62daa3329863939a1",
+      "pageCount": 2,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-15-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 173358,
+          "sha256": "786c119b5f03b5ff7aa6bbf85f635cd4401785ec18f3c2b1c6adce66238bde21"
+        },
+        {
+          "page": 2,
+          "path": "certificate-previews/research-methodology-15-page-2.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 44744,
+          "sha256": "2401fa1faf5ace2759dd7541b2d49d88a5e2a444985267fe07e2f7f6346d0fa0"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/19gHJJ9qy5Gs7Awbi9RGuIx4HOkkNkTCD/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-16",
+      "certificateId": "cert-research-methodology-16",
+      "originalPath": "source-assets/certificates/research-methodology-16.pdf",
+      "originalFilename": "497-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 427176,
+      "sha256": "49ec424f7017be376108b861b3be601b2306abd6e6d6aa20780dd6296f35c822",
+      "pageCount": 2,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-16-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 166414,
+          "sha256": "b8dcdecf5752d05835d2df001e9e190183d206f2f4ed6ece8520fa7e98ab3aac"
+        },
+        {
+          "page": 2,
+          "path": "certificate-previews/research-methodology-16-page-2.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 44744,
+          "sha256": "2401fa1faf5ace2759dd7541b2d49d88a5e2a444985267fe07e2f7f6346d0fa0"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1rkvHW4Q_YDKdiS9Lsd8se6xzD-RGWvYS/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-17",
+      "certificateId": "cert-research-methodology-17",
+      "originalPath": "source-assets/certificates/research-methodology-17.pdf",
+      "originalFilename": "919-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 428147,
+      "sha256": "ef1cc3f0d021ed4692c37fcbf627ff27a60eac7e22ebeeb87c4084340cb48a37",
+      "pageCount": 2,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-17-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 169836,
+          "sha256": "c7261261afb570bfcfc85e4fe3303d250f7e6f324a75aba18ba82091817aaee0"
+        },
+        {
+          "page": 2,
+          "path": "certificate-previews/research-methodology-17-page-2.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 44744,
+          "sha256": "2401fa1faf5ace2759dd7541b2d49d88a5e2a444985267fe07e2f7f6346d0fa0"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1ra13WRNoaOqmBQwQejFt1HAIEnc-iJJ3/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-18",
+      "certificateId": "cert-research-methodology-18",
+      "originalPath": "source-assets/certificates/research-methodology-18.pdf",
+      "originalFilename": "652-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 426378,
+      "sha256": "75494dbb5b6ae5f88aed4baf61d26525c36e2456c48c600135821ef27be5e4c4",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-18-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 175474,
+          "sha256": "8368e18626ebb2028fb3280a882db840e070c369ab75e9f819c439e44bf65628"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1rGIK8XyVLPCWjHDFH2uPfWdMO9H-k9ID/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    },
+    {
+      "id": "asset-research-methodology-19",
+      "certificateId": "cert-research-methodology-19",
+      "originalPath": "source-assets/certificates/research-methodology-19.pdf",
+      "originalFilename": "564-Muhammad Ilyas  Certificate.pdf",
+      "mimeType": "application/pdf",
+      "bytes": 426408,
+      "sha256": "011e31414af7466d5d7bc728a7576bd76b1ee80778b974a515740e673b243c3d",
+      "pageCount": 1,
+      "previews": [
+        {
+          "page": 1,
+          "path": "certificate-previews/research-methodology-19-page-1.jpg",
+          "width": 1224,
+          "height": 1584,
+          "bytes": 173254,
+          "sha256": "cd1021e2276725a88aaffaa7b291adc703fff53139558d14c2bdd565f8cfa59b"
+        }
+      ],
+      "sourceUrl": "https://drive.google.com/file/d/1RN6nzm5UGaxubzCFhdZEcZTJzqL5CKJ4/view?usp=drivesdk",
+      "sourceUrlVisibility": "owner_evidence_only",
+      "privacyEligibility": "eligible_as_provided",
+      "privacyFields": [],
+      "publicAssetPath": null,
+      "publicCopyPrepared": false,
+      "instruction": "Copy selected original/preview assets into deployable assets; optimize only without changing credential evidence.",
+      "independentIssuerVerification": "not_performed"
+    }
+  ]
+}

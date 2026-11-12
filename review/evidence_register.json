@@ -1,0 +1,886 @@
+{
+  "sourceDocuments": [
+    {
+      "id": "cv1",
+      "title": "Updated CV-25_6_2026.pdf",
+      "type": "user_supplied_cv",
+      "pages": 2
+    },
+    {
+      "id": "cv2",
+      "title": "Second CV.pdf",
+      "type": "user_supplied_cv",
+      "pages": 2
+    },
+    {
+      "id": "cv3",
+      "title": "With M.phil (1).pdf",
+      "type": "user_supplied_cv",
+      "pages": 2
+    }
+  ],
+  "certificateEvidence": [
+    {
+      "certificateId": "cert-information-technology",
+      "sourceFile": "information-technology.png",
+      "sourceUrl": "https://drive.google.com/file/d/1rdd865skKBuyPaiZTuBL7-f2dBmVWiCl/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "000fb5e87522bc070c37e750a5986fb8ae657a4f04941c655ace0256bf825904",
+      "dateProvenance": {
+        "start": "2022-02-01",
+        "end": "2022-07-01",
+        "issue": null,
+        "year": 2022,
+        "precision": "day",
+        "printed_text": "From 01-02-2022 to 01-7-2022"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Body states successful course completion.",
+        "Printed score: 95 marks; denominator not given. Do not convert to 95%.",
+        "Printed grade: A."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV misspells issuer as Balochistain Learning Zone Hub; image spells BALOCHISTAN LEARNING ZONE REG (HUB).",
+        "Printed course description says 6the months, while printed start/end dates span five calendar months. Omit a numeric duration claim."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [
+        {
+          "category": "relative_name",
+          "field": "S/o. D/o."
+        }
+      ],
+      "evidenceMethod": "OCR plus direct visual inspection of original image."
+    },
+    {
+      "certificateId": "cert-youth-workshop",
+      "sourceFile": "youth-workshop.jpg",
+      "sourceUrl": "https://drive.google.com/file/d/1I8IRPp27c7f2HTIcZutlGhbw_vYyayjQ/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "ff0b68900011dd4b56b0b749948103ab9f27c901cd0307132e533786dbc5fe12",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": null,
+        "precision": null,
+        "printed_text": null
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Three-day workshop",
+        "Printed topics: IR as Field of Study; Realism vs. Liberalism; International Society; Post-Modernism; Mercantilism; Marxism; Gramsci's Cultural Hegemony; Social Constructivism; Kotaliya's Arthshastra (as printed); Capitalism."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "Certificate provides the three-day duration but no event dates; 1–3 October 2025 comes only from the CVs."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "OCR plus direct visual inspection of original image."
+    },
+    {
+      "certificateId": "cert-teacher-training",
+      "sourceFile": "teacher-training.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1v9L7jQXZLtFaYYs4eG17vwDeLMNgmQPW/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "cce402cc98841a89b2a36e2c5227dcae5fbad6c4dbc051299eb96acd97feb2b8",
+      "dateProvenance": {
+        "start": "2026-06-01",
+        "end": "2026-06-15",
+        "issue": "2026-06-15",
+        "year": 2026,
+        "precision": "day",
+        "printed_text": "1st June 2026 to 15th June 2026; Date: 15-06-2026"
+      },
+      "recipientAsPrinted": "Mohammad Ilyas",
+      "supportedDetails": [
+        "Explicit successful completion",
+        "Professional development and effective teaching practices mentioned as broad purpose. No specific modules, hours, or assessments provided."
+      ],
+      "discrepancies": [
+        "Recipient uses Mohammad, consistent with latest CV but unlike most other supplied certificates."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "Scanned PDF p1 rendered with pdftoppm, OCR, then direct visual inspection."
+    },
+    {
+      "certificateId": "cert-climate-fellowship",
+      "sourceFile": "climate-fellowship.png",
+      "sourceUrl": "https://drive.google.com/file/d/1YvylBC-PXtXDtinDY11Lr-F1zG7daR66/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "61c32cf2e852c0056d6fe2529ffb9836889d490bc9c52bfe7d314fbe2e74899f",
+      "dateProvenance": {
+        "start": "2026-07-04",
+        "end": "2026-08-22",
+        "issue": null,
+        "year": 2026,
+        "precision": "day",
+        "printed_text": "04th July 2026 to 22nd August 2026"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Successful completion explicitly stated.",
+        "Virtual program; certificate describes it as two month.",
+        "Training themes printed: climate action, sustainability, community empowerment."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "Latest CV p2 states 04/08/2026–22/08/2026. Certificate states 04 July–22 August 2026. Use the certificate date and record the correction."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "OCR and direct visual inspection of original image; dates independently confirmed by root."
+    },
+    {
+      "certificateId": "cert-records-experience",
+      "sourceFile": "records-experience.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1-XP9TSMKM2HBkLY1dFuux9hzKbFeglj0/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "f4f9ed634e753f84c2e34e8d1fbdaf209893be4c82696f660320b2a5478d3c22",
+      "dateProvenance": {
+        "start": "2021-01",
+        "end": "2022-03",
+        "issue": null,
+        "year": null,
+        "precision": "month",
+        "printed_text": "January/2021 to March/2022"
+      },
+      "recipientAsPrinted": "M. Ilyas in heading; Muhammad Ilyas in body",
+      "supportedDetails": [
+        "Data entry and verification in NADRA's Civil Record Management System (CRMS).",
+        "Handling and organizing official forms and citizen documentation.",
+        "Maintaining confidentiality and accuracy in record management.",
+        "Other office-related work."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV dates include days; certificate confirms only January 2021–March 2022.",
+        "Issuing stamp names Development Officer/Local Government Nal; workplace in body is UC Sarraij. Keep issuer and workplace distinct."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [
+        {
+          "category": "relative_name",
+          "field": "son of"
+        }
+      ],
+      "evidenceMethod": "Scanned PDF p1 rendered with pdftoppm, OCR, then direct visual inspection."
+    },
+    {
+      "certificateId": "cert-ispr-internship",
+      "sourceFile": "ispr-internship.jpg",
+      "sourceUrl": "https://drive.google.com/file/d/1B601UiVQOlrtkxYliu141nhQfTY2FLDX/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "576ad05cb9f55ff2ea75966275ad1c3da03550a0cc1afe4dd3c40b669de4764c",
+      "dateProvenance": {
+        "start": "2024-07-22",
+        "end": "2024-08-20",
+        "issue": null,
+        "year": 2024,
+        "precision": "day",
+        "printed_text": "22 July 2024 to 20 Aug 2024"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Successfully participated in the internship.",
+        "Location is the issuer workplace, not a recipient home address.",
+        "Certificate does not specify assignments, outputs, a grade, or a detailed curriculum."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "All three CVs p2 state 22/07/2024–20/08/2025. Certificate ends 20 Aug 2024. Use the certificate date and record the correction."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [
+        {
+          "category": "relative_name",
+          "field": "S/o / D/o"
+        }
+      ],
+      "evidenceMethod": "OCR did not recover the main text; direct visual inspection of original image confirmed all fields. Dates independently confirmed by root."
+    },
+    {
+      "certificateId": "cert-teaching-experience",
+      "sourceFile": "teaching-experience.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1iivIWIPg23sxrUt_Icm7BnYr9lA4sQ3D/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "3b47a5f67c0f81fe76d7c20faf13c9e90860d1f8b4c418eb84c0f3f66d4de687",
+      "dateProvenance": {
+        "start": "2026-03-27",
+        "end": "2026-10-16",
+        "issue": "2026-10-16",
+        "year": 2026,
+        "precision": "day",
+        "printed_text": "27th March 2026 to 16th October 2026; Date: 16-10-2026"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Mathematics teaching, Classes VI–IX.",
+        "Dates confirm latest CV.",
+        "Certificate describes performance as satisfactory; no quantified student outcomes are provided."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "Latest CV says Teacher; this certificate provides the more specific Math teacher, Classes VI–IX."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [
+        {
+          "category": "relative_name",
+          "field": "S/O"
+        }
+      ],
+      "evidenceMethod": "Scanned PDF p1 rendered with pdftoppm, OCR, then direct visual inspection."
+    },
+    {
+      "certificateId": "cert-research-methodology-01",
+      "sourceFile": "research-methodology-01.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1LRu1t6IHRrA8nJP9gCTx_YWrEAb8ux0B/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "d7568be200317436b9853a38988364417630c8afb3f77c5d74520fd1bcd089b3",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-02",
+      "sourceFile": "research-methodology-02.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1RN0k2tz0Q4L5PxQRFhBzLx3JzEcf98p_/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "b2e89b458d9df58d3d22e467731db8c9480a90ba968853e90fe50371855366c6",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-03",
+      "sourceFile": "research-methodology-03.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1ftxmHbk89EZA5gI-bV7Sfnz9t4ex5Gov/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "fc52a1eaa68014e9478bd6ccab89132911197a371f517c6d1356b8836e8aac16",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-04",
+      "sourceFile": "research-methodology-04.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1YNQ98MdcaHdClnX_8Vuljfsg85gmSeh-/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "dd597db8cec9655e452cf98ed83e19ec6185baa7f468dcd1dc7810af93c67214",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": "active-research-framework",
+      "duplicateStatus": "Probable alternate certificate: titles differ by the *SoTL prefix; same recipient, program, one contact hour, and original filename stem 644. Preserve both sources but group for public presentation pending confirmation.",
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-05",
+      "sourceFile": "research-methodology-05.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1UcQ-OEOo2NgtjtRcRasa8x8TrMB_KI0h/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "1c5b88b285e8fb09d78697d0a9026b206590a8eec582cd72297881e93ce8cb75",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": "active-research-framework",
+      "duplicateStatus": "Probable alternate certificate: titles differ by the *SoTL prefix; same recipient, program, one contact hour, and original filename stem 644. Preserve both sources but group for public presentation pending confirmation.",
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-06",
+      "sourceFile": "research-methodology-06.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1gN_dLypubDqTWY7Ou4AUFmG50ZT3PULC/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "07713b43159c71f2fc3270ba0b7080a6d22d6e776beca100ff933efa4a7d0637",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-07",
+      "sourceFile": "research-methodology-07.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1hC-ZH2tZkN1xqzq5ZUZJC2FZUnGRWQ6E/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "a8072b5c52eab52b2b2dd9795dd70b6bac5aa9d5e6fdfc00897b369f5fcac7f2",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-08",
+      "sourceFile": "research-methodology-08.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1XeoDBlookVu1j4AaR2v-kdX1AIAswW__/view?usp=drivesdk",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "sha256": "d1ff8b0441201734ee2171caf1865a00ae78c1cd22e4d440dd18e0892a901a1c",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-09",
+      "sourceFile": "research-methodology-09.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1wmzmj1WXJhuc4EH5U7KenYOv_UnxItpq/view?usp=drivesdk",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "sha256": "1be8f8faee1a31af201b25cd93de10abaa9578681fe27a4b1b2e5c2cdfbb633f",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-10",
+      "sourceFile": "research-methodology-10.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1HKbtZuykleuZtRtKvz8PSGhDRmDiJdGJ/view?usp=drivesdk",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "sha256": "5b8bd0ef5f468823a19434fee9432b0a0acf05dfd017884240513cafdcc09ca8",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "2 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-11",
+      "sourceFile": "research-methodology-11.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1kvMseEVkcQ0Xa4FnWPRC7cEKTqgmHwmt/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "168967bae67910c03fb5022fb48c53ba0bef1b46da330f70b8bbfa44db4a6883",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-12",
+      "sourceFile": "research-methodology-12.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/11yZb0nys2ZkCkjgbaHNs9cATjATDGlvl/view?usp=drivesdk",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "sha256": "0bb43de2f04636a5a17ecb45d4a0ab3845732a0e4c5e640b768038173d5c84ac",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "2 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-13",
+      "sourceFile": "research-methodology-13.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1D3fgivOBuSLmZ6nunIyNJDQ-iYTtVBXM/view?usp=drivesdk",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "sha256": "abbd4c00f92a80afdbac60c28dc08f4734f0e1fe1337369395a46f0c0ee67c4e",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "2 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": "reporting-statistical-results",
+      "duplicateStatus": "Same title, recipient, program, and contact hours; distinct file hashes and slightly different affiliation text. Treat as alternate/duplicate-topic evidence, not two achievements. Individual session dates are absent.",
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-14",
+      "sourceFile": "research-methodology-14.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1Sbo8mD4MPdDiRtFy2W9wk8gfjTHak98N/view?usp=drivesdk",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "sha256": "3404bd5de459110d9c49968c0fa9a3c1d98b9b9c178d9033db924b70de1add0d",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-15",
+      "sourceFile": "research-methodology-15.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/19gHJJ9qy5Gs7Awbi9RGuIx4HOkkNkTCD/view?usp=drivesdk",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "sha256": "294c24804bc1d52c3bc3f7488ba6030c6ecbf4c80676f9e62daa3329863939a1",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-16",
+      "sourceFile": "research-methodology-16.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1rkvHW4Q_YDKdiS9Lsd8se6xzD-RGWvYS/view?usp=drivesdk",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "sha256": "49ec424f7017be376108b861b3be601b2306abd6e6d6aa20780dd6296f35c822",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "2 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": "reporting-statistical-results",
+      "duplicateStatus": "Same title, recipient, program, and contact hours; distinct file hashes and slightly different affiliation text. Treat as alternate/duplicate-topic evidence, not two achievements. Individual session dates are absent.",
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-17",
+      "sourceFile": "research-methodology-17.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1ra13WRNoaOqmBQwQejFt1HAIEnc-iJJ3/view?usp=drivesdk",
+      "sourcePages": [
+        1,
+        2
+      ],
+      "sha256": "ef1cc3f0d021ed4692c37fcbf627ff27a60eac7e22ebeeb87c4084340cb48a37",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-18",
+      "sourceFile": "research-methodology-18.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1rGIK8XyVLPCWjHDFH2uPfWdMO9H-k9ID/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "75494dbb5b6ae5f88aed4baf61d26525c36e2456c48c600135821ef27be5e4c4",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    },
+    {
+      "certificateId": "cert-research-methodology-19",
+      "sourceFile": "research-methodology-19.pdf",
+      "sourceUrl": "https://drive.google.com/file/d/1RN6nzm5UGaxubzCFhdZEcZTJzqL5CKJ4/view?usp=drivesdk",
+      "sourcePages": [
+        1
+      ],
+      "sha256": "011e31414af7466d5d7bc728a7576bd76b1ee80778b974a515740e673b243c3d",
+      "dateProvenance": {
+        "start": null,
+        "end": null,
+        "issue": null,
+        "year": 2025,
+        "precision": "year_only",
+        "printed_text": "Research Methodology Course 2025"
+      },
+      "recipientAsPrinted": "Muhammad Ilyas",
+      "supportedDetails": [
+        "Participation in the named webinar",
+        "1 contact hour(s) printed on this certificate",
+        "Institutional affiliation identifies the recipient, not the issuing organization."
+      ],
+      "discrepancies": [
+        "Recipient is printed as Muhammad Ilyas; latest CV and teacher-training certificate use Mohammad Ilyas. Preserve source spelling; choose the portfolio display name consistently after owner review.",
+        "CV describes completion of the course; these documents are individual certificates of participation, with no supplied overall assessed completion certificate."
+      ],
+      "duplicateGroup": null,
+      "duplicateStatus": null,
+      "privacyFields": [],
+      "evidenceMethod": "pypdf text extraction on every page; shared letterhead/signature images verified by image hashes against visually inspected research-methodology-01.pdf p1."
+    }
+  ],
+  "factualDecisions": [
+    {
+      "field": "ISPR dates",
+      "use": "2024-07-22 to 2024-08-20",
+      "reason": "Direct certificate states 2024; CV end year2025 retained as a discrepancy."
+    },
+    {
+      "field": "Climate fellowship dates",
+      "use": "2026-07-04 to 2026-08-22",
+      "reason": "Direct certificate states July start; CV August start retained as a discrepancy."
+    },
+    {
+      "field": "Records employment dates",
+      "use": "2021-01 to 2022-03",
+      "reason": "Month precision matches certificate. CVs additionally state12January2021 to2March2022."
+    },
+    {
+      "field": "Research program dates",
+      "use": "CV-reported11June to8July2025; public display June–July2025",
+      "reason": "Certificates print only2025; individual dates remain unknown."
+    },
+    {
+      "field": "Youth workshop dates",
+      "use": "CV-reported1–3October2025",
+      "reason": "Certificate shows duration but no dates."
+    }
+  ]
+}

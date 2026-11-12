@@ -1,0 +1,39 @@
+[
+  {
+    "id": "idea-adaptation",
+    "title": "From national adaptation priorities to local resilience",
+    "question": "How does Pakistan’s 2023 National Adaptation Plan frame local coordination and implementation responsibilities?",
+    "approach": "A bounded document review with a transparent coding table. Add later implementation evidence before making claims about outcomes.",
+    "suggestedOutput": "A 1,200–1,800 word policy note with references, scope and limitations.",
+    "sourceIds": [
+      "reading-nap"
+    ],
+    "status": "idea",
+    "publish": false
+  },
+  {
+    "id": "idea-diplomacy",
+    "title": "Security, development and cooperation in Pakistan’s foreign-policy language",
+    "question": "How are these priorities described in a clearly dated, explicitly selected set of official documents?",
+    "approach": "Qualitative document analysis with a disclosed selection period, codebook, examples and counterexamples. Compare official claims with other evidence when assessing outcomes.",
+    "suggestedOutput": "An analytical essay or short research note.",
+    "sourceIds": [
+      "reading-mofa",
+      "reading-charter"
+    ],
+    "status": "idea",
+    "publish": false
+  },
+  {
+    "id": "idea-maritime",
+    "title": "Environmental protection and cooperation in the Indian Ocean",
+    "question": "How could a narrowly defined maritime environmental issue be studied through UNCLOS Part XII and a small set of regional policy documents?",
+    "approach": "Choose one issue and one geographic scope before collecting documents. Distinguish legal text, policy commitments and observed implementation.",
+    "suggestedOutput": "A literature-led research note with a clearly bounded question.",
+    "sourceIds": [
+      "reading-unclos"
+    ],
+    "status": "idea",
+    "publish": false
+  }
+]

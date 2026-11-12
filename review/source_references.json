@@ -1,0 +1,71 @@
+{
+  "checkedOn": "2026-11-07",
+  "researchSources": [
+    {
+      "id": "reading-nap",
+      "title": "National Adaptation Plan Pakistan (2023)",
+      "publisher": "UNFCCC document listing; author Pakistan",
+      "url": "https://unfccc.int/documents/631045",
+      "relatedInterestId": "interest-climate",
+      "note": "Suggested starting document, not a work authored by the portfolio owner."
+    },
+    {
+      "id": "reading-mofa",
+      "title": "Pakistan Ministry of Foreign Affairs: Foreign Policy",
+      "publisher": "Ministry of Foreign Affairs, Pakistan",
+      "url": "https://www.mofa.gov.pk/foreign-policy",
+      "relatedInterestId": "interest-diplomacy",
+      "note": "A primary statement of official policy for critical document analysis."
+    },
+    {
+      "id": "reading-charter",
+      "title": "UN Charter, Chapter VI: Pacific Settlement of Disputes",
+      "publisher": "United Nations",
+      "url": "https://www.un.org/en/about-us/un-charter/chapter-6",
+      "relatedInterestId": "interest-diplomacy",
+      "note": "Primary reference for a study of peaceful dispute settlement."
+    },
+    {
+      "id": "reading-unclos",
+      "title": "UNCLOS, Part XII: Protection and Preservation of the Marine Environment",
+      "publisher": "United Nations",
+      "url": "https://www.un.org/Depts/los/convention_agreements/texts/unclos/part12.htm",
+      "relatedInterestId": "interest-maritime",
+      "note": "Primary reference for a bounded study of maritime environmental cooperation."
+    }
+  ],
+  "technicalSources": [
+    {
+      "title": "Next.js Server and Client Components",
+      "url": "https://nextjs.org/docs/app/getting-started/server-and-client-components"
+    },
+    {
+      "title": "Next.js installation and scripts",
+      "url": "https://nextjs.org/docs/app/getting-started/installation"
+    },
+    {
+      "title": "Next.js Image component",
+      "url": "https://nextjs.org/docs/app/api-reference/components/image"
+    },
+    {
+      "title": "Tailwind CSS with Next.js",
+      "url": "https://tailwindcss.com/docs/installation/framework-guides/nextjs"
+    },
+    {
+      "title": "Motion for React installation",
+      "url": "https://motion.dev/docs/react-installation"
+    },
+    {
+      "title": "MotionConfig and reduced motion",
+      "url": "https://motion.dev/docs/react-motion-config"
+    },
+    {
+      "title": "W3C Animation from Interactions",
+      "url": "https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html"
+    },
+    {
+      "title": "Core Web Vitals thresholds",
+      "url": "https://web.dev/articles/defining-core-web-vitals-thresholds"
+    }
+  ]
+}
