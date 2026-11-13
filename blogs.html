@@ -1,0 +1,30 @@
+---
+layout: page
+title: Blogs
+page_id: blogs
+permalink: /blogs/
+eyebrow: Notes & perspectives
+heading: Ideas, questions, and perspectives.
+intro: Writing on international relations, diplomacy, regional politics, and environmental security.
+description: Read Mohammad Ilyas’s writing on international relations, diplomacy, regional politics, and environmental security.
+---
+{% if site.posts.size > 0 %}
+<div class="blog-list">
+  {% for post in site.posts %}
+  <a class="blog-card" href="{{ post.url | relative_url }}">
+    <div class="post-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d %B %Y' }}</time>{% if post.tags.size > 0 %}<span aria-hidden="true">·</span><span>{{ post.tags | first | escape }}</span>{% endif %}</div>
+    <h2>{{ post.title | escape }}</h2>
+    <p class="blog-excerpt">{{ post.description | default: post.excerpt | strip_html | truncatewords: 36 | escape }}</p>
+    <span class="card-link">Read article <span aria-hidden="true">→</span></span>
+  </a>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">
+  <span class="eyebrow">A space for writing</span>
+  <h2>No articles yet.</h2>
+  <p>New essays and reflections will appear here as they are published.</p>
+  <a class="btn secondary" href="{{ '/research/' | relative_url }}">Explore research interests <span aria-hidden="true">→</span></a>
+</div>
+{% endif %}
+<div class="blog-author-link"><a href="{{ '/write/' | relative_url }}">Write a blog <span aria-hidden="true">↗</span></a></div>

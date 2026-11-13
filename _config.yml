@@ -1,0 +1,19 @@
+title: Mohammad Ilyas
+description: Academic portfolio and writing on international relations, diplomacy, and environmental security.
+url: https://ilyasferozi.me
+baseurl: ""
+lang: en
+timezone: Asia/Karachi
+markdown: kramdown
+highlighter: rouge
+permalink: /blogs/:title/
+kramdown:
+  input: GFM
+  hard_wrap: false
+exclude:
+  - README.md
+  - docs
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - scripts
