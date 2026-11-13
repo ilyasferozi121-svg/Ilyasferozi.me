@@ -1,3 +1,6 @@
+- id: home
+  title: Home
+  url: /
 - id: about
   title: About
   url: /about/

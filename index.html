@@ -44,47 +44,110 @@ description: "Academic portfolio of Mohammad Ilyas, MPhil student in Internation
   </div>
 </section>
 <section class="home-overview wrap" aria-labelledby="overview-heading">
-  <div class="section-heading"><span class="eyebrow">Explore the portfolio</span><h2 id="overview-heading">A closer look.</h2><p class="section-intro">Explore my academic background, research interests, professional experience, and writing.</p></div>
+  <div class="section-heading"><span class="eyebrow">Explore the portfolio</span><h2 id="overview-heading">The story behind the work.</h2><p class="section-intro">Get to know my academic journey, the questions I am exploring, and the experience I bring to them. Each section opens into a fuller page.</p></div>
   <div class="portfolio-filters" role="group" aria-label="Filter portfolio sections" data-filters hidden>
     <button type="button" data-filter="all" aria-pressed="true">Everything</button><button type="button" data-filter="academic" aria-pressed="false">Academic</button><button type="button" data-filter="professional" aria-pressed="false">Professional</button><button type="button" data-filter="writing" aria-pressed="false">Writing</button>
   </div>
   <p class="filter-status" id="filter-status" role="status" aria-live="polite"></p>
-  <div class="page-grid">
-    <article class="page-card" id="about" data-category="academic">
-      <span class="card-index">01 / About</span><h3>Academic foundations and perspective.</h3><p>My background in International Relations and the approach to research I am developing.</p>
-      <a class="card-link" href="{{ '/about/' | relative_url }}" aria-label="More about me">More <span aria-hidden="true">→</span></a>
+  <div class="page-grid home-sections">
+
+    <article class="page-card home-section home-about" id="about" data-category="academic" aria-labelledby="home-about-title">
+      <div class="home-section-head"><span class="card-index">01 / About</span><h3 id="home-about-title">An academic foundation.<br>A developing perspective.</h3><p class="section-description">Connecting formal study with experience in communication, education, and public service.</p></div>
+      <div class="home-section-body about-layout">
+        <div class="about-copy"><p>I am an MPhil student in International Relations at the University of Management and Technology, Lahore. My undergraduate studies at LUAWMS covered foreign policy, diplomacy, regional politics, security, and international law.</p><p>Alongside my studies, I have worked in education communications, mathematics teaching, and public-sector record management. These roles have given me practical experience in organizing information, coordinating people, and communicating clearly.</p></div>
+        <aside class="about-focus"><h4>What guides my curiosity</h4><div class="taglist"><span class="tag">Foreign policy</span><span class="tag">Diplomacy</span><span class="tag">Regional politics</span><span class="tag">Environmental security</span></div><p>I am developing my research approach through literature review, qualitative and mixed methods, academic writing, and data analysis.</p></aside>
+      </div>
+      <div class="home-section-footer"><span>Background, interests, and approach</span><a class="card-link" href="{{ '/about/' | relative_url }}" aria-label="More about me">More <span aria-hidden="true">→</span></a></div>
     </article>
-    <article class="page-card" id="research" data-category="academic">
-      <span class="card-index">02 / Research</span><h3>Questions worth exploring.</h3><p>Foreign policy, diplomacy, climate policy, and cooperation across the Indian Ocean.</p>
-      <a class="card-link" href="{{ '/research/' | relative_url }}" aria-label="More about research">More <span aria-hidden="true">→</span></a>
+
+    <article class="page-card home-section home-research" id="research" data-category="academic" aria-labelledby="home-research-title">
+      <div class="home-section-head"><span class="card-index">02 / Research</span><h3 id="home-research-title">Three ways of looking<br>at a connected world.</h3><p class="section-description">Developing research interests across international relations, shared environmental challenges, and maritime cooperation.</p></div>
+      <div class="home-section-body research-previews">
+        <article class="research-preview"><span class="theme-number">01</span><h4>Foreign policy &amp; diplomacy</h4><p>How states define their priorities, manage regional relationships, and use diplomacy to address shared problems.</p><div class="taglist"><span class="tag">South Asia</span><span class="tag">Middle East</span></div></article>
+        <article class="research-preview"><span class="theme-number">02</span><h4>Climate &amp; environmental security</h4><p>The links between environmental change, human security, public policy, adaptation, and international cooperation.</p><div class="taglist"><span class="tag">Climate policy</span><span class="tag">Human security</span></div></article>
+        <article class="research-preview"><span class="theme-number">03</span><h4>The Indian Ocean</h4><p>How maritime security, international law, and environmental protection shape cooperation across the region.</p><div class="taglist"><span class="tag">Maritime cooperation</span><span class="tag">International law</span></div></article>
+      </div>
+      <div class="home-section-footer"><span>Explore the questions behind these interests</span><a class="card-link" href="{{ '/research/' | relative_url }}" aria-label="More about research interests">More <span aria-hidden="true">→</span></a></div>
     </article>
-    <article class="page-card" id="education" data-category="academic">
-      <span class="card-index">03 / Education</span><h3>An academic journey.</h3><p>From a BS in International Relations at LUAWMS to current MPhil study at UMT Lahore.</p>
-      <a class="card-link" href="{{ '/education/' | relative_url }}" aria-label="More about education">More <span aria-hidden="true">→</span></a>
+
+    <article class="page-card home-section home-education" id="education" data-category="academic" aria-labelledby="home-education-title">
+      <div class="home-section-head"><span class="card-index">03 / Education</span><h3 id="home-education-title">From undergraduate foundations<br>to postgraduate study.</h3><p class="section-description">A continuing academic journey in International Relations, from Uthal to Lahore.</p></div>
+      <div class="home-section-body education-path">
+        <article class="education-preview"><div class="education-marker" aria-hidden="true"></div><div><span class="preview-date">October 2026–present</span><h4>MPhil in International Relations</h4><p class="education-institution">University of Management and Technology · Lahore</p><p>Current postgraduate study in International Relations, building on my undergraduate academic background.</p></div></article>
+        <article class="education-preview"><div class="education-marker" aria-hidden="true"></div><div><span class="preview-date">February 2022–December 2025</span><h4>BS in International Relations</h4><p class="education-institution">Lasbela University of Agriculture, Water and Marine Sciences · Uthal</p><p>Coursework included IR theories, foreign policy, strategic and arms studies, international law, diplomacy, and environmental security.</p><span class="education-score">CGPA <strong>3.88</strong></span></div></article>
+      </div>
+      <div class="home-section-footer"><span>Institutions, dates, and academic development</span><a class="card-link" href="{{ '/education/' | relative_url }}" aria-label="More about education">More <span aria-hidden="true">→</span></a></div>
     </article>
-    <article class="page-card" id="experience" data-category="professional">
-      <span class="card-index">04 / Experience</span><h3>Experience across disciplines.</h3><p>Communications, mathematics teaching, public relations, and public-sector record management.</p>
-      <a class="card-link" href="{{ '/experience/' | relative_url }}" aria-label="More about experience">More <span aria-hidden="true">→</span></a>
+
+    <article class="page-card home-section home-experience" id="experience" data-category="professional" aria-labelledby="home-experience-title">
+      <div class="home-section-head"><span class="card-index">04 / Experience</span><h3 id="home-experience-title">Learning through<br>different kinds of work.</h3><p class="section-description">Roles across education communications, classroom teaching, public relations, and official records.</p></div>
+      <div class="home-section-body">
+        <div class="experience-previews">
+          <article class="experience-preview"><span class="preview-date">August 2023–present</span><h4>Marketing and Communications Manager</h4><p class="experience-organization">Skillroid · Winder</p><p>Coordinated with course creators, managed social media and press activity, and supported instructor onboarding, promotions, and events.</p></article>
+          <article class="experience-preview"><span class="preview-date">March–October 2026</span><h4>Mathematics Teacher</h4><p class="experience-organization">Ali Education System · Karachi</p><p>Taught mathematics to students in Classes VI–IX, alongside participation in teacher training and professional development.</p></article>
+          <article class="experience-preview"><span class="preview-date">22 July–20 August 2024</span><h4>ISPR Intern</h4><p class="experience-organization">Inter Services Public Relations · Rawalpindi</p><p>Participated in lectures, seminars, discussions, debates, and institutional visits related to national defence and public relations.</p></article>
+        </div>
+        <p class="experience-footnote"><strong>Earlier experience:</strong> Data Entry and Record Management Assistant, Union Council Office Sarraij, Khuzdar (January 2021–March 2022), entering and verifying data in NADRA’s Civil Record Management System and organizing official documentation.</p>
+      </div>
+      <div class="home-section-footer"><span>The full chronology and responsibilities</span><a class="card-link" href="{{ '/experience/' | relative_url }}" aria-label="More about professional experience">More <span aria-hidden="true">→</span></a></div>
     </article>
-    <article class="page-card" id="training" data-category="academic">
-      <span class="card-index">05 / Training</span><h3>Continuing to learn.</h3><p>Fellowships, workshops, and research-methodology training, with supporting certificates.</p>
-      <a class="card-link" href="{{ '/training/' | relative_url }}" aria-label="More about training">More <span aria-hidden="true">→</span></a>
+
+    <article class="page-card home-section home-training" id="training" data-category="academic" aria-labelledby="home-training-title">
+      <div class="home-section-head"><span class="card-index">05 / Training</span><h3 id="home-training-title">Learning beyond<br>the classroom.</h3><p class="section-description">Fellowships, workshops, and research-methodology training that complement formal study.</p></div>
+      <div class="home-section-body">
+        <div class="training-previews">
+          <article class="training-preview"><span class="training-label">Climate action · 2026</span><h4>PCF Climate Action Fellowship 4.0</h4><p>4 July–22 August 2026</p><p>A virtual fellowship with Progressive Climate Foundation on climate action, sustainability, and community empowerment.</p><a class="preview-certificate" href="{{ '/source-assets/certificates/climate-fellowship.png' | relative_url }}" target="_blank" rel="noopener">View certificate <span aria-hidden="true">↗</span></a></article>
+          <article class="training-preview"><span class="training-label">Education · 2026</span><h4>Teacher Training Workshop</h4><p>1–15 June 2026</p><p>Professional development and effective teaching practices at Ali Education System, Karachi.</p><a class="preview-certificate" href="{{ '/source-assets/certificates/teacher-training.pdf' | relative_url }}" target="_blank" rel="noopener">View certificate <span aria-hidden="true">↗</span></a></article>
+          <article class="training-preview"><span class="training-label">Youth development · 2025</span><h4>Deputy Commissioner’s Youth Development Workshop</h4><p>Three-day workshop · Lasbela</p><p>Participation in sessions covering International Relations theories and political economy.</p><a class="preview-certificate" href="{{ '/source-assets/certificates/youth-workshop.jpg' | relative_url }}" target="_blank" rel="noopener">View certificate <span aria-hidden="true">↗</span></a></article>
+        </div>
+        <p class="training-footnote"><strong>Research Methodology Course · June–July 2025:</strong> Webinar participation with the Center for Learning and Teaching, Forman Christian College, covering literature review, research ethics, qualitative and mixed methods, data analysis, and academic writing. The full page includes the programme’s <strong>19 session certificates</strong>.</p>
+      </div>
+      <div class="home-section-footer"><span>Programmes, learning, and supporting certificates</span><a class="card-link" href="{{ '/training/' | relative_url }}" aria-label="More about training and certificates">More <span aria-hidden="true">→</span></a></div>
     </article>
-    <article class="page-card" id="skills" data-category="professional">
-      <span class="card-index">06 / Skills</span><h3>Skills and working languages.</h3><p>Communication, records management, research methods, and a developing technical toolkit.</p>
-      <a class="card-link" href="{{ '/skills/' | relative_url }}" aria-label="More about skills">More <span aria-hidden="true">→</span></a>
+
+    <article class="page-card home-section home-skills" id="skills" data-category="professional" aria-labelledby="home-skills-title">
+      <div class="home-section-head"><span class="card-index">06 / Skills</span><h3 id="home-skills-title">A practical toolkit.<br>More than one way to connect.</h3><p class="section-description">Skills developed through work, study, and continuing self-directed learning.</p></div>
+      <div class="home-section-body skills-layout">
+        <div class="skill-clusters">
+          <div class="skill-cluster"><h4>Communication &amp; coordination</h4><p>Social media management, course and instructor coordination, promotional activity, and event support.</p></div>
+          <div class="skill-cluster"><h4>Office &amp; records</h4><p>Microsoft Word, Excel, and PowerPoint; data entry, record verification, and official documentation.</p></div>
+          <div class="skill-cluster"><h4>Research &amp; analysis</h4><p>Training in literature review, qualitative and mixed methods, research ethics, Mendeley, SPSS, and R.</p><p><strong>Developing toolkit:</strong> Python, pandas, NumPy, data visualization, and prompt engineering.</p></div>
+        </div>
+        <aside class="language-preview"><h4>Working languages</h4><p>Balochi is my mother tongue. My working-language profile also includes:</p><div class="language-line"><span>English</span><span>Urdu</span><span>Sindhi</span><span>Punjabi</span></div></aside>
+      </div>
+      <div class="home-section-footer"><span>Communication, methods, tools, and languages</span><a class="card-link" href="{{ '/skills/' | relative_url }}" aria-label="More about skills and languages">More <span aria-hidden="true">→</span></a></div>
     </article>
-    <article class="page-card" id="blogs" data-category="writing">
-      <span class="card-index">07 / Blogs</span><h3>Notes and perspectives.</h3><p>A space for essays and reflections on international relations and the questions that shape it.</p>
-      <a class="card-link" href="{{ '/blogs/' | relative_url }}" aria-label="More about blogs">More <span aria-hidden="true">→</span></a>
+
+    <article class="page-card home-section home-blogs" id="blogs" data-category="writing" aria-labelledby="home-blogs-title">
+      <div class="home-section-head"><span class="card-index">07 / Blogs</span><h3 id="home-blogs-title">A place to think<br>in longer form.</h3><p class="section-description">Essays and reflections on international relations and the questions that connect policy, people, and regions.</p></div>
+      <div class="home-section-body home-blog-content">
+        {% if site.posts.size > 0 %}
+        <div class="home-post-previews">{% for post in site.posts limit: 2 %}<a class="home-post-preview" href="{{ post.url | relative_url }}"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d %B %Y' }}</time><h4>{{ post.title | escape }}</h4><p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 34 | escape }}</p></a>{% endfor %}</div>
+        {% else %}
+        <p class="blog-status">A space for essays and reflections</p><blockquote class="blog-question">How can regional cooperation respond to challenges that cross borders?</blockquote><p>No articles have been published yet. New writing will appear here as it is added to the blog.</p>
+        {% endif %}
+        <div class="taglist blog-topics"><span class="tag">Diplomacy</span><span class="tag">Regional politics</span><span class="tag">Climate &amp; security</span></div>
+      </div>
+      <div class="home-section-footer"><span>Read published articles and future updates</span><a class="card-link" href="{{ '/blogs/' | relative_url }}" aria-label="More blogs and writing">More <span aria-hidden="true">→</span></a></div>
     </article>
-    <article class="page-card" id="cv" data-category="professional">
-      <span class="card-index">08 / CV</span><h3>The complete overview.</h3><p>A printable record of education, professional experience, training, and skills.</p>
-      <a class="card-link" href="{{ '/cv/' | relative_url }}" aria-label="View my full CV">More <span aria-hidden="true">→</span></a>
+
+    <article class="page-card home-section home-cv" id="cv" data-category="professional" aria-labelledby="home-cv-title">
+      <div class="home-section-head"><span class="card-index">08 / CV</span><h3 id="home-cv-title">The complete record,<br>in one place.</h3><p class="section-description">A self-contained professional overview, ready to print or save as a PDF from the CV page.</p></div>
+      <div class="home-section-body cv-preview-layout">
+        <div><h4>From academic background to practical experience.</h4><p>The CV brings together my education, work history, training, skills, and languages in a single chronological overview.</p><ul class="cv-contents"><li>Profile and academic background</li><li>Education and professional experience</li><li>Fellowships, workshops, and research training</li><li>Skills and working languages</li></ul><p>Open the full page and choose <strong>Print / Save as PDF</strong> to create a copy.</p></div>
+        <div class="cv-document" aria-hidden="true"><span class="document-label">Curriculum vitae</span><strong>Mohammad Ilyas</strong><span class="document-line wide"></span><span class="document-line"></span><span class="document-line short"></span><span class="document-rule"></span><span class="document-line wide"></span><span class="document-line"></span><span class="document-line short"></span><span class="document-rule"></span><span class="document-line wide"></span><span class="document-line"></span></div>
+      </div>
+      <div class="home-section-footer"><span>A complete printable overview</span><a class="card-link" href="{{ '/cv/' | relative_url }}" aria-label="View my full CV">More <span aria-hidden="true">→</span></a></div>
     </article>
-    <article class="page-card" id="contact" data-category="professional">
-      <span class="card-index">09 / Contact</span><h3>Start a conversation.</h3><p>Get in touch for academic discussion, professional enquiries, or shared research interests.</p>
-      <a class="card-link" href="{{ '/contact/' | relative_url }}" aria-label="More about contact">More <span aria-hidden="true">→</span></a>
+
+    <article class="page-card home-section home-contact" id="contact" data-category="professional" aria-labelledby="home-contact-title">
+      <div class="home-section-head"><span class="card-index">09 / Contact</span><h3 id="home-contact-title">Let’s continue<br>the conversation.</h3><p class="section-description">For academic discussion, professional enquiries, or a shared interest in international relations.</p></div>
+      <div class="home-section-body contact-preview-layout">
+        <div><h4>Have a question or a perspective to share?</h4><p>Get in touch about foreign policy, diplomacy, regional cooperation, or environmental security. Email and LinkedIn are the best ways to connect.</p></div>
+        <div class="contact-methods"><a class="contact-method" href="mailto:ilyasferozi121@gmail.com"><span class="contact-kind">Email</span><strong>ilyasferozi121@gmail.com</strong></a><a class="contact-method" href="https://www.linkedin.com/in/muhammad-ilyas-930830370" target="_blank" rel="noopener"><span class="contact-kind">LinkedIn</span><strong>Connect on LinkedIn <span aria-hidden="true">↗</span></strong></a></div>
+      </div>
+      <div class="home-section-footer"><span>Academic discussion and professional enquiries</span><a class="card-link" href="{{ '/contact/' | relative_url }}" aria-label="More contact details">More <span aria-hidden="true">→</span></a></div>
     </article>
+
   </div>
 </section>

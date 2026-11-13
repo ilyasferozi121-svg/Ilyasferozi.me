@@ -1,16 +1,93 @@
 ---
-layout: page
+layout: default
 title: Blog administration
-page_id: admin
+description: Administrator sign-in and blog writing desk.
 permalink: /write/
-eyebrow: Administrator access
-heading: Manage your blog.
-intro: Blog posts are created and managed in GitHub. Sign in with an account that has permission to update this repository.
-description: Authenticated blog administration through GitHub.
+page_id: admin
+editor: true
 noindex: true
 ---
-<div class="panel admin-handoff">
-  <h2>Continue securely in GitHub.</h2>
-  <p>GitHub checks your sign-in and repository permissions before allowing any article to be created, changed, or published. Visitors can read published blogs here.</p>
-  <div class="actions"><a class="btn" href="https://github.com/ilyasferozi121-svg/Ilyasferozi.me/tree/main/_posts">Manage posts in GitHub <span aria-hidden="true">↗</span></a><a class="btn secondary" href="{{ '/blogs/' | relative_url }}">Back to Blogs</a></div>
-</div>
+<section class="page-hero wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{{ '/blogs/' | relative_url }}">Blogs</a><span aria-hidden="true"> / </span><span>Write a post</span></nav>
+  <p class="eyebrow">Writing desk</p>
+  <h1>Make space for a new idea.</h1>
+  <p class="page-lead">Sign in as the administrator to draft, preview, and publish your next article.</p>
+</section>
+
+<section class="wrap page-content writer-space" aria-label="Blog writing desk">
+  <noscript><p class="note">The writing desk needs JavaScript. You can also create a Markdown post directly in the repository’s <code>_posts</code> folder.</p></noscript>
+  <section class="administrator-signin" id="administrator-signin" aria-labelledby="signin-heading">
+    <div class="signin-heading"><p class="eyebrow">Administrator access</p><h2 id="signin-heading">Sign in to your writing desk.</h2><p>Only the website administrator can open this editor and publish articles.</p></div>
+    <form id="administrator-login" class="writer-form signin-form" method="post">
+      <div class="writer-field"><label for="administrator-token">GitHub access token</label><input id="administrator-token" type="password" required autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="token-help" disabled></div>
+      <p class="field-hint" id="token-help">Use a fine-grained token for this repository with Contents read and write permission. It stays in memory until you sign out and is sent only to GitHub. <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener noreferrer">Create a token in GitHub ↗</a></p>
+      <div class="actions"><button class="btn" id="administrator-login-button" type="submit" disabled>Sign in as administrator</button><a href="{{ '/blogs/' | relative_url }}">Back to Blogs</a></div>
+      <p class="signin-status" id="signin-status" role="status" aria-live="polite"></p>
+    </form>
+  </section>
+  <div id="administrator-workspace" hidden>
+  <div class="administrator-session"><p id="administrator-identity"></p><button class="writer-text-button" id="administrator-logout" type="button">Sign out</button></div>
+  <div class="writer-intro">
+    <p>Your draft stays in this browser. Publish when your article is ready; your GitHub repository keeps the published version.</p>
+    <button class="writer-text-button" id="new-draft" type="button">Start a new draft</button>
+  </div>
+  <p class="draft-status" id="draft-status" role="status" aria-live="polite">Drafts are saved in this browser as you write.</p>
+
+  <div class="writer-grid">
+    <form class="writer-form" id="blog-writer" method="post" inert>
+      <div class="writer-field">
+        <label for="post-title">Article title</label>
+        <input id="post-title" name="title" type="text" maxlength="180" placeholder="Give your idea a clear title" required autocomplete="off">
+      </div>
+      <div class="writer-field">
+        <label for="post-date">Publication date</label>
+        <input id="post-date" name="date" type="date" required aria-describedby="date-hint">
+        <p class="field-hint" id="date-hint">Choose today or an earlier date. Dates follow Pakistan time.</p>
+      </div>
+      <div class="writer-field">
+        <label for="post-summary">Short introduction <span class="field-optional">Optional</span></label>
+        <textarea id="post-summary" name="summary" rows="3" maxlength="360" placeholder="A sentence or two to introduce your article." aria-describedby="summary-hint"></textarea>
+        <p class="field-hint" id="summary-hint">Appears in the blog listing. Leave this blank to use an excerpt from your article.</p>
+      </div>
+      <div class="writer-field">
+        <label for="post-tags">Topics <span class="field-optional">Optional</span></label>
+        <input id="post-tags" name="tags" type="text" maxlength="300" placeholder="Diplomacy, Climate policy" aria-describedby="tags-hint" autocomplete="off">
+        <p class="field-hint" id="tags-hint">Separate topics with commas.</p>
+      </div>
+      <div class="writer-field">
+        <label for="post-body">Your article</label>
+        <textarea id="post-body" name="body" class="writer-body" rows="20" maxlength="200000" required placeholder="Start writing here…" aria-describedby="markdown-hint"></textarea>
+        <details class="markdown-help" id="markdown-hint">
+          <summary>A little Markdown goes a long way</summary>
+          <ul>
+            <li><code>## A section heading</code></li>
+            <li><code>**Bold**</code> and <code>*italic*</code></li>
+            <li><code>[Link text](https://example.com)</code></li>
+            <li><code>- A list item</code> or <code>1. A numbered item</code></li>
+            <li><code>&gt; A quotation</code></li>
+          </ul>
+          <p>Leave a blank line between paragraphs. The preview shows common Markdown formatting. Download a copy at any time to keep a backup.</p>
+        </details>
+      </div>
+      <div class="actions writer-actions">
+        <button class="btn" id="publish-post" type="submit" disabled>Publish article</button>
+        <button class="btn secondary" id="download-post" type="button">Download Markdown</button>
+      </div>
+      <p class="field-hint publishing-hint">Publishing creates a new article in your GitHub repository. Your website updates after GitHub Pages finishes its build.</p>
+      <div class="writer-notice" id="publish-notice" role="status" aria-live="polite" hidden></div>
+    </form>
+
+    <aside class="writer-preview" aria-labelledby="preview-heading">
+      <div class="preview-label"><h2 id="preview-heading">Reading preview</h2><span>Updates as you write</span></div>
+      <article class="preview-article">
+        <p class="eyebrow">Blogs · Mohammad Ilyas</p>
+        <h3 class="preview-title" id="preview-title">Your article title</h3>
+        <p class="preview-date" id="preview-date"></p>
+        <p class="preview-description" id="preview-summary" hidden></p>
+        <div class="preview-tags" id="preview-tags" hidden></div>
+        <div class="preview-prose" id="preview-body"><p class="preview-placeholder">Your article will take shape here as you write.</p></div>
+      </article>
+    </aside>
+  </div>
+  </div>
+</section>
