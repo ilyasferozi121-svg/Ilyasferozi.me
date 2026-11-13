@@ -7,17 +7,19 @@ The portfolio at **https://ilyasferozi.me** uses GitHub Pages and Jekyll. Each n
 - `/` — home, with separate bordered section cards and More links
 - `/about/`, `/research/`, `/education/`, `/experience/`, `/training/`, `/skills/`
 - `/blogs/` — published articles
-- `/write/` — administrator handoff to authenticated GitHub post management
+- `/write/` — administrator sign-in, article editor, reading preview, and authenticated publishing
 - `/cv/` — complete printable CV
 - `/contact/`
 
 ## Admin-only blog publishing
 
-The public website is read-only. It contains no blog editor or public write API. `/write/` is a small handoff to GitHub administration, not a public authoring form, and it is not linked from the public blog listing.
+The writing desk at `/write/` requires administrator sign-in before revealing the article editor or restoring a saved draft. Use a fine-grained GitHub access token restricted to `ilyasferozi121-svg/Ilyasferozi.me`, with **Contents: Read and write** permission. The website verifies the exact owner account `ilyasferozi121-svg` and its repository administrator role. GitHub separately enforces write permissions when the editor publishes a post.
 
-Open the repository’s [`_posts` folder](https://github.com/ilyasferozi121-svg/Ilyasferozi.me/tree/main/_posts) while signed in to GitHub. Only the owner and accounts explicitly granted repository write permission can create, edit, or publish posts. GitHub enforces these permissions on the server; the website stores no passwords or access tokens.
+The token is entered only in the website’s masked sign-in field, held in page memory, and sent only to `https://api.github.com`. It is never stored in browser storage, drafts, files, or URLs. Signing out clears the credential and hides the editor; reloading requires a new sign-in. The session uses the existing static hosting and needs no additional OAuth service or backend.
 
-Create Markdown files named `YYYY-MM-DD-title.md` in `_posts/` and commit to `main`. See [the writing guide](docs/WRITING.md) and the unpublished `_drafts/first-post.md` template.
+The restored editor includes local draft saving, Markdown reading preview, and complete Markdown downloads. **Publish article** creates a new `_posts/YYYY-MM-DD-title.md` file on `main` through GitHub’s authenticated API. Existing files are never overwritten, and success is shown only after a valid commit confirmation. GitHub Pages publishes the article after its build finishes. To revise or delete a published article, use the repository’s authenticated [`_posts` editor](https://github.com/ilyasferozi121-svg/Ilyasferozi.me/tree/main/_posts).
+
+See [the writing guide](docs/WRITING.md) for token setup, drafts, publishing, and direct Markdown authoring. The `_drafts/first-post.md` template remains unpublished.
 
 ## Edit and publish
 
