@@ -1,0 +1,13 @@
+---
+layout: default
+---
+<header class="post-header wrap">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="{{ '/' | relative_url }}">Home</a><span aria-hidden="true">/</span><a href="{{ '/blogs/' | relative_url }}">Blogs</a></nav>
+  <div class="eyebrow">Notes &amp; perspectives</div>
+  <h1>{{ page.title | escape }}</h1>
+  {% if page.description %}<p class="post-description">{{ page.description | escape }}</p>{% endif %}
+  <div class="post-meta"><span>Mohammad Ilyas</span><span aria-hidden="true">·</span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d %B %Y' }}</time></div>
+  {% if page.tags.size > 0 %}<div class="taglist">{% for tag in page.tags %}<span class="tag">{{ tag | escape }}</span>{% endfor %}</div>{% endif %}
+</header>
+<article class="post-body">{{ content }}</article>
+<div class="post-footer wrap"><a class="btn secondary" href="{{ '/blogs/' | relative_url }}">← All blogs</a></div>
