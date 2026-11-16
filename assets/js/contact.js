@@ -43,7 +43,7 @@
     if (form.elements.namedItem('botcheck').checked) return;
     const captchaResponse = form.querySelector('[name="h-captcha-response"]');
     if (!captchaResponse?.value.trim()) {
-      showStatus('Please complete the human verification before sending. If it doesn’t load, refresh this page or email [private email removed] directly.', 'error');
+      showStatus('Please complete the human verification before sending. If it doesn’t load, refresh this page or use the LinkedIn link above.', 'error');
       return;
     }
 
@@ -69,7 +69,7 @@
       form.reset();
       showStatus('Thank you—your message has been sent. I appreciate you getting in touch.', 'success');
     } catch {
-      showStatus('We couldn’t confirm that your message was sent. Your text is still here—please complete the verification again and retry, or email [private email removed] directly.', 'error');
+      showStatus('We couldn’t confirm that your message was sent. Your text is still here—please complete the verification again and retry, or use the LinkedIn link above.', 'error');
     } finally {
       clearTimeout(timeout);
       resetCaptcha();
