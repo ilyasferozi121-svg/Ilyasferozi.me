@@ -48,7 +48,9 @@ p:last-child { margin-bottom: 0; }
 .breadcrumb a { text-decoration: none; }
 .breadcrumb a:hover { text-decoration: underline; }
 .page-hero { padding-block: 36px 42px; margin-bottom: 38px; border-bottom: 1px solid var(--line); }
-.page-hero h1 { max-width: 960px; margin-bottom: 20px; font: 400 clamp(2.8rem, 5.4vw, 4.45rem)/1.08 var(--serif); letter-spacing: -.035em; text-wrap: balance; }
+.page-hero h1 { max-width: 1000px; margin-bottom: 24px; font: 700 clamp(3rem, 5.5vw, 4.75rem)/1.08 var(--serif); letter-spacing: -.04em; text-wrap: balance; }
+.page-hero h1, .post-header h1 { position: relative; padding-bottom: 27px; color: #123f43; }
+.page-hero h1::after, .post-header h1::after { content: ''; position: absolute; left: 0; bottom: 0; width: 96px; height: 5px; border-radius: 3px; background: linear-gradient(90deg, var(--teal) 0 68%, #b68b39 68% 100%); }
 .page-lead { max-width: 800px; margin-bottom: 0; color: var(--muted); font-size: 1.08rem; line-height: 1.8; }
 .page-content { padding-bottom: 84px; }
 .page-content h2, .section-heading h2, .writing-callout h2 { font: 400 clamp(1.9rem, 3.1vw, 2.6rem)/1.2 var(--serif); letter-spacing: -.025em; }
@@ -125,7 +127,7 @@ summary { width: fit-content; color: var(--teal); cursor: pointer; font-size: .8
 
 /* Home: a portrait-led introduction and a clear route into each subject. */
 .hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .8fr); align-items: center; gap: 72px; padding-block: 78px 82px; }
-.hero-copy h1 { margin: 20px 0 24px; font: 400 clamp(4rem, 7.2vw, 6.35rem)/.99 var(--serif); letter-spacing: -.045em; }
+.hero-copy h1 { margin: 20px 0 24px; color: #123f43; font: 700 clamp(4rem, 7.2vw, 6.35rem)/.99 var(--serif); letter-spacing: -.045em; }
 .welcome-note { display: flex; align-items: center; gap: 9px; margin-bottom: 19px; color: var(--teal); font-size: .84rem; line-height: 1.6; font-weight: 650; letter-spacing: .025em; }
 .welcome-note::after { content: ''; width: 40px; height: 1px; margin-left: 3px; background: var(--teal); opacity: .4; }
 .welcome-wave { display: inline-block; font-size: 1.16em; transform-origin: 70% 70%; animation: welcome-wave 1.8s ease-in-out 1 both; }
@@ -169,7 +171,7 @@ summary { width: fit-content; color: var(--teal); cursor: pointer; font-size: .8
 .blog-author-link a { color: var(--muted); }
 .blog-author-link a:hover { color: var(--teal); }
 .post-header { max-width: 880px; padding-block: 36px 36px; border-bottom: 1px solid var(--line); }
-.post-header h1 { margin-bottom: 22px; font: 400 clamp(2.6rem, 5vw, 4.2rem)/1.12 var(--serif); letter-spacing: -.035em; text-wrap: balance; }
+.post-header h1 { margin-bottom: 24px; font: 700 clamp(2.8rem, 5vw, 4.5rem)/1.1 var(--serif); letter-spacing: -.04em; text-wrap: balance; }
 .post-description { max-width: 790px; margin-bottom: 25px; color: var(--muted); font-size: 1.1rem; line-height: 1.8; }
 .post-body { width: min(740px, calc(100% - 64px)); margin: 40px auto 0; padding-bottom: 32px; color: #293b46; font: 400 1.1rem/1.9 var(--serif); overflow-wrap: break-word; }
 .post-body p { margin-bottom: 1.4em; }
@@ -244,7 +246,9 @@ summary { width: fit-content; color: var(--teal); cursor: pointer; font-size: .8
   .hero-copy > .muted { grid-column: 1 / -1; grid-row: 3; max-width: none; margin: 0; }
   .hero-copy > .actions { grid-column: 1 / -1; grid-row: 4; margin-top: 4px; }
   .page-hero { padding-block: 26px 31px; margin-bottom: 30px; }
-  .page-hero h1 { font-size: clamp(2.65rem, 8vw, 3.55rem); }
+  .page-hero h1 { font-size: clamp(2.65rem, 8vw, 3.65rem); }
+  .page-hero h1, .post-header h1 { padding-bottom: 23px; }
+  .page-hero h1::after, .post-header h1::after { width: 76px; height: 4px; }
   .page-lead { font-size: 1rem; }
   .breadcrumb { margin-bottom: 28px; }
   .page-content { padding-bottom: 58px; }
@@ -304,7 +308,9 @@ summary { width: fit-content; color: var(--teal); cursor: pointer; font-size: .8
   .wrap, .post-body, .post-footer { width: 100%; max-width: none; margin-inline: 0; }
   .print-only { display: block; }
   .page-hero, .post-header { padding: 0 0 16px; margin-bottom: 20px; }
-  .page-hero h1, .post-header h1 { color: #111; font-size: 28pt; }
+  .page-hero h1, .post-header h1 { padding-bottom: 0; color: #111; font-size: 28pt; }
+  .page-hero h1::after, .post-header h1::after { display: none; }
+  .hero-copy h1, .hero-copy h1 .name-accent { color: #111; }
   .page-lead, .post-description { font-size: 10pt; }
   .page-content { padding-bottom: 0; }
   .section { margin-top: 20px; padding-top: 16px; }

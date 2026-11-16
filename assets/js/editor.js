@@ -9,6 +9,7 @@
   const administratorLogin = 'ilyasferozi121-svg';
   const githubBase = `https://github.com/${repository}`;
   const apiOrigin = 'https://api.github.com';
+  const commitIdentity = { name: 'Mohammad Ilyas', email: '231227306+ilyasferozi121-svg@users.noreply.github.com' };
   const fields = Object.fromEntries(['title', 'date', 'summary', 'tags', 'body', 'cover_image', 'cover_alt'].map(name => [name, form.elements.namedItem(name)]));
   const status = document.querySelector('#draft-status');
   const publishNotice = document.querySelector('#publish-notice');
@@ -699,7 +700,7 @@
       putAttempted = true;
       const response = await requestGitHub(`/repos/${repository}/contents/${imagePath}`, credential, {
         method: 'PUT', signal: controller.signal,
-        body: { message: 'Add article picture', content: btoa(chunks.join('')), branch: 'main' }
+        body: { message: 'Add article picture', content: btoa(chunks.join('')), branch: 'main', author: commitIdentity, committer: commitIdentity }
       });
       if (!currentSession()) return;
       if (response.status === 403) throw new GitHubError('GitHub denied the upload. Check that your token has Contents read and write permission for this repository.', 403);
@@ -760,7 +761,7 @@
       const response = await requestGitHub(contentsPath, credential, {
         method: 'PUT',
         signal: controller.signal,
-        body: { message: `Publish blog: ${fields.title.value.trim()}`, content: utf8Base64(post.markdown), branch: 'main' }
+        body: { message: `Publish blog: ${fields.title.value.trim()}`, content: utf8Base64(post.markdown), branch: 'main', author: commitIdentity, committer: commitIdentity }
       });
       if (generation !== sessionGeneration || controller.signal.aborted) return;
       if (response.status !== 201) throw new GitHubError('GitHub did not confirm creation of the article.', response.status);

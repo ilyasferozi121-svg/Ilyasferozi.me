@@ -30,6 +30,8 @@ Markdown downloads contain image links, not the image files themselves. Keep sep
 
 Choose **Publish article** when your writing is ready. The editor creates a new Markdown file in `_posts/` on the repository’s `main` branch through GitHub’s authenticated API. It confirms a returned commit before reporting success. GitHub Pages then builds the website; the article appears on [Blogs](https://ilyasferozi.me/blogs/) after deployment finishes.
 
+Article publishing and picture uploads explicitly use **Mohammad Ilyas** with the GitHub noreply address `231227306+ilyasferozi121-svg@users.noreply.github.com` for both commit author and committer. These editor-created commits do not use your personal email address. For commits made through other GitHub tools or the GitHub website, also enable **Keep my email addresses private** and **Block command line pushes that expose my email** in [GitHub email settings](https://github.com/settings/emails).
+
 Each article needs a unique combination of title and date. The editor checks for an existing file and never overwrites one. To revise or remove a published article, open its file in [the `_posts` folder on GitHub](https://github.com/ilyasferozi121-svg/Ilyasferozi.me/tree/main/_posts) and commit your edit or deletion there.
 
 A read-only token may verify your account but cannot publish. If GitHub returns **403**, check that the token has **Contents: Read and write** access to this repository, then sign out and sign in with the updated token. If a publish request cannot be confirmed, check `_posts` before trying again: a file might have been created even if its response did not reach the browser. Your draft remains available.
