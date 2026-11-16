@@ -1,6 +1,6 @@
 # Mohammad Ilyas — Academic Portfolio
 
-The portfolio at **https://ilyasferozi.me** uses GitHub Pages and Jekyll. Each navigation item has its own page. Shared layouts, styles, and navigation keep the design consistent, including the mobile three-dot menu and compact footer. Interactive research themes, portfolio filters, scroll reveals, and subtle hover effects add motion without changing the content. Visitors who prefer reduced motion receive a still experience. The approved full-body welcome GIF plays once, with a Replay welcome control; its face remains fixed across all frames.
+The portfolio at **https://ilyasferozi.me** uses GitHub Pages and Jekyll. Each navigation item has its own page. Shared layouts, styles, and navigation keep the design consistent, including the mobile three-dot menu and compact footer. Interactive research themes, portfolio filters, scroll reveals, and subtle hover effects add motion without changing the content. Visitors who prefer reduced motion receive a still experience. The homepage profile uses the original supplied headshot without image regeneration or color changes.
 
 ## Pages
 
@@ -9,7 +9,7 @@ The portfolio at **https://ilyasferozi.me** uses GitHub Pages and Jekyll. Each n
 - `/blogs/` — published articles
 - `/write/` — administrator sign-in, article editor, reading preview, and authenticated publishing
 - `/cv/` — complete printable CV
-- `/contact/`
+- `/contact/` — Web3Forms enquiry form, email, and LinkedIn
 
 ## Admin-only blog publishing
 
@@ -26,6 +26,10 @@ See [the writing guide](docs/WRITING.md) for token setup, drafts, publishing, an
 Edit page content in the root HTML files, the shared header/footer in `_layouts/default.html`, navigation in `_data/navigation.yml`, and shared design in `assets/css/site.css`. The contact details, portrait, and 22 certificates remain in their existing locations.
 
 Committing to `main` triggers the repository’s existing **pages build and deployment** workflow. Keep its current GitHub Pages configuration and the `CNAME` for `ilyasferozi.me`. No additional hosting service or custom workflow is required.
+
+## Contact form
+
+The contact page uses Web3Forms with the configured public form access key in `contact.html`. Fields include name, email, and message, with a hidden honeypot. JavaScript keeps visitors on the page and displays pending, success, and retry states; a native POST remains available without JavaScript. Styling and behavior live in `assets/css/contact.css` and `assets/js/contact.js`.
 
 ## Local preview
 

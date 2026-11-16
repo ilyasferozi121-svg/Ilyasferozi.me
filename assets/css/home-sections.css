@@ -206,3 +206,11 @@
   .cv-preview-layout { display: block; }
   .home-contact .card-link { color: #111; border-color: #777; }
 }
+
+/* Five research previews: three themes followed by two wider focus areas. */
+@media (min-width: 701px) {
+  .home-research .research-previews { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+  .home-research .research-preview { grid-column: span 2; }
+  .home-research .research-preview:nth-child(3) { border-right: 0; padding-right: 0; }
+  .home-research .research-preview:nth-child(n+4) { grid-column: span 3; padding-top: 22px; border-top: 1px solid #cbd8cd; }
+}

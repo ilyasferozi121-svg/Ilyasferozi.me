@@ -1,0 +1,28 @@
+/* Display the supplied square photo without altering its colors or framing. */
+.page-home .portrait-frame.profile-portrait {
+  padding: 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: #fff;
+  transform: none;
+  box-shadow: 0 12px 30px rgba(23, 43, 58, .09);
+}
+.page-home .portrait-frame.profile-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: contain;
+  filter: none;
+}
+.profile-portrait .portrait-caption { text-align: center; }
+@media (max-width: 700px) {
+  .page-home .portrait-frame.profile-portrait {
+    margin: 0;
+    padding: 5px;
+    box-shadow: 0 6px 18px rgba(23, 43, 58, .07);
+  }
+}
+@media print {
+  .page-home .portrait-frame.profile-portrait { box-shadow: none; }
+}

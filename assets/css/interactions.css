@@ -174,3 +174,6 @@
 @media print { .portrait-replay { display: none !important; } }
 
 @media (max-width: 700px) { .portrait-replay .replay-long-label { display: none; } }
+
+.interest-explorer[data-active-theme="minerals"] { --explorer-accent: #e3bd83; --explorer-glow: rgba(227, 189, 131, .17); }
+.interest-explorer[data-active-theme="balochistan"] { --explorer-accent: #c5c8e8; --explorer-glow: rgba(197, 200, 232, .17); }
