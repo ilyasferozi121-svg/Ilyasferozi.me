@@ -9,7 +9,7 @@
   const administratorLogin = 'ilyasferozi121-svg';
   const githubBase = `https://github.com/${repository}`;
   const apiOrigin = 'https://api.github.com';
-  const fields = Object.fromEntries(['title', 'date', 'summary', 'tags', 'body'].map(name => [name, form.elements.namedItem(name)]));
+  const fields = Object.fromEntries(['title', 'date', 'summary', 'tags', 'body', 'cover_image', 'cover_alt'].map(name => [name, form.elements.namedItem(name)]));
   const status = document.querySelector('#draft-status');
   const publishNotice = document.querySelector('#publish-notice');
   const publishButton = document.querySelector('#publish-post');
@@ -20,6 +20,8 @@
   const signInStatus = document.querySelector('#signin-status');
   const workspace = document.querySelector('#administrator-workspace');
   const previewBody = document.querySelector('#preview-body');
+  let uploadBusy = false;
+  let uploadController = null;
   let saveTimer;
   let unsavedChanges = false;
   let administratorToken = '';
@@ -48,7 +50,7 @@
   }
 
   function hasWriting() {
-    return ['title', 'summary', 'tags', 'body'].some(name => fields[name].value.trim());
+    return ['title', 'summary', 'tags', 'body', 'cover_image', 'cover_alt'].some(name => fields[name].value.trim());
   }
 
   function setStatus(message, warning = false) {
@@ -95,36 +97,59 @@
     }
   }
 
+  function safeImageUrl(value) {
+    if (typeof value !== 'string' || !value.trim() || /[\\\u0000-\u001f\u007f]/.test(value)) return null;
+    const source = value.trim();
+    const local = source.startsWith('/') && !source.startsWith('//');
+    try {
+      const url = new URL(source, window.location.origin);
+      if (url.username || url.password || (!local && url.protocol !== 'https:')) return null;
+      if (!local && !/^https:\/\//i.test(source)) return null;
+      const result = local ? `${url.pathname}${url.search}${url.hash}` : url.href;
+      return result.replace(/\(/g, '%28').replace(/\)/g, '%29');
+    } catch { return null; }
+  }
+
   function appendInline(parent, value, depth = 0) {
     if (depth > 8) {
       parent.append(document.createTextNode(value));
       return;
     }
-    const tokens = /\[([^\]\n]+)\]\(([^)\s]+)\)|`([^`\n]+)`|\*\*([^*\n]+)\*\*|__([^_\n]+)__|\*([^*\n]+)\*|_([^_\n]+)_/g;
+    const tokens = /!\[((?:\\.|[^\]\\\n])*)\]\(([^)\s]+)\)|\[([^\]\n]+)\]\(([^)\s]+)\)|`([^`\n]+)`|\*\*([^*\n]+)\*\*|__([^_\n]+)__|\*([^*\n]+)\*|_([^_\n]+)_/g;
     let cursor = 0;
     for (const token of value.matchAll(tokens)) {
       parent.append(document.createTextNode(value.slice(cursor, token.index)));
       let element;
       if (token[1] !== undefined) {
+        const imageUrl = safeImageUrl(token[2]);
+        if (imageUrl) {
+          element = document.createElement('img');
+          element.src = imageUrl;
+          element.alt = token[1].replace(/\\([\\\[\]])/g, '$1');
+          element.loading = 'lazy';
+          element.decoding = 'async';
+          element.referrerPolicy = 'no-referrer';
+        } else element = document.createTextNode(token[0]);
+      } else if (token[3] !== undefined) {
         let destination;
-        try { destination = new URL(token[2], window.location.origin); } catch { /* Show unsupported links as text. */ }
-        if (destination && ['https:', 'http:', 'mailto:'].includes(destination.protocol)) {
+        try { destination = new URL(token[4], window.location.origin); } catch { /* Show unsupported links as text. */ }
+        if (destination && !destination.username && !destination.password && ['https:', 'http:', 'mailto:'].includes(destination.protocol)) {
           element = document.createElement('a');
           element.href = destination.href;
           if (destination.protocol !== 'mailto:') {
             element.target = '_blank';
             element.rel = 'noopener noreferrer';
           }
-          appendInline(element, token[1], depth + 1);
+          appendInline(element, token[3], depth + 1);
         } else {
           element = document.createTextNode(token[0]);
         }
-      } else if (token[3] !== undefined) {
+      } else if (token[5] !== undefined) {
         element = document.createElement('code');
-        element.textContent = token[3];
+        element.textContent = token[5];
       } else {
-        element = document.createElement(token[4] !== undefined || token[5] !== undefined ? 'strong' : 'em');
-        appendInline(element, token[4] ?? token[5] ?? token[6] ?? token[7], depth + 1);
+        element = document.createElement(token[6] !== undefined || token[7] !== undefined ? 'strong' : 'em');
+        appendInline(element, token[6] ?? token[7] ?? token[8] ?? token[9], depth + 1);
       }
       parent.append(element);
       cursor = token.index + token[0].length;
@@ -222,6 +247,16 @@
       return tag;
     }));
     tags.hidden = !tags.childElementCount;
+    const cover = document.querySelector('#preview-cover');
+    const coverImage = document.querySelector('#preview-cover-image');
+    const coverUrl = safeImageUrl(fields.cover_image.value);
+    cover.hidden = !coverUrl;
+    if (coverUrl) {
+      coverImage.src = coverUrl;
+      coverImage.alt = fields.cover_alt.value.trim();
+    } else coverImage.removeAttribute('src');
+    const words = fields.body.value.trim() ? fields.body.value.trim().split(/\s+/).length : 0;
+    document.querySelector('#writing-stats').textContent = `${words.toLocaleString()} words · ${words ? Math.max(1, Math.ceil(words / 200)) : 0} min read`;
     if (fields.body.value.trim()) {
       renderMarkdown(fields.body.value, previewBody);
     } else {
@@ -236,6 +271,9 @@
     fields.date.max = todayInPakistan();
     fields.title.setCustomValidity(fields.title.value.trim() ? '' : 'Please give your article a title.');
     fields.body.setCustomValidity(fields.body.value.trim() ? '' : 'Please write your article before continuing.');
+    fields.cover_image.setCustomValidity(!fields.cover_image.value.trim() || safeImageUrl(fields.cover_image.value) ? '' : 'Use an HTTPS image URL or a site path beginning with /.');
+    fields.cover_alt.setCustomValidity(!fields.cover_image.value.trim() || fields.cover_alt.value.trim() ? '' : 'Please describe the cover picture.');
+    if (!fields.cover_image.checkValidity() || !fields.cover_alt.checkValidity()) fields.cover_image.closest('details').open = true;
     return form.reportValidity();
   }
 
@@ -246,13 +284,14 @@
   function preparedPost() {
     const draft = draftValues();
     const slug = Array.from(draft.title.normalize('NFKD').replace(/\p{M}/gu, '').toLowerCase().replace(/[^\p{L}\p{N}]+/gu, '-').replace(/^-|-$/g, '')).slice(0, 80).join('').replace(/-$/, '') || 'new-post';
-    const excerpt = draft.body.replace(/```[\s\S]*?```/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[#>*_`~]/g, '').replace(/\s+/g, ' ').trim().slice(0, 180);
-    const markdown = ['---', 'layout: post', `title: ${yamlString(draft.title.trim())}`, `date: ${draft.date} 00:00:00 +0500`, `description: ${yamlString(draft.summary.trim() || excerpt)}`, `tags: ${JSON.stringify(tagsFrom(draft.tags))}`, '---', '', draft.body.trim(), ''].join('\n');
+    const excerpt = draft.body.replace(/```[\s\S]*?```/g, '').replace(/!\[(?:\\.|[^\]\\])*\]\([^)]+\)/g, '').replace(/\[([^\]]+)\]\([^)]+\)/g, '$1').replace(/[#>*_`~]/g, '').replace(/\s+/g, ' ').trim().slice(0, 180);
+    const coverLines = draft.cover_image.trim() ? [`cover_image: ${yamlString(safeImageUrl(draft.cover_image))}`, `cover_alt: ${yamlString(draft.cover_alt.trim())}`] : [];
+    const markdown = ['---', 'layout: post', `title: ${yamlString(draft.title.trim())}`, `date: ${draft.date} 00:00:00 +0500`, `description: ${yamlString(draft.summary.trim() || excerpt)}`, `tags: ${JSON.stringify(tagsFrom(draft.tags))}`, ...coverLines, '---', '', draft.body.trim(), ''].join('\n');
     return { filename: `${draft.date}-${slug}.md`, markdown };
   }
 
   function downloadPost() {
-    if (!authenticated || publishBusy) return;
+    if (!authenticated || publishBusy || uploadBusy) return;
     if (!validate()) return;
     saveDraft();
     const post = preparedPost();
@@ -289,12 +328,19 @@
 
   function setPublishingBusy(busy) {
     publishBusy = busy;
+    updateEditorControls();
+  }
+
+  function updateEditorControls() {
+    const busy = publishBusy || uploadBusy;
     form.setAttribute('aria-busy', String(busy));
-    for (const control of form.querySelectorAll('input, textarea, button')) control.disabled = busy;
+    for (const control of form.querySelectorAll('input, textarea, select, button')) control.disabled = busy || !authenticated;
     document.querySelector('#new-draft').disabled = busy || !authenticated;
+    document.querySelector('#writer-view').disabled = busy || !authenticated;
     document.querySelector('#download-post').disabled = busy || !authenticated;
     publishButton.disabled = busy || !authenticated || publishedCurrentDraft;
-    publishButton.textContent = busy ? 'Publishing…' : publishedCurrentDraft ? 'Committed to GitHub' : 'Publish article';
+    publishButton.textContent = publishBusy ? 'Publishing…' : publishedCurrentDraft ? 'Committed to GitHub' : 'Publish article';
+    document.querySelector('#upload-image').textContent = uploadBusy ? 'Uploading picture…' : 'Upload & insert';
   }
 
   async function requestGitHub(path, credential, options = {}) {
@@ -332,6 +378,14 @@
     fields.date.max = todayInPakistan();
     fields.title.setCustomValidity('');
     fields.body.setCustomValidity('');
+    fields.cover_image.setCustomValidity('');
+    fields.cover_alt.setCustomValidity('');
+    editorSelection = { start: 0, end: 0 };
+    document.querySelector('#writer-insert-panel').hidden = true;
+    document.querySelector('#insert-status').textContent = '';
+    document.querySelector('#upload-status').textContent = '';
+    document.querySelector('#writer-view').value = 'split';
+    document.querySelector('#writer-grid').dataset.view = 'split';
     unsavedChanges = false;
     publishedCurrentDraft = false;
     publishNotice.hidden = true;
@@ -341,7 +395,7 @@
   }
 
   function signOut(message = '') {
-    const wasPublishing = publishBusy;
+    const wasPublishing = publishBusy || uploadBusy;
     const hadWriting = authenticated && hasWriting();
     if (hadWriting) {
       pendingDraft = draftValues();
@@ -352,8 +406,11 @@
     sessionGeneration++;
     loginController?.abort();
     publishController?.abort();
+    uploadController?.abort();
     loginController = null;
     publishController = null;
+    uploadController = null;
+    uploadBusy = false;
     loginBusy = false;
     tokenInput.value = '';
     tokenInput.disabled = false;
@@ -365,7 +422,7 @@
     document.querySelector('#administrator-identity').textContent = '';
     resetEditorView();
     setPublishingBusy(false);
-    const detail = wasPublishing ? 'Signed out. If publishing was in progress, check GitHub before trying again.' : pendingDraftUnsaved ? 'Signed out. Draft storage was unavailable; sign in again in this tab to recover your writing before closing it.' : hadWriting ? 'Signed out. Your saved draft will return after administrator sign-in.' : 'Signed out. Sign in again to open the writing desk.';
+    const detail = wasPublishing ? 'Signed out. If an article or picture upload was in progress, check GitHub before trying again.' : pendingDraftUnsaved ? 'Signed out. Draft storage was unavailable; sign in again in this tab to recover your writing before closing it.' : hadWriting ? 'Signed out. Your saved draft will return after administrator sign-in.' : 'Signed out. Sign in again to open the writing desk.';
     setSignInStatus(message || detail);
     tokenInput.focus();
   }
@@ -475,13 +532,212 @@
     publishNotice.hidden = false;
   }
 
+  let editorSelection = { start: 0, end: 0 };
+  let insertionKind = 'link';
+
+  function rememberSelection() {
+    editorSelection = { start: fields.body.selectionStart, end: fields.body.selectionEnd };
+  }
+
+  function editBody(text, start = editorSelection.start, end = editorSelection.end) {
+    if (!authenticated || publishBusy || uploadBusy) return false;
+    if (fields.body.value.length - (end - start) + text.length > fields.body.maxLength) {
+      setStatus('The article has reached the editor’s length limit. Shorten it before adding more content.', true);
+      return false;
+    }
+    fields.body.focus();
+    fields.body.setRangeText(text, start, end, 'select');
+    rememberSelection();
+    fields.body.dispatchEvent(new Event('input', { bubbles: true }));
+    return true;
+  }
+
+  function markdownLabel(value) {
+    return value.trim().replace(/\r?\n/g, ' ').replace(/[\\\[\]]/g, '\\$&');
+  }
+
+  function openInsertPanel(kind) {
+    insertionKind = kind;
+    const image = kind === 'image';
+    const selected = fields.body.value.slice(editorSelection.start, editorSelection.end);
+    document.querySelector('#insert-heading').textContent = image ? 'Insert a picture' : 'Insert a link';
+    document.querySelector('#insert-label-heading').textContent = image ? 'Picture description' : 'Link text';
+    document.querySelector('#insert-url').value = '';
+    document.querySelector('#insert-label').value = selected;
+    document.querySelector('#insert-status').textContent = '';
+    document.querySelector('#writer-insert-panel').hidden = false;
+    document.querySelector('#insert-url').focus();
+  }
+
+  function formatArticle(command) {
+    if (!authenticated || publishBusy || uploadBusy) return;
+    const { start, end } = editorSelection;
+    const selected = fields.body.value.slice(start, end);
+    if (command === 'link' || command === 'image') return openInsertPanel(command);
+    if (command === 'bold' || command === 'italic') {
+      const marker = command === 'bold' ? '**' : '*';
+      editBody(`${marker}${selected || (command === 'bold' ? 'bold text' : 'italic text')}${marker}`);
+    } else if (command === 'code') {
+      editBody(`\n\n\`\`\`\n${selected || 'Your code here'}\n\`\`\`\n\n`);
+    } else if (command === 'divider') {
+      editBody('\n\n---\n\n');
+    } else {
+      const value = fields.body.value;
+      const lineStart = start === 0 ? 0 : value.lastIndexOf('\n', start - 1) + 1;
+      const nextBreak = value.indexOf('\n', end);
+      const lineEnd = nextBreak === -1 ? value.length : nextBreak;
+      const lines = value.slice(lineStart, lineEnd).split('\n');
+      const transformed = lines.map((line, index) => {
+        if (command === 'heading2' || command === 'heading3') return `${command === 'heading2' ? '##' : '###'} ${line.replace(/^\s*#{1,6}\s+/, '') || 'Section heading'}`;
+        if (command === 'quote') return `> ${line.replace(/^\s*>\s?/, '') || 'Your quotation'}`;
+        const content = line.replace(/^\s*(?:[-+*]|\d+[.)])\s+/, '') || 'List item';
+        return `${command === 'numbers' ? `${index + 1}.` : '-'} ${content}`;
+      }).join('\n');
+      editBody(transformed, lineStart, lineEnd);
+    }
+  }
+
+  ['select', 'keyup', 'click', 'blur'].forEach(type => fields.body.addEventListener(type, rememberSelection));
+  document.querySelectorAll('[data-editor-command]').forEach(control => {
+    control.addEventListener('mousedown', event => event.preventDefault());
+    control.addEventListener('click', () => formatArticle(control.dataset.editorCommand));
+  });
+  fields.body.addEventListener('keydown', event => {
+    if (!(event.ctrlKey || event.metaKey) || event.altKey) return;
+    const command = { b: 'bold', i: 'italic', k: 'link' }[event.key.toLowerCase()];
+    if (!command) return;
+    event.preventDefault();
+    rememberSelection();
+    formatArticle(command);
+  });
+  document.querySelector('#insert-cancel').addEventListener('click', () => {
+    document.querySelector('#writer-insert-panel').hidden = true;
+    fields.body.focus();
+  });
+  document.querySelector('#insert-confirm').addEventListener('click', () => {
+    if (!authenticated || publishBusy || uploadBusy) return;
+    const rawUrl = document.querySelector('#insert-url').value.trim();
+    const label = document.querySelector('#insert-label').value.trim();
+    let destination = insertionKind === 'image' ? safeImageUrl(rawUrl) : null;
+    if (insertionKind === 'link') {
+      try {
+        const url = new URL(rawUrl, window.location.origin);
+        if (rawUrl && !/[\\\u0000-\u001f\u007f]/.test(rawUrl) && !url.username && !url.password && ['https:', 'http:', 'mailto:'].includes(url.protocol)) destination = url.href.replace(/\(/g, '%28').replace(/\)/g, '%29');
+      } catch { /* The panel shows a useful validation message. */ }
+    }
+    if (!destination || !label) {
+      const target = document.querySelector('#insert-status');
+      target.className = 'media-status is-error';
+      target.textContent = insertionKind === 'image' ? 'Enter an HTTPS image URL or a site path beginning with /, and a picture description.' : 'Enter a valid web or email link and its text.';
+      return;
+    }
+    const markdown = `${insertionKind === 'image' ? '!' : ''}[${markdownLabel(label)}](${destination})`;
+    if (editBody(insertionKind === 'image' ? `\n\n${markdown}\n\n` : markdown)) document.querySelector('#writer-insert-panel').hidden = true;
+  });
+  document.querySelector('#writer-insert-panel').addEventListener('keydown', event => {
+    if (event.key === 'Enter' && event.target.matches('input')) { event.preventDefault(); document.querySelector('#insert-confirm').click(); }
+    if (event.key === 'Escape') { event.preventDefault(); document.querySelector('#insert-cancel').click(); }
+  });
+  document.querySelector('#writer-view').addEventListener('change', event => {
+    if (!authenticated || publishBusy || uploadBusy) return;
+    document.querySelector('#writer-grid').dataset.view = event.target.value;
+  });
+
+  function imageFormat(bytes) {
+    if (bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) return { extension: 'jpg', mime: 'image/jpeg' };
+    if ([137, 80, 78, 71, 13, 10, 26, 10].every((value, index) => bytes[index] === value)) return { extension: 'png', mime: 'image/png' };
+    const header = String.fromCharCode(...bytes.subarray(0, 12));
+    if (/^GIF8[79]a/.test(header)) return { extension: 'gif', mime: 'image/gif' };
+    if (header.startsWith('RIFF') && header.slice(8) === 'WEBP') return { extension: 'webp', mime: 'image/webp' };
+    return null;
+  }
+
+  document.querySelector('#upload-image').addEventListener('click', async () => {
+    if (!authenticated || !administratorToken || publishBusy || uploadBusy) return;
+    const notice = document.querySelector('#upload-status');
+    const fileInput = document.querySelector('#article-image-file');
+    const file = fileInput.files[0];
+    const description = document.querySelector('#upload-alt').value.trim();
+    const placement = document.querySelector('#image-placement').value;
+    const selection = { ...editorSelection };
+    const fail = message => { notice.className = 'media-status is-error'; notice.textContent = message; };
+    if (!file || !description) { fail('Choose a picture and add its description first.'); return; }
+    if (!file.size || file.size > 3 * 1024 * 1024) { fail('Choose a picture up to 3 MB.'); return; }
+    const generation = sessionGeneration;
+    const credential = administratorToken;
+    const controller = new AbortController();
+    uploadController = controller;
+    uploadBusy = true;
+    updateEditorControls();
+    notice.className = 'media-status';
+    notice.textContent = 'Checking your picture…';
+    const timeout = setTimeout(() => controller.abort(), 45000);
+    let putAttempted = false;
+    const currentSession = () => {
+      if (generation !== sessionGeneration) return false;
+      if (controller.signal.aborted) throw new GitHubError('The upload timed out. Your article is unchanged; check GitHub before retrying.');
+      return true;
+    };
+    try {
+      const bytes = new Uint8Array(await file.arrayBuffer());
+      if (!currentSession()) return;
+      const format = imageFormat(bytes);
+      if (!format || file.type !== format.mime) throw new GitHubError('Choose a PNG, JPEG, GIF, or WebP picture. Its file contents must match its image type.');
+      const decoded = await createImageBitmap(file);
+      const pixels = decoded.width * decoded.height;
+      decoded.close();
+      if (pixels > 40000000) throw new GitHubError('This picture is too large to preview. Resize it below 40 megapixels first.');
+      if (!currentSession()) return;
+      const folder = todayInPakistan().slice(0, 7).replace('-', '/');
+      const imagePath = `source-assets/blog/${folder}/${crypto.randomUUID()}.${format.extension}`;
+      const imageUrl = `/${imagePath}`;
+      const imageMarkdown = `\n\n![${markdownLabel(description)}](${imageUrl})\n\n`;
+      if (placement !== 'cover' && fields.body.value.length - (selection.end - selection.start) + imageMarkdown.length > fields.body.maxLength) throw new GitHubError('The article has reached the editor’s length limit. Shorten it before uploading a picture.');
+      const chunks = [];
+      for (let offset = 0; offset < bytes.length; offset += 8192) chunks.push(String.fromCharCode(...bytes.subarray(offset, offset + 8192)));
+      notice.textContent = 'Uploading your picture to GitHub…';
+      putAttempted = true;
+      const response = await requestGitHub(`/repos/${repository}/contents/${imagePath}`, credential, {
+        method: 'PUT', signal: controller.signal,
+        body: { message: 'Add article picture', content: btoa(chunks.join('')), branch: 'main' }
+      });
+      if (!currentSession()) return;
+      if (response.status === 403) throw new GitHubError('GitHub denied the upload. Check that your token has Contents read and write permission for this repository.', 403);
+      if (response.status !== 201) throw new GitHubError('GitHub did not confirm the picture upload. Your article has not been changed. Check the repository before retrying.', response.status);
+      const result = await responseJson(response);
+      if (!currentSession()) return;
+      if (!confirmCreatedPost(result, imagePath)) throw new GitHubError('GitHub returned an incomplete upload confirmation. Check the repository before retrying; the picture may have been created.');
+      uploadBusy = false;
+      if (placement === 'cover') {
+        fields.cover_image.value = imageUrl;
+        fields.cover_alt.value = description;
+        fields.cover_image.closest('details').open = true;
+        fields.cover_image.dispatchEvent(new Event('input', { bubbles: true }));
+      } else editBody(imageMarkdown, selection.start, selection.end);
+      fileInput.value = '';
+      notice.className = 'media-status is-success';
+      notice.textContent = 'Picture uploaded and added. GitHub Pages will make it available after deployment finishes.';
+    } catch (error) {
+      if (generation !== sessionGeneration) return;
+      if (error instanceof GitHubError && error.statusCode === 401) { signOut('Your GitHub session expired. Sign in again before uploading a picture.'); return; }
+      fail(error instanceof GitHubError ? error.message : putAttempted ? 'The upload could not be confirmed. Your article is unchanged; check GitHub before retrying.' : 'The picture could not be read. Choose a supported picture and try again.');
+    } finally {
+      clearTimeout(timeout);
+      if (uploadController === controller) {
+        uploadController = null;
+        uploadBusy = false;
+        updateEditorControls();
+      }
+    }
+  });
+
   form.addEventListener('submit', async event => {
     event.preventDefault();
     if (!authenticated || !administratorToken) {
       setSignInStatus('Sign in as the administrator before publishing.', true);
       return;
     }
-    if (publishBusy || publishedCurrentDraft || !validate()) return;
+    if (publishBusy || uploadBusy || publishedCurrentDraft || !validate()) return;
     saveDraft();
     const post = preparedPost();
     const postPath = `_posts/${post.filename}`;
@@ -543,8 +799,13 @@
   });
 
   form.addEventListener('input', event => {
-    if (!authenticated || publishBusy) return;
-    if (event.target === fields.title || event.target === fields.body) event.target.setCustomValidity('');
+    if (!authenticated || publishBusy || uploadBusy) return;
+    if (Object.values(fields).includes(event.target)) event.target.setCustomValidity('');
+    else return;
+    if (event.target === fields.cover_image || event.target === fields.cover_alt) {
+      fields.cover_image.setCustomValidity('');
+      fields.cover_alt.setCustomValidity('');
+    }
     unsavedChanges = true;
     publishedCurrentDraft = false;
     publishButton.disabled = false;
@@ -557,7 +818,7 @@
 
   document.querySelector('#download-post').addEventListener('click', downloadPost);
   document.querySelector('#new-draft').addEventListener('click', () => {
-    if (!authenticated || publishBusy) return;
+    if (!authenticated || publishBusy || uploadBusy) return;
     if (hasWriting() && !window.confirm('Start a new draft? This will replace the draft saved in this browser. Download a copy first if you want to keep it.')) return;
     clearTimeout(saveTimer);
     try {
@@ -579,7 +840,7 @@
   });
   window.addEventListener('beforeunload', event => {
     const unsavedWriting = authenticated && unsavedChanges && hasWriting() && !saveDraft();
-    if (publishBusy || unsavedWriting || pendingDraftUnsaved) {
+    if (publishBusy || uploadBusy || unsavedWriting || pendingDraftUnsaved) {
       event.preventDefault();
       event.returnValue = '';
     }

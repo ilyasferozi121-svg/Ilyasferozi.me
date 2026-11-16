@@ -32,8 +32,9 @@ noindex: true
     <button class="writer-text-button" id="new-draft" type="button">Start a new draft</button>
   </div>
   <p class="draft-status" id="draft-status" role="status" aria-live="polite">Drafts are saved in this browser as you write.</p>
+  <div class="writer-layout-controls"><label for="writer-view">Writing view</label><select id="writer-view"><option value="split">Editor and preview</option><option value="write">Focus on writing</option><option value="preview">Read the preview</option></select><span id="writing-stats">0 words · 0 min read</span></div>
 
-  <div class="writer-grid">
+  <div class="writer-grid" id="writer-grid" data-view="split">
     <form class="writer-form" id="blog-writer" method="post" inert>
       <div class="writer-field">
         <label for="post-title">Article title</label>
@@ -56,6 +57,27 @@ noindex: true
       </div>
       <div class="writer-field">
         <label for="post-body">Your article</label>
+        <div class="editor-toolbar" role="group" aria-label="Article formatting">
+          <button type="button" data-editor-command="bold" title="Bold (Ctrl or Command+B)"><strong>B</strong><span class="sr-only">Bold</span></button>
+          <button type="button" data-editor-command="italic" title="Italic (Ctrl or Command+I)"><em>I</em><span class="sr-only">Italic</span></button>
+          <button type="button" data-editor-command="heading2" title="Section heading">H2<span class="sr-only">Section heading</span></button>
+          <button type="button" data-editor-command="heading3" title="Subheading">H3<span class="sr-only">Subheading</span></button>
+          <button type="button" data-editor-command="bullets" title="Bullet list">• List</button>
+          <button type="button" data-editor-command="numbers" title="Numbered list">1. List</button>
+          <button type="button" data-editor-command="quote" title="Quotation">Quote</button>
+          <button type="button" data-editor-command="code" title="Code block">Code</button>
+          <button type="button" data-editor-command="divider" title="Section divider">Divider</button>
+          <button type="button" data-editor-command="link" title="Insert a link (Ctrl or Command+K)">Link</button>
+          <button type="button" data-editor-command="image" title="Insert a picture from a URL">Picture</button>
+        </div>
+        <div class="writer-insert-panel" id="writer-insert-panel" hidden>
+          <h3 id="insert-heading">Insert a link</h3>
+          <label for="insert-url">URL</label><input id="insert-url" type="text" inputmode="url" maxlength="2000" placeholder="https://example.com" autocomplete="off">
+          <label for="insert-label" id="insert-label-heading">Link text</label><input id="insert-label" type="text" maxlength="240" autocomplete="off">
+          <p class="field-hint">Pictures use an HTTPS image URL or a path beginning with /. Describe the picture for readers using assistive technology.</p>
+          <div class="actions"><button class="btn secondary" id="insert-confirm" type="button">Insert</button><button class="writer-text-button" id="insert-cancel" type="button">Cancel</button></div>
+          <p class="media-status" id="insert-status" role="status"></p>
+        </div>
         <textarea id="post-body" name="body" class="writer-body" rows="20" maxlength="200000" required placeholder="Start writing here…" aria-describedby="markdown-hint"></textarea>
         <details class="markdown-help" id="markdown-hint">
           <summary>A little Markdown goes a long way</summary>
@@ -69,6 +91,21 @@ noindex: true
           <p>Leave a blank line between paragraphs. The preview shows common Markdown formatting. Download a copy at any time to keep a backup.</p>
         </details>
       </div>
+      <details class="writer-media-tools">
+        <summary>Add a picture from your device</summary>
+        <p class="field-hint">Upload &amp; insert saves the picture publicly to your GitHub repository immediately. PNG, JPEG, GIF, or WebP, up to 3 MB.</p>
+        <div class="writer-field"><label for="article-image-file">Choose a picture</label><input id="article-image-file" type="file" accept="image/png,image/jpeg,image/gif,image/webp"></div>
+        <div class="writer-field"><label for="upload-alt">Picture description</label><input id="upload-alt" type="text" maxlength="240" placeholder="Describe what the picture shows"></div>
+        <div class="writer-field"><label for="image-placement">Add it to</label><select id="image-placement"><option value="body">The article, at the cursor</option><option value="cover">The article cover</option></select></div>
+        <button class="btn secondary" id="upload-image" type="button">Upload &amp; insert</button>
+        <p class="media-status" id="upload-status" role="status" aria-live="polite"></p>
+      </details>
+      <details class="writer-media-tools">
+        <summary>Customize the article cover</summary>
+        <p class="field-hint">Add an optional cover above the article, using an image URL or the device upload tool.</p>
+        <div class="writer-field"><label for="post-cover">Cover image URL <span class="field-optional">Optional</span></label><input id="post-cover" name="cover_image" type="text" inputmode="url" maxlength="2000" placeholder="https://example.com/picture.jpg or /source-assets/…"></div>
+        <div class="writer-field"><label for="post-cover-alt">Cover description</label><input id="post-cover-alt" name="cover_alt" type="text" maxlength="240" placeholder="Describe the cover picture"></div>
+      </details>
       <div class="actions writer-actions">
         <button class="btn" id="publish-post" type="submit" disabled>Publish article</button>
         <button class="btn secondary" id="download-post" type="button">Download Markdown</button>
@@ -85,6 +122,7 @@ noindex: true
         <p class="preview-date" id="preview-date"></p>
         <p class="preview-description" id="preview-summary" hidden></p>
         <div class="preview-tags" id="preview-tags" hidden></div>
+        <figure class="preview-cover" id="preview-cover" hidden><img id="preview-cover-image" alt="" referrerpolicy="no-referrer"></figure>
         <div class="preview-prose" id="preview-body"><p class="preview-placeholder">Your article will take shape here as you write.</p></div>
       </article>
     </aside>

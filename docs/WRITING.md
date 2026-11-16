@@ -12,9 +12,21 @@ The token is kept only in the page’s memory and sent only to `https://api.gith
 
 ## Draft, preview, and publish
 
-Add your title, publication date, introduction, topics, and article. The introduction and topics are optional. Dates follow Pakistan time and must be today or earlier. The preview supports common Markdown headings, paragraphs, emphasis, links, lists, quotations, and code blocks.
+Add your title, publication date, introduction, topics, and article. The introduction and topics are optional. Dates follow Pakistan time and must be today or earlier. Select text and use the formatting toolbar for bold, italic, headings, links, lists, quotations, code blocks, and dividers. **Ctrl/Command+B**, **Ctrl/Command+I**, and **Ctrl/Command+K** provide shortcuts. The toolbar inserts Markdown, so the downloaded article preserves its formatting.
+
+Choose **Writing view** to show the editor and preview together, focus on writing, or read the preview. A word count and estimated reading time update as you write.
+
+### Pictures and covers
+
+Use **Picture** in the toolbar to insert an HTTPS image URL or a site path beginning with `/`. Add a picture description for its alternative text. The reading preview displays pictures safely without interpreting pasted HTML.
+
+For a picture from your device, open **Add a picture from your device**, choose a PNG, JPEG, GIF, or WebP up to 3 MB, and enter its description. Choose the article body or cover, then click **Upload & insert**. This immediately creates a public image file in `source-assets/blog/` through your authenticated GitHub session; the article itself remains a draft. The editor checks image contents and confirms the new file before inserting its path. Existing files are never overwritten. Uploaded pictures become available after GitHub Pages finishes deploying.
+
+Open **Customize the article cover** to add or replace the optional cover URL and description, or clear the URL to remove it from the article. Cover information is saved with your draft, included in Markdown downloads, and displayed above the published article. Uploading a picture and later removing its reference does not delete the public file from GitHub; remove unused files in the repository if needed.
 
 The editor saves one draft in the current browser. Signing out hides the writing fields and keeps that saved draft; it is restored only after administrator sign-in. Drafts do not sync across devices, and clearing website data or using private browsing can remove them. **Download Markdown** keeps a separate copy. If saving fails, the page shows a warning—keep the tab open and download your writing.
+
+Markdown downloads contain image links, not the image files themselves. Keep separate copies of your original pictures. If an upload fails or its confirmation is unclear, the article stays unchanged; check GitHub before retrying. Signing out cancels pending requests and prevents late upload results from changing another session’s draft.
 
 Choose **Publish article** when your writing is ready. The editor creates a new Markdown file in `_posts/` on the repository’s `main` branch through GitHub’s authenticated API. It confirms a returned commit before reporting success. GitHub Pages then builds the website; the article appears on [Blogs](https://ilyasferozi.me/blogs/) after deployment finishes.
 

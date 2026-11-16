@@ -19,6 +19,8 @@ The token is entered only in the website’s masked sign-in field, held in page 
 
 The restored editor includes local draft saving, Markdown reading preview, and complete Markdown downloads. **Publish article** creates a new `_posts/YYYY-MM-DD-title.md` file on `main` through GitHub’s authenticated API. Existing files are never overwritten, and success is shown only after a valid commit confirmation. GitHub Pages publishes the article after its build finishes. To revise or delete a published article, use the repository’s authenticated [`_posts` editor](https://github.com/ilyasferozi121-svg/Ilyasferozi.me/tree/main/_posts).
 
+The writing tools include a formatting toolbar, keyboard shortcuts, picture links, device image uploads, optional article covers, word and reading-time counts, and focused writing or preview views. **Upload & insert** immediately creates a public image file in `source-assets/blog/` after checking its type and size; the article stays a draft until published. Covers and image references are included in saved drafts and Markdown downloads.
+
 See [the writing guide](docs/WRITING.md) for token setup, drafts, publishing, and direct Markdown authoring. The `_drafts/first-post.md` template remains unpublished.
 
 ## Edit and publish

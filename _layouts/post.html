@@ -9,5 +9,6 @@ layout: default
   <div class="post-meta"><span>Mohammad Ilyas</span><span aria-hidden="true">·</span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d %B %Y' }}</time></div>
   {% if page.tags.size > 0 %}<div class="taglist">{% for tag in page.tags %}<span class="tag">{{ tag | escape }}</span>{% endfor %}</div>{% endif %}
 </header>
+{% if page.cover_image %}<figure class="post-cover"><img src="{{ page.cover_image | escape }}" alt="{{ page.cover_alt | default: '' | escape }}" decoding="async" referrerpolicy="no-referrer"></figure>{% endif %}
 <article class="post-body">{{ content }}</article>
 <div class="post-footer wrap"><a class="btn secondary" href="{{ '/blogs/' | relative_url }}">← All blogs</a></div>

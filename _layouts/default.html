@@ -25,7 +25,7 @@
   <script src="{{ '/assets/js/contact.js' | relative_url }}" defer></script>
   {% endif %}
   {% if page.editor %}
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'none'">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https:; connect-src https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'none'">
   <link rel="stylesheet" href="{{ '/assets/css/editor.css' | relative_url }}">
   <script src="{{ '/assets/js/editor.js' | relative_url }}" defer></script>
   {% endif %}
