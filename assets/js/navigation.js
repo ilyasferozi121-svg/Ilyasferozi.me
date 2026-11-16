@@ -1,10 +1,6 @@
 (() => {
   'use strict';
 
-  document.querySelectorAll('[data-print-cv]').forEach(button => {
-    button.addEventListener('click', () => window.print());
-  });
-
   const toggle = document.querySelector('.nav-toggle');
   const navigation = document.querySelector('#main-navigation');
   if (!toggle || !navigation) return;

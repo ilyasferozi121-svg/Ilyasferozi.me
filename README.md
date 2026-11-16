@@ -8,7 +8,6 @@ The portfolio at **https://ilyasferozi.me** uses GitHub Pages and Jekyll. Each n
 - `/about/`, `/research/`, `/education/`, `/experience/`, `/training/`, `/skills/`
 - `/blogs/` — published articles
 - `/write/` — administrator sign-in, article editor, reading preview, and authenticated publishing
-- `/cv/` — complete printable CV
 - `/contact/` — Web3Forms enquiry form and LinkedIn
 
 ## Admin-only blog publishing

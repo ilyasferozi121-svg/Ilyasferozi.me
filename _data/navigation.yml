@@ -22,9 +22,6 @@
 - id: blogs
   title: Blogs
   url: /blogs/
-- id: cv
-  title: CV
-  url: /cv/
 - id: contact
   title: Contact
   url: /contact/

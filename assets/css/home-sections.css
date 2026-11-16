@@ -111,21 +111,6 @@
 .home-post-preview h4 { margin-bottom: 11px; font-size: 1.4rem; }
 .home-post-preview p { font-size: .88rem; }
 
-/* CV: a useful checklist and a small decorative paper preview. */
-.home-cv { --section-bg: #f3f4ef; border-color: #d6dbce; }
-.cv-preview-layout { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); align-items: center; gap: 54px; }
-.cv-preview-layout h4 { font-size: 1.45rem; }
-.cv-contents { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 22px; margin: 19px 0 0; padding: 0; list-style: none; }
-.cv-contents li { position: relative; padding-left: 17px; color: var(--muted); font-size: .85rem; }
-.cv-contents li::before { content: '+'; position: absolute; left: 0; color: var(--teal); font-weight: 700; }
-.cv-document { width: min(100%, 235px); min-height: 240px; justify-self: center; padding: 24px; border: 1px solid #d3d9cc; background: #fffef9; box-shadow: 10px 12px 0 #e3e8dd; transform: rotate(3deg); color: var(--teal); font: 400 2.6rem/1.2 var(--serif); }
-.document-label { display: block; margin-bottom: 10px; color: var(--muted); font: 650 .62rem/1.55 var(--sans); letter-spacing: .1em; text-transform: uppercase; }
-.cv-document > strong { display: block; margin: 0; color: var(--ink); font: 400 1.4rem/1.25 var(--serif); overflow-wrap: anywhere; }
-.document-rule { display: block; height: 1px; margin-block: 17px; background: #d5ddd1; }
-.document-line { display: block; width: 78%; height: 4px; margin-top: 15px; background: #d5ddd1; }
-.document-line.wide { width: 100%; margin-top: 24px; }
-.document-line.short { width: 52%; }
-
 /* Contact ends the previews with a clear invitation and real contact methods. */
 .home-contact { --section-bg: #173b3e; --section-accent: #d9b66f; --section-muted: #cadbd4; border-color: #31585a; color: var(--paper); }
 .home-contact:hover { color: var(--paper); border-color: #7a9d92; }
@@ -151,7 +136,6 @@
   .experience-preview:first-child { grid-column: 1 / -1; }
   .training-previews { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .training-preview:last-child { grid-column: 1 / -1; }
-  .cv-preview-layout { gap: 32px; }
   .contact-preview-layout { gap: 28px; }
 }
 
@@ -162,7 +146,7 @@
   .home-section .section-description { font-size: .93rem; }
   .home-section-body { margin-top: 24px; }
   .home-section p { font-size: .9rem; }
-  .about-layout, .research-previews, .education-path, .experience-previews, .training-previews, .skills-layout, .home-post-previews, .cv-preview-layout, .contact-preview-layout { grid-template-columns: minmax(0, 1fr); gap: 23px; }
+  .about-layout, .research-previews, .education-path, .experience-previews, .training-previews, .skills-layout, .home-post-previews, .contact-preview-layout { grid-template-columns: minmax(0, 1fr); gap: 23px; }
   .about-focus, .language-preview { padding: 22px; }
   .research-preview { padding: 0 0 22px; border-right: 0; border-bottom: 1px solid #cbd8cd; }
   .research-preview:last-child { padding-bottom: 0; border-bottom: 0; }
@@ -177,8 +161,6 @@
   .training-preview { padding: 23px; }
   .skill-clusters { padding-bottom: 1px; }
   .blog-question { margin-block: 19px; padding-left: 18px; font-size: 1.65rem; }
-  .cv-preview-layout { gap: 30px; }
-  .cv-document { width: 195px; min-height: 208px; margin-block: 4px 11px; padding: 22px; font-size: 2.2rem; }
   .contact-method { padding: 17px 18px; }
   .home-section-footer { margin-top: 24px; padding-top: 20px; }
 }
@@ -187,7 +169,6 @@
   .home-section { padding: 24px 20px; }
   .home-section-head h3 { font-size: 1.75rem; }
   .home-section .card-index { font-size: .65rem; }
-  .cv-contents { grid-template-columns: minmax(0, 1fr); gap: 8px; }
   .contact-method strong { font-size: .79rem; }
 }
 
@@ -202,8 +183,6 @@
   .home-section-footer > span { color: #111 !important; }
   .about-focus, .language-preview, .experience-preview, .training-preview, .home-post-preview, .contact-method { background: white !important; border-color: #ccc; color: #111; box-shadow: none; }
   .experience-preview:first-child h4, .experience-preview:first-child p, .experience-preview:first-child li, .contact-method strong, .contact-method small, .contact-kind { color: #111 !important; }
-  .cv-document { display: none; }
-  .cv-preview-layout { display: block; }
   .home-contact .card-link { color: #111; border-color: #777; }
 }
 

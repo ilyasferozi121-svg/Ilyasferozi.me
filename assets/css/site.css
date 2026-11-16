@@ -115,15 +115,6 @@ summary { width: fit-content; color: var(--teal); cursor: pointer; font-size: .8
 .contact-card .btn.secondary { color: var(--paper); background: transparent; border-color: #a6b8b5; }
 .contact-card .btn.secondary:hover { background: rgba(255, 255, 255, .08); }
 .contact-card a:focus-visible { outline-color: #b8d9d1; }
-.cv-summary { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
-.cv-summary > div { min-width: 0; }
-.cv-summary h2 { margin-bottom: 10px; font: 400 clamp(1.9rem, 3.1vw, 2.6rem)/1.2 var(--serif); }
-.cv-summary p { margin-bottom: 9px; }
-.cv-summary p, .cv-summary a { overflow-wrap: anywhere; }
-.cv-summary .btn { flex-shrink: 0; }
-.cv-section { margin-top: 36px; padding-top: 29px; border-top: 1px solid var(--line); }
-.cv-section > h2 { margin-bottom: 25px; }
-.cv-section > p { max-width: 900px; color: var(--muted); }
 
 /* Home: a portrait-led introduction and a clear route into each subject. */
 .hero { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, .8fr); align-items: center; gap: 72px; padding-block: 78px 82px; }
@@ -254,9 +245,6 @@ summary { width: fit-content; color: var(--teal); cursor: pointer; font-size: .8
   .page-content { padding-bottom: 58px; }
   .two-col, .training-grid, .skill-grid { grid-template-columns: 1fr; gap: 18px; }
   .page-grid { grid-template-columns: 1fr; }
-  .cv-summary { flex-direction: column; align-items: stretch; gap: 20px; }
-  .cv-summary .btn { align-self: flex-start; }
-  .cv-section { margin-top: 29px; padding-top: 24px; }
   .item { grid-template-columns: 1fr; gap: 10px; padding-block: 25px; }
   .method-list { columns: 1; }
   .contact-card { padding: 32px; }
@@ -283,7 +271,6 @@ summary { width: fit-content; color: var(--teal); cursor: pointer; font-size: .8
   .page-card p { margin-bottom: 18px; }
   .card-index { margin-bottom: 14px; }
   .panel, .training-card { padding: 23px; }
-  .cv-summary .btn { width: 100%; }
   .note { padding: 18px 20px; }
   .contact-card { padding: 28px 23px; }
   .writing-callout { padding: 26px 23px; }
@@ -324,11 +311,6 @@ summary { width: fit-content; color: var(--teal); cursor: pointer; font-size: .8
   .two-col, .training-grid, .skill-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
   .interest-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
   .note { padding: 12px; background: white; border: 1px solid #ccc; font-size: 9pt; }
-  .cv-summary { display: block; padding: 0; border: 0; }
-  .cv-summary h2 { font-size: 18pt; }
-  .cv-summary p { margin-bottom: 6px; }
-  .cv-section { margin-top: 22px; padding-top: 17px; }
-  .cv-section > h2 { margin-bottom: 16px; }
   .taglist, .language-line { gap: 5px; }
   .tag, .language-line span { padding: 4px 8px; font-size: 8pt; }
   .portrait-frame { display: none; }
