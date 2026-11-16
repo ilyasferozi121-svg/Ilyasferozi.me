@@ -8,7 +8,7 @@
   const label = button.querySelector('.submit-label');
   const name = form.elements.namedItem('name');
   const message = form.elements.namedItem('message');
-  const controls = [...form.querySelectorAll('input:not([type="hidden"]), textarea, button')];
+  const controls = [...form.querySelectorAll('input:not([type="hidden"]), textarea:not([name="h-captcha-response"]), button')];
   let sending = false;
 
   function showStatus(text, state) {
@@ -24,6 +24,14 @@
     label.textContent = busy ? 'Sending…' : 'Send message';
   }
 
+  function resetCaptcha() {
+    const response = form.querySelector('[name="h-captcha-response"]');
+    if (response) response.value = '';
+    if (typeof window.hcaptcha?.reset === 'function') {
+      try { window.hcaptcha.reset(); } catch { /* The token is already cleared if the widget is unavailable. */ }
+    }
+  }
+
   [name, message].forEach(field => field.addEventListener('input', () => field.setCustomValidity('')));
 
   form.addEventListener('submit', async event => {
@@ -33,6 +41,11 @@
     message.setCustomValidity(message.value.trim() ? '' : 'Please enter your message.');
     if (!form.reportValidity()) return;
     if (form.elements.namedItem('botcheck').checked) return;
+    const captchaResponse = form.querySelector('[name="h-captcha-response"]');
+    if (!captchaResponse?.value.trim()) {
+      showStatus('Please complete the human verification before sending. If it doesn’t load, refresh this page or email [private email removed] directly.', 'error');
+      return;
+    }
 
     const payload = Object.fromEntries(new FormData(form));
     payload.name = payload.name.trim();
@@ -56,10 +69,12 @@
       form.reset();
       showStatus('Thank you—your message has been sent. I appreciate you getting in touch.', 'success');
     } catch {
-      showStatus('We couldn’t confirm that your message was sent. Your text is still here—please try again, or email [private email removed] directly.', 'error');
+      showStatus('We couldn’t confirm that your message was sent. Your text is still here—please complete the verification again and retry, or email [private email removed] directly.', 'error');
     } finally {
       clearTimeout(timeout);
+      resetCaptcha();
       setSending(false);
     }
   });
+  button.disabled = false;
 })();

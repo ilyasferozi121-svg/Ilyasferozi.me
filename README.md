@@ -29,7 +29,9 @@ Committing to `main` triggers the repository’s existing **pages build and depl
 
 ## Contact form
 
-The contact page uses Web3Forms with the configured public form access key in `contact.html`. Fields include name, email, and message, with a hidden honeypot. JavaScript keeps visitors on the page and displays pending, success, and retry states; a native POST remains available without JavaScript. Styling and behavior live in `assets/css/contact.css` and `assets/js/contact.js`.
+The contact page uses Web3Forms with the configured public form access key in `contact.html`. Fields include name, email, and message, with a hidden honeypot and hCaptcha verification. The Web3Forms client script loads only on the contact page; its compact widget fits mobile screens. Submissions include the verification token, and the widget resets after each sending attempt. JavaScript keeps visitors on the page and displays pending, success, and retry states. Verification requires JavaScript; an email link remains available. Styling and behavior live in `assets/css/contact.css` and `assets/js/contact.js`.
+
+In the Web3Forms dashboard, enable **hCaptcha** as the form’s preferred captcha to require verification on every API submission. The website blocks unverified submissions in the browser, while Web3Forms controls enforcement on the server. See the [Web3Forms hCaptcha guide](https://docs.web3forms.com/getting-started/customizations/spam-protection/hcaptcha).
 
 ## Local preview
 
