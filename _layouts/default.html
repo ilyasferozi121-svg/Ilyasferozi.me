@@ -31,7 +31,44 @@
   <link rel="stylesheet" href="{{ '/assets/css/editor.css' | relative_url }}?v={{ asset_version }}">
   <script src="{{ '/assets/js/editor.js' | relative_url }}?v={{ asset_version }}" defer></script>
   {% endif %}
-
+{% if page.url == "/" or page.page_id == "about" %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": "https://ilyasferozi.me/#person",
+  "name": "Mohammad Ilyas",
+  "url": "https://ilyasferozi.me/",
+  "image": "https://ilyasferozi.me/source-assets/portrait/mohammad-ilyas-profile.jpg",
+  "jobTitle": "MPhil Scholar in International Relations",
+  "description": "MPhil International Relations scholar at the University of Management and Technology (UMT), researching foreign policy, Indian Ocean security, climate security, mineral diplomacy, and governance in Balochistan.",
+  "affiliation": {
+    "@type": "CollegeOrUniversity",
+    "name": "University of Management and Technology",
+    "alternateName": "UMT",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Lahore",
+      "addressCountry": "Pakistan"
+    }
+  },
+  "knowsAbout": [
+    "International Relations",
+    "Foreign Policy Analysis",
+    "Diplomacy",
+    "Indian Ocean Security",
+    "Maritime Security",
+    "Climate and Environmental Security",
+    "Mineral Diplomacy",
+    "Balochistan Security and Governance"
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/in/muhammad-ilyas-930830370",
+    "https://github.com/ilyasferozi121-svg"
+  ]
+}
+</script>
+{% endif %}
 </head>
 <body class="page-{{ page.page_id | default: 'post' }}">
   <div class="reading-progress" aria-hidden="true"><span></span></div>
