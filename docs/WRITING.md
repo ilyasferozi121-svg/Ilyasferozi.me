@@ -1,59 +1,104 @@
 # Write and publish as the administrator
 
-The [writing desk](https://ilyasferozi.me/write/) restores the website’s article editor and reading preview after administrator sign-in. Sign-in must verify both the GitHub account `ilyasferozi121-svg` and its administrator permission for `ilyasferozi121-svg/Ilyasferozi.me`. GitHub enforces the token’s publishing permissions on its servers.
+Open the [writing desk](https://ilyasferozi.me/write/). The editor verifies the GitHub account `ilyasferozi121-svg` and its administrator permission for `ilyasferozi121-svg/Ilyasferozi.me`; visitors cannot publish articles.
 
 ## Sign in
 
-1. In GitHub, [create a fine-grained personal access token](https://github.com/settings/personal-access-tokens/new). Choose `ilyasferozi121-svg` as the resource owner, select only the `Ilyasferozi.me` repository, and grant **Contents: Read and write** repository permission. Choose an expiration suitable for your use.
-2. Open the writing desk and enter that token in its masked **GitHub access token** field. Enter it on the website, not in ChatGPT or in an article.
-3. Choose **Sign in as administrator**. The writing fields appear only after GitHub verifies the account and repository administrator role.
+1. [Create a fine-grained GitHub token](https://github.com/settings/personal-access-tokens/new). Select `ilyasferozi121-svg` as resource owner, only the `Ilyasferozi.me` repository, and **Contents: Read and write** permission. Set an expiration.
+2. Enter the token in the writing desk’s masked field, then choose **Sign in as administrator**. Do not put tokens in articles, screenshots, or chat.
+3. Sign out when finished. Reloading or closing the page also ends the website session. Revoke a token separately in GitHub’s settings when necessary.
 
-The token is kept only in the page’s memory and sent only to `https://api.github.com`. It is not saved in browser storage, drafts, files, or URLs. Sign out, reload, or close the page to end the website session; sign in again to reopen the editor. Signing out of the website does not revoke the token in GitHub—you can revoke or replace it in GitHub’s token settings.
+The token stays in page memory and is sent only to `https://api.github.com`. It is excluded from drafts, downloads, browser storage, and URLs. A read-only token can verify the account but cannot publish; a 403 response can indicate missing repository write permission.
 
-## Draft, preview, and publish
+## Article library and drafts
 
-Add your title, publication date, introduction, topics, and article. The introduction and topics are optional. Dates follow Pakistan time and must be today or earlier. Select text and use the formatting toolbar for bold, italic, headings, links, lists, quotations, code blocks, and dividers. **Ctrl/Command+B**, **Ctrl/Command+I**, and **Ctrl/Command+K** provide shortcuts. The toolbar inserts Markdown, so the downloaded article preserves its formatting.
+The writing desk separates browser drafts from published repository articles. Start a new draft for each article, switch between saved drafts, and use saved versions to recover earlier writing. The old single browser draft is migrated when available. Autosave and revision snapshots are browser-local, not a cloud backup. Use Markdown downloads and draft-library backup export to keep independent copies; import creates recoverable writing without publishing it.
 
-Choose **Writing view** to show the editor and preview together, focus on writing, or read the preview. A word count and estimated reading time update as you write.
+Browser drafts do not sync across devices. Clearing site data or using private browsing can remove them. Anyone using the same browser profile can access its local data, so use your own device. If storage fails or fills, keep the tab open and download your writing. Downloads contain image links rather than the image files; keep originals separately.
 
-### Pictures and covers
+Refresh the published-article library and open an article to revise it. Its repository path, publication date, and URL stay fixed even when its title changes. **Update article** sends the loaded file’s exact GitHub blob SHA. If someone has edited the file since it was opened, the editor stops with a conflict and preserves your draft. Download your work, reopen the current repository version, and reconcile the changes. The GitHub history link contains published revisions; browser saved versions contain local revisions.
 
-Use **Picture** in the toolbar to insert an HTTPS image URL or a site path beginning with `/`. Add a picture description for its alternative text. The reading preview displays pictures safely without interpreting pasted HTML.
+Existing frontmatter is preserved when supported. The editor refuses an update when it cannot safely read the original metadata instead of silently discarding it. Such files can still be edited directly in GitHub.
 
-For a picture from your device, open **Add a picture from your device**, choose a PNG, JPEG, GIF, or WebP up to 3 MB, and enter its description. Choose the article body or cover, then click **Upload & insert**. This immediately creates a public image file in `source-assets/blog/` through your authenticated GitHub session; the article itself remains a draft. The editor checks image contents and confirms the new file before inserting its path. Existing files are never overwritten. Uploaded pictures become available after GitHub Pages finishes deploying.
+## Write and format
 
-Open **Customize the article cover** to add or replace the optional cover URL and description, or clear the URL to remove it from the article. Cover information is saved with your draft, included in Markdown downloads, and displayed above the published article. Uploading a picture and later removing its reference does not delete the public file from GitHub; remove unused files in the repository if needed.
+Add an article title, Pakistan-time publication date, short introduction, topics, and body. New publication dates must be today or earlier. The introduction appears to readers and in article listings. Topics are comma-separated and help select related reading.
 
-The editor saves one draft in the current browser. Signing out hides the writing fields and keeps that saved draft; it is restored only after administrator sign-in. Drafts do not sync across devices, and clearing website data or using private browsing can remove them. **Download Markdown** keeps a separate copy. If saving fails, the page shows a warning—keep the tab open and download your writing.
+Use the toolbar for headings, emphasis, links, lists, quotations, code, dividers, pictures, tables, citations, and references. Ctrl/Command+B, I, and K format selected text. The internal-link picker offers public pages and published articles. The writing view can show both editor and preview, focus on writing, or show just the preview.
 
-Markdown downloads contain image links, not the image files themselves. Keep separate copies of your original pictures. If an upload fails or its confirmation is unclear, the article stays unchanged; check GitHub before retrying. Signing out cancels pending requests and prevents late upload results from changing another session’s draft.
+The editor writes portable Markdown. The safe preview covers the supported formatting; it does not execute pasted HTML or Liquid. Review publishing checks and the deployed article, especially when importing advanced Markdown. A word count and estimated reading time describe the draft; they are not ranking targets.
 
-Choose **Publish article** when your writing is ready. The editor creates a new Markdown file in `_posts/` on the repository’s `main` branch through GitHub’s authenticated API. It confirms a returned commit before reporting success. GitHub Pages then builds the website; the article appears on [Blogs](https://ilyasferozi.me/blogs/) after deployment finishes.
+### Sources and academic writing
 
-Article publishing and picture uploads explicitly use **Mohammad Ilyas** with the GitHub noreply address `231227306+ilyasferozi121-svg@users.noreply.github.com` for both commit author and committer. These editor-created commits do not use your personal email address. For commits made through other GitHub tools or the GitHub website, also enable **Keep my email addresses private** and **Block command line pushes that expose my email** in [GitHub email settings](https://github.com/settings/emails).
+Cite claims near the relevant sentence and distinguish evidence from interpretation. A footnote uses a marker and matching definition:
 
-Each article needs a unique combination of title and date. The editor checks for an existing file and never overwrites one. To revise or remove a published article, open its file in [the `_posts` folder on GitHub](https://github.com/ilyasferozi121-svg/Ilyasferozi.me/tree/main/_posts) and commit your edit or deletion there.
+```markdown
+A claim supported by a source.[^source-1]
 
-A read-only token may verify your account but cannot publish. If GitHub returns **403**, check that the token has **Contents: Read and write** access to this repository, then sign out and sign in with the updated token. If a publish request cannot be confirmed, check `_posts` before trying again: a file might have been created even if its response did not reach the browser. Your draft remains available.
+[^source-1]: Author, *Publication title*, publisher, date, [source](https://example.com).
+```
 
-## Write Markdown directly
+Use a References section when appropriate. Include original sources, dates, and enough detail to locate the evidence. Check quotations, statistics, uncertainty, and image rights before publishing. Tables use standard Markdown:
 
-You can also use GitHub’s authenticated editor. Create `_posts/YYYY-MM-DD-article-title.md` with a date of today or earlier, then commit it to `main`:
+```markdown
+| Policy option | Evidence |
+| --- | --- |
+| Cooperation | Primary sources |
+```
+
+The published page builds an optional contents list from at least two section headings, provides accessible footnotes and horizontally scrollable tables, and suggests related articles. Disable the contents option for short articles when appropriate.
+
+### Pictures, captions, and covers
+
+Insert an HTTPS image URL or a site path beginning with `/`, with useful alternative text. For a device image, choose PNG, JPEG, GIF, or WebP up to 3 MB, describe it, and select body or cover. The editor verifies the file contents and image dimensions. Optimized static pictures receive smaller responsive variants without upscaling. Animated pictures are preserved.
+
+**Upload & insert immediately publishes image files in the public repository**, even while the article is a local draft. All required upload confirmations must succeed before the editor inserts the picture. A failed multi-file upload may leave an unreferenced public file; check the repository before retrying. Removing an image from a draft does not delete its uploaded files. Never upload confidential images.
+
+Add captions and credits with the image tools. The portable caption convention is an emphasized paragraph immediately after a standalone image:
+
+```markdown
+![Describe the image](/source-assets/blog/example.jpg)
+
+*Explain the image — Credit: Photographer or source*
+```
+
+Uploaded static images also include inline kramdown attributes with dimensions and responsive sources, directly after the closing image parenthesis. Keep these attributes on the same line as the image when editing Markdown directly. The optional cover appears above the article and supplies the social sharing image. Cover captions and credits are distinct from alternative text.
+
+## Search appearance and publishing
+
+The SEO panel supports a separate optional search title, a unique description, and a readable URL slug for a new article. The visible article title and introduction remain separate. Search and social previews are illustrative: Google and social platforms decide the actual appearance and may choose other text or cache older images. There is no guaranteed title/description character cutoff or preferred article word count.
+
+Choose a clear, descriptive title and slug, write an accurate description, use a logical heading hierarchy, link to relevant pages, and describe informative images. Run publishing checks for metadata, headings, image descriptions, references, and internal links. External links require manual verification; a browser cannot reliably inspect every other site. Review spelling, source accuracy, and the publishing reminders before submitting. Checks help catch omissions and do not promise rankings.
+
+Publish creates `_posts/YYYY-MM-DD-slug.md` on `main`; updates modify the existing path with conflict protection. The editor verifies GitHub’s returned commit before reporting success. GitHub Pages then builds the website. A confirmation from GitHub means the file was committed, not that deployment has finished. If a response is lost, inspect the repository before retrying.
+
+Published articles automatically receive canonical and social metadata, cover-based sharing images when supplied, `BlogPosting` structured data, and sitemap entries. The author links to About. The original publication date stays intact. An actual update supplies `last_modified_at`; merely rebuilding the website does not make an article appear newly updated.
+
+Article and image commits explicitly use **Mohammad Ilyas** and GitHub’s noreply identity for both author and committer. For edits made with other tools, also enable **Keep my email addresses private** and **Block command line pushes that expose my email** in [GitHub email settings](https://github.com/settings/emails).
+
+## Edit Markdown in GitHub
+
+The editor is optional. Create a file in `_posts/` with today’s date or an earlier date and commit it to `main`:
 
 ```markdown
 ---
 layout: post
 title: "Your article title"
-date: 2026-11-13 00:00:00 +0500
-description: "A short introduction to your article."
+date: 2026-11-18 00:00:00 +0500
+description: "The introduction shown to readers."
+seo_title: "Optional search title"
+seo_description: "An accurate, unique description of this article."
 tags: ["Diplomacy", "Research"]
+toc: true
 ---
 
-Write your introduction here.
+Your introduction.
 
 ## A section heading
 
-Continue with your article. Use **bold**, *italic*, and [links](https://example.com).
+Your analysis and supporting sources.
 ```
 
-Change the sample date, title, description, and topics for each article. The template in `_drafts/first-post.md` remains unpublished until you copy it into `_posts/`, set a date, and remove `published: false`. Files committed to this public repository remain visible on GitHub even when excluded from the published website.
+Change the example fields for your article. Optional cover fields are `cover_image`, `cover_alt`, `cover_caption`, `cover_credit`, `cover_width`, `cover_height`, and `cover_srcset`. Set `last_modified_at` to the actual revision time when substantially updating an existing article. Preserve its filename and any explicit `permalink` to preserve its URL.
+
+The existing `_drafts/first-post.md` template is not published by Pages. Files committed to this public repository are still publicly visible on GitHub, including files excluded from the website; private drafts belong in your browser or private backups.

@@ -27,11 +27,16 @@ noindex: true
   </section>
   <div id="administrator-workspace" hidden>
   <div class="administrator-session"><p id="administrator-identity"></p><button class="writer-text-button" id="administrator-logout" type="button">Sign out</button></div>
+  <section class="writer-dashboard" aria-label="Articles and drafts">
+    <div class="writer-library"><h2>Published articles</h2><p class="field-hint">Open an article to update it while keeping its web address.</p><label for="published-articles">Choose an article</label><select id="published-articles"><option value="">Refresh to load articles</option></select><div class="actions"><button class="writer-text-button" id="refresh-articles" type="button">Refresh articles</button><button class="btn secondary" id="open-article" type="button">Open article</button></div><p class="media-status" id="article-library-status" role="status"></p></div>
+    <div class="draft-library"><h2>Your draft library</h2><label for="saved-drafts">Saved in this browser</label><select id="saved-drafts"><option value="">No saved drafts</option></select><div class="actions"><button class="writer-text-button" id="open-draft" type="button">Open draft</button><button class="writer-text-button" id="duplicate-draft" type="button">Duplicate</button><button class="writer-text-button" id="delete-draft" type="button">Delete draft</button></div><details class="draft-tools"><summary>Snapshots and backups</summary><p class="field-hint">Up to 20 snapshots are kept per draft.</p><label for="draft-revisions">Revision snapshots</label><select id="draft-revisions"><option value="">No snapshots yet</option></select><div class="actions"><button class="writer-text-button" id="snapshot-draft" type="button">Save snapshot</button><button class="writer-text-button" id="restore-revision" type="button">Restore snapshot</button></div><label for="import-post">Import Markdown or a draft backup</label><input id="import-post" type="file" accept=".md,.markdown,.json,text/markdown,application/json"><button class="writer-text-button" id="export-drafts" type="button">Download all drafts</button></details></div>
+  </section>
   <div class="writer-intro">
     <p>Your draft stays in this browser. Publish when your article is ready; your GitHub repository keeps the published version.</p>
     <button class="writer-text-button" id="new-draft" type="button">Start a new draft</button>
   </div>
   <p class="draft-status" id="draft-status" role="status" aria-live="polite">Drafts are saved in this browser as you write.</p>
+  <p class="editor-mode" id="editor-mode" role="status">New article draft</p>
   <div class="writer-layout-controls"><label for="writer-view">Writing view</label><select id="writer-view"><option value="split">Editor and preview</option><option value="write">Focus on writing</option><option value="preview">Read the preview</option></select><span id="writing-stats">0 words · 0 min read</span></div>
 
   <div class="writer-grid" id="writer-grid" data-view="split">
@@ -69,7 +74,14 @@ noindex: true
           <button type="button" data-editor-command="divider" title="Section divider">Divider</button>
           <button type="button" data-editor-command="link" title="Insert a link (Ctrl or Command+K)">Link</button>
           <button type="button" data-editor-command="image" title="Insert a picture from a URL">Picture</button>
+          <button type="button" data-editor-command="footnote">Footnote</button>
+          <button type="button" data-editor-command="reference">Reference</button>
+          <button type="button" data-editor-command="table">Table</button>
+          <button type="button" data-editor-command="caption">Caption</button>
+          <button type="button" data-editor-command="internal">Internal link</button>
         </div>
+        <div class="writer-academic-panel writer-insert-panel" id="academic-tools" hidden><h3>Add a source</h3><label for="citation-title">Source title</label><input id="citation-title" type="text" maxlength="300"><label for="citation-url">Source URL</label><input id="citation-url" type="text" inputmode="url" maxlength="2000" placeholder="https://…"><label for="citation-author">Author or organisation</label><input id="citation-author" type="text" maxlength="200"><label for="citation-year">Year or publication date</label><input id="citation-year" type="text" maxlength="60"><div class="actions"><button class="btn secondary" id="citation-insert" type="button">Insert source</button><button class="writer-text-button" id="citation-cancel" type="button">Cancel</button></div><p class="media-status" id="citation-status" role="status"></p></div>
+        <div class="writer-insert-panel" id="internal-link-panel" hidden><h3>Link to your website</h3><label for="internal-link-select">Page or article</label><select id="internal-link-select">{% for target in site.html_pages %}{% unless target.noindex or target.url == '/404.html' or target.url == '/sitemap.xml' %}<option value="{{ target.url | relative_url }}">{{ target.title | default: site.title | escape }}</option>{% endunless %}{% endfor %}{% for target in site.posts %}<option value="{{ target.url | relative_url }}">{{ target.title | escape }}</option>{% endfor %}</select><button class="btn secondary" id="insert-internal-link" type="button">Insert internal link</button><button class="writer-text-button" id="cancel-internal-link" type="button">Cancel</button></div>
         <div class="writer-insert-panel" id="writer-insert-panel" hidden>
           <h3 id="insert-heading">Insert a link</h3>
           <label for="insert-url">URL</label><input id="insert-url" type="text" inputmode="url" maxlength="2000" placeholder="https://example.com" autocomplete="off">
@@ -96,6 +108,7 @@ noindex: true
         <p class="field-hint">Upload &amp; insert saves the picture publicly to your GitHub repository immediately. PNG, JPEG, GIF, or WebP, up to 3 MB.</p>
         <div class="writer-field"><label for="article-image-file">Choose a picture</label><input id="article-image-file" type="file" accept="image/png,image/jpeg,image/gif,image/webp"></div>
         <div class="writer-field"><label for="upload-alt">Picture description</label><input id="upload-alt" type="text" maxlength="240" placeholder="Describe what the picture shows"></div>
+        <div class="writer-field"><label for="upload-caption">Caption <span class="field-optional">Optional</span></label><input id="upload-caption" type="text" maxlength="500"></div><div class="writer-field"><label for="upload-credit">Picture credit <span class="field-optional">Optional</span></label><input id="upload-credit" type="text" maxlength="300"></div><label class="writer-checkbox"><input id="optimize-image" type="checkbox" checked> Optimize pictures and create responsive sizes</label>
         <div class="writer-field"><label for="image-placement">Add it to</label><select id="image-placement"><option value="body">The article, at the cursor</option><option value="cover">The article cover</option></select></div>
         <button class="btn secondary" id="upload-image" type="button">Upload &amp; insert</button>
         <p class="media-status" id="upload-status" role="status" aria-live="polite"></p>
@@ -105,12 +118,16 @@ noindex: true
         <p class="field-hint">Add an optional cover above the article, using an image URL or the device upload tool.</p>
         <div class="writer-field"><label for="post-cover">Cover image URL <span class="field-optional">Optional</span></label><input id="post-cover" name="cover_image" type="text" inputmode="url" maxlength="2000" placeholder="https://example.com/picture.jpg or /source-assets/…"></div>
         <div class="writer-field"><label for="post-cover-alt">Cover description</label><input id="post-cover-alt" name="cover_alt" type="text" maxlength="240" placeholder="Describe the cover picture"></div>
+        <div class="writer-field"><label for="post-cover-caption">Cover caption</label><input id="post-cover-caption" name="cover_caption" type="text" maxlength="500"></div><div class="writer-field"><label for="post-cover-credit">Cover credit</label><input id="post-cover-credit" name="cover_credit" type="text" maxlength="300"></div>
+        <input name="cover_width" type="hidden"><input name="cover_height" type="hidden"><input name="cover_srcset" type="hidden"><input name="cover_sizes" type="hidden">
       </details>
+      <details class="writer-seo-panel writer-media-tools" id="seo-settings"><summary>Search appearance and article settings</summary><p class="field-hint">Search previews are illustrative. Search engines may choose different titles or snippets.</p><div class="writer-field"><label for="post-seo-title">Search title <span class="field-optional">Optional</span></label><input id="post-seo-title" name="seo_title" type="text" maxlength="180" placeholder="Uses your article title when blank"></div><div class="writer-field"><label for="post-seo-description">Search description <span class="field-optional">Optional</span></label><textarea id="post-seo-description" name="seo_description" rows="3" maxlength="500" placeholder="Describe what readers will learn"></textarea></div><div class="writer-field"><label for="post-slug">Article URL ending</label><input id="post-slug" name="slug" type="text" maxlength="100" placeholder="generated-from-your-title" aria-describedby="slug-help"><p class="field-hint" id="slug-help">Choose a short descriptive URL for a new article. Published article addresses stay fixed.</p></div><label class="writer-checkbox"><input id="post-toc" name="toc" type="checkbox" checked> Show a table of contents</label><input name="last_modified_at" type="hidden"><div class="search-preview"><span id="search-url">https://ilyasferozi.me/blogs/your-article/</span><h3 id="search-title">Your article title</h3><p id="search-description">Your description will appear here.</p></div></details>
+      <section class="publish-checks" id="publish-checks" aria-labelledby="publish-checks-heading"><div class="preview-label"><h2 id="publish-checks-heading">Before publishing</h2><button class="writer-text-button" id="run-checks" type="button">Check article</button></div><ul id="publish-check-list"><li>Check headings, pictures, references, and internal links.</li></ul></section>
       <div class="actions writer-actions">
         <button class="btn" id="publish-post" type="submit" disabled>Publish article</button>
         <button class="btn secondary" id="download-post" type="button">Download Markdown</button>
       </div>
-      <p class="field-hint publishing-hint">Publishing creates a new article in your GitHub repository. Your website updates after GitHub Pages finishes its build.</p>
+      <p class="field-hint publishing-hint">Publishing saves your article to GitHub. Updates keep its existing address; the website changes after GitHub Pages finishes its build.</p>
       <div class="writer-notice" id="publish-notice" role="status" aria-live="polite" hidden></div>
     </form>
 

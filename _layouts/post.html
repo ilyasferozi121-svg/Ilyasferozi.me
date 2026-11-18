@@ -6,9 +6,36 @@ layout: default
   <div class="eyebrow">Notes &amp; perspectives</div>
   <h1>{{ page.title | escape }}</h1>
   {% if page.description %}<p class="post-description">{{ page.description | escape }}</p>{% endif %}
-  <div class="post-meta"><span>Mohammad Ilyas</span><span aria-hidden="true">·</span><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d %B %Y' }}</time></div>
+  <div class="post-meta"><a href="{{ '/about/' | relative_url }}" rel="author">Mohammad Ilyas</a><span aria-hidden="true">·</span><span>Published <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%d %B %Y' }}</time></span>{% if page.last_modified_at %}<span class="post-modified">Updated <time datetime="{{ page.last_modified_at | date_to_xmlschema }}">{{ page.last_modified_at | date: '%d %B %Y' }}</time></span>{% endif %}</div>
   {% if page.tags.size > 0 %}<div class="taglist">{% for tag in page.tags %}<span class="tag">{{ tag | escape }}</span>{% endfor %}</div>{% endif %}
 </header>
-{% if page.cover_image %}<figure class="post-cover"><img src="{{ page.cover_image | escape }}" alt="{{ page.cover_alt | default: '' | escape }}" decoding="async" referrerpolicy="no-referrer"></figure>{% endif %}
-<article class="post-body">{{ content }}</article>
+{% if page.cover_image %}<figure class="post-cover"><img src="{{ page.cover_image | relative_url | escape }}" alt="{{ page.cover_alt | default: '' | escape }}"{% if page.cover_width and page.cover_height %} width="{{ page.cover_width | escape }}" height="{{ page.cover_height | escape }}"{% endif %}{% if page.cover_srcset %} srcset="{{ page.cover_srcset | escape }}" sizes="(max-width: 920px) calc(100vw - 40px), 880px"{% endif %} decoding="async" fetchpriority="high" referrerpolicy="no-referrer">{% if page.cover_caption or page.cover_credit %}<figcaption>{% if page.cover_caption %}{{ page.cover_caption | escape }}{% endif %}{% if page.cover_caption and page.cover_credit %}<span aria-hidden="true"> — </span>{% endif %}{% if page.cover_credit %}<span class="image-credit">Credit: {{ page.cover_credit | escape }}</span>{% endif %}</figcaption>{% endif %}</figure>{% endif %}
+{% unless page.toc == false %}<nav class="article-toc" id="article-toc" aria-label="On this page" hidden><h2>On this page</h2><ol id="article-toc-list"></ol></nav>{% endunless %}
+<article class="post-body" id="article-content" aria-label="Article">{{ content }}</article>
 <div class="post-footer wrap"><a class="btn secondary" href="{{ '/blogs/' | relative_url }}">← All blogs</a></div>
+{% assign related_count = 0 %}
+{% assign related_urls = '|' %}
+{% capture related_cards %}
+  {% for candidate in site.posts %}
+    {% if candidate.url != page.url and candidate.noindex != true and related_count < 3 %}
+      {% assign shared_topic = false %}
+      {% for tag in page.tags %}{% if candidate.tags contains tag %}{% assign shared_topic = true %}{% endif %}{% endfor %}
+      {% if shared_topic %}
+        {% assign related_count = related_count | plus: 1 %}
+        {% assign related_urls = related_urls | append: candidate.url | append: '|' %}
+        <a class="related-article" href="{{ candidate.url | relative_url }}"><time datetime="{{ candidate.date | date_to_xmlschema }}">{{ candidate.date | date: '%d %B %Y' }}</time><h3>{{ candidate.title | escape }}</h3>{% if candidate.description %}<p>{{ candidate.description | strip_html | truncatewords: 28 | escape }}</p>{% endif %}<span class="related-read">Read article <span aria-hidden="true">↗</span></span></a>
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  {% for candidate in site.posts %}
+    {% assign candidate_marker = candidate.url | prepend: '|' | append: '|' %}
+    {% if candidate.url != page.url and candidate.noindex != true and related_count < 3 %}
+      {% unless related_urls contains candidate_marker %}
+        {% assign related_count = related_count | plus: 1 %}
+        {% assign related_urls = related_urls | append: candidate.url | append: '|' %}
+        <a class="related-article" href="{{ candidate.url | relative_url }}"><time datetime="{{ candidate.date | date_to_xmlschema }}">{{ candidate.date | date: '%d %B %Y' }}</time><h3>{{ candidate.title | escape }}</h3>{% if candidate.description %}<p>{{ candidate.description | strip_html | truncatewords: 28 | escape }}</p>{% endif %}<span class="related-read">Read article <span aria-hidden="true">↗</span></span></a>
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endcapture %}
+{% if related_count > 0 %}<section class="related-articles wrap" aria-labelledby="related-heading"><p class="eyebrow">Keep exploring</p><h2 id="related-heading">More perspectives</h2><div class="related-grid">{{ related_cards }}</div></section>{% endif %}

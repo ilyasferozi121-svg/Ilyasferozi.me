@@ -1,0 +1,22 @@
+{% assign article_url = page.url | absolute_url %}
+{% assign author_url = '/about/' | absolute_url %}
+{% assign person_id = '/#person' | absolute_url %}
+{% assign article_published = page.date | date_to_xmlschema %}
+{% assign article_modified = page.last_modified_at | date_to_xmlschema %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "@id": {{ article_url | append: '#article' | jsonify | replace: '<', '\u003c' | replace: '>', '\u003e' | replace: '&', '\u0026' }},
+  "mainEntityOfPage": {"@type": "WebPage", "@id": {{ article_url | jsonify | replace: '<', '\u003c' | replace: '>', '\u003e' | replace: '&', '\u0026' }}},
+  "headline": {{ page.title | jsonify | replace: '<', '\u003c' | replace: '>', '\u003e' | replace: '&', '\u0026' }},
+  "description": {{ search_description | jsonify | replace: '<', '\u003c' | replace: '>', '\u003e' | replace: '&', '\u0026' }},
+  "inLanguage": {{ site.lang | default: 'en' | jsonify }},
+  "datePublished": {{ article_published | jsonify }},
+  {% if page.last_modified_at %}"dateModified": {{ article_modified | jsonify }},{% endif %}
+  {% if social_image != '' %}"image": {"@type": "ImageObject", "url": {{ social_image | jsonify | replace: '<', '\u003c' | replace: '>', '\u003e' | replace: '&', '\u0026' }}{% if page.cover_width and page.cover_height %}, "width": {{ page.cover_width | plus: 0 }}, "height": {{ page.cover_height | plus: 0 }}{% endif %}},{% endif %}
+  "author": {"@type": "Person", "@id": {{ person_id | jsonify }}, "name": "Mohammad Ilyas", "url": {{ author_url | jsonify }}},
+  "keywords": {{ page.tags | default: empty | jsonify | replace: '<', '\u003c' | replace: '>', '\u003e' | replace: '&', '\u0026' }},
+  "url": {{ article_url | jsonify | replace: '<', '\u003c' | replace: '>', '\u003e' | replace: '&', '\u0026' }}
+}
+</script>

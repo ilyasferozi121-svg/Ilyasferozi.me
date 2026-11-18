@@ -1,41 +1,24 @@
+---
+layout: null
+permalink: /sitemap.xml
+---
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-    <url>
-        <loc>https://ilyasferozi.me/</loc>
-    </url>
-
-    <url>
-        <loc>https://ilyasferozi.me/about/</loc>
-        
-    </url>
-
-    <url>
-        <loc>https://ilyasferozi.me/research/</loc>
-    </url>
-
-    <url>
-        <loc>https://ilyasferozi.me/education/</loc>
-    </url>
-
-    <url>
-        <loc>https://ilyasferozi.me/experience/</loc>
-    </url>
-  
- <url>
-        <loc>https://ilyasferozi.me/training/</loc>
-    </url>
-
-<url>
-        <loc>https://ilyasferozi.me/skills/</loc>
-    </url>
-
-<url>
-        <loc>https://ilyasferozi.me/blogs/</loc>
-    </url>
-
-<url>
-        <loc>https://ilyasferozi.me/contact/</loc>
-    </url>
-  
+{%- assign public_pages = site.pages | sort: 'url' -%}
+{%- for item in public_pages -%}
+  {%- if item.layout and item.noindex != true and item.url != '/404.html' -%}
+  <url>
+    <loc>{{ item.url | replace: 'index.html', '' | absolute_url | xml_escape }}</loc>
+    {%- if item.last_modified_at %}<lastmod>{{ item.last_modified_at | date_to_xmlschema }}</lastmod>{% endif %}
+  </url>
+  {%- endif -%}
+{%- endfor -%}
+{%- for item in site.posts -%}
+  {%- unless item.noindex -%}
+  <url>
+    <loc>{{ item.url | absolute_url | xml_escape }}</loc>
+    <lastmod>{{ item.last_modified_at | default: item.date | date_to_xmlschema }}</lastmod>
+  </url>
+  {%- endunless -%}
+{%- endfor %}
 </urlset>
