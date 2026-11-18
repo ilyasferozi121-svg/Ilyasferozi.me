@@ -1,0 +1,8 @@
+<nav class="dot-rail" aria-label="Page sections" data-dot-rail>
+  {% for section in site.data.home_sections %}
+  <a class="dot-rail-link" href="#{{ section.id | escape }}" aria-label="{{ section.number }} · {{ section.title | escape }}"{% if forloop.first %} aria-current="true"{% endif %}>
+    <span class="dot-rail-dot" aria-hidden="true"></span>
+    <span class="dot-rail-label" aria-hidden="true">{{ section.number }} · {{ section.title | escape }}</span>
+  </a>
+  {% endfor %}
+</nav>

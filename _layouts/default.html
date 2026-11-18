@@ -12,9 +12,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#172b3a">
-  <link rel="icon" type="image/x-icon" href="{{ '/source-assets/portrait/favicon-portrait.ico' | relative_url }}">
-  <link rel="icon" type="image/png" sizes="64x64" href="{{ '/source-assets/portrait/favicon-portrait-64.png' | relative_url }}">
-  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/source-assets/portrait/favicon-portrait-180.png' | relative_url }}">
+  <link rel="icon" type="image/x-icon" sizes="16x16 32x32 48x48" href="{{ '/favicon.ico' | relative_url }}">
+  <link rel="icon" type="image/png" sizes="180x180" href="{{ '/favicon.png' | relative_url }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ '/favicon.png' | relative_url }}">
   <meta name="description" content="{{ page.description | default: site.description | escape }}">
   <title>{% unless page.page_id == 'home' %}{{ page.title | escape }} | {% endunless %}{{ site.title | escape }} · International Relations</title>
   <link rel="canonical" href="{{ page.url | replace: 'index.html', '' | absolute_url }}">
@@ -29,6 +29,11 @@
   <script src="{{ '/assets/js/navigation.js' | relative_url }}?v={{ asset_version }}" defer></script>
   <script src="{{ '/assets/js/interactions.js' | relative_url }}?v={{ asset_version }}" defer></script>
   {% if page.page_id == 'home' %}<link rel="stylesheet" href="{{ '/assets/css/home-sections.css' | relative_url }}?v={{ asset_version }}"><link rel="stylesheet" href="{{ '/assets/css/profile.css' | relative_url }}?v={{ asset_version }}">{% endif %}
+  {% if page.page_id == 'home' %}
+  <link rel="stylesheet" href="{{ '/assets/css/dot-rail.css' | relative_url }}?v={{ asset_version }}">
+  <script src="{{ '/assets/js/dot-rail.js' | relative_url }}?v={{ asset_version }}" defer></script>
+  {% endif %}
+  {% if page.page_id == 'home' or page.page_id == 'contact' %}<link rel="stylesheet" href="{{ '/assets/css/social-profiles.css' | relative_url }}?v={{ asset_version }}">{% endif %}
   {% if page.contact_form %}
   <link rel="stylesheet" href="{{ '/assets/css/contact.css' | relative_url }}?v={{ asset_version }}">
   <script src="{{ '/assets/js/contact.js' | relative_url }}?v={{ asset_version }}" defer></script>
@@ -81,7 +86,7 @@
    "https://x.com/ilyas_ferozi",
    "https://scholar.google.com/citations?hl=en&user=fqJ2UzYAAAAJ",
    "https://www.researchgate.net/profile/Mohammad-Ilyas-16?ev=hdr_xprf",
-   "https://orcid.org/my-orcid?orcid=0009-0000-0860-9839",
+   "https://orcid.org/0009-0000-0860-9839",
     "https://github.com/ilyasferozi121-svg"
   ]
 }
@@ -108,7 +113,7 @@
   <footer class="site-footer">
     <div class="wrap footer-inner">
       <span class="footer-brand">© {{ 'now' | date: '%Y' }} Mohammad Ilyas</span>
-      <nav class="footer-links" aria-label="Footer navigation"><a href="{{ '/blogs/' | relative_url }}">Blogs</a><a href="{{ '/contact/' | relative_url }}">Contact</a><a href="https://www.linkedin.com/in/muhammad-ilyas-930830370" target="_blank" rel="noopener">LinkedIn ↗</a><a href="https://github.com/ilyasferozi121-svg" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
+      <nav class="footer-links" aria-label="Footer navigation"><a href="{{ '/blogs/' | relative_url }}">Blogs</a><a href="{{ '/contact/' | relative_url }}">Contact</a><a href="https://www.linkedin.com/in/muhammad-ilyas-930830370" target="_blank" rel="noopener">LinkedIn <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m6 18 12-12M6 6h12v12"/></svg></a><a href="https://github.com/ilyasferozi121-svg" target="_blank" rel="noopener noreferrer">GitHub</a></nav>
     </div>
   </footer>
   {% if page.contact_form %}<script src="https://web3forms.com/client/script.js" async defer></script>{% endif %}

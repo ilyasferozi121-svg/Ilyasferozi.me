@@ -10,6 +10,16 @@ The portfolio at **https://ilyasferozi.me** uses GitHub Pages and Jekyll. Each n
 - `/write/` — administrator sign-in, article editor, reading preview, and authenticated publishing
 - `/contact/` — Web3Forms enquiry form and LinkedIn
 
+## Homepage section navigation
+
+The homepage includes a desktop dot rail linking nine sections, from Overview to Contact. Its markup is in `_includes/dot-rail.html`, section labels are in `_data/home_sections.yml`, and its styles and IntersectionObserver behavior are in `assets/css/dot-rail.css` and `assets/js/dot-rail.js`. Hover or focus a dot to read its label; the current section is marked with `aria-current`. The rail is hidden at viewport widths of 1024px and below and when printing. Reduced-motion preferences disable its animations and smooth scrolling.
+
+The `sec-01`–`sec-09` anchors match the rail, while existing homepage anchors such as `#about` and `#research` remain available. Selecting a filtered-out section restores the full portfolio before navigating to it.
+
+The Contact page and homepage Contact section include a compact directory of writing, research, and social profiles. Update `_data/social_profiles.yml` to manage these links; `_includes/social-profiles.html` provides the shared markup. The public ORCID profile URL is used for visitor access.
+
+The transparent portrait favicon is available at `/favicon.ico` and `/favicon.png`, with matching head tags on every page. These reuse the existing portrait assets unchanged. Search engines refresh their cached search-result icons independently of website deployments.
+
 ## Admin-only blog publishing
 
 The writing desk at `/write/` requires administrator sign-in before revealing the article editor or restoring a saved draft. Use a fine-grained GitHub access token restricted to `ilyasferozi121-svg/Ilyasferozi.me`, with **Contents: Read and write** permission. The website verifies the exact owner account `ilyasferozi121-svg` and its repository administrator role. GitHub separately enforces write permissions when the editor publishes a post.

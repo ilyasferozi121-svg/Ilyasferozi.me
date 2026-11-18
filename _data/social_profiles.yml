@@ -1,0 +1,25 @@
+- title: Writing
+  icon: writing
+  links:
+    - name: Medium
+      url: https://medium.com/@ilyasferozi
+    - name: Substack
+      url: https://substack.com/@ilyasferozi313
+- title: Research
+  icon: research
+  links:
+    - name: Google Scholar
+      url: https://scholar.google.com/citations?hl=en&user=fqJ2UzYAAAAJ
+    - name: ResearchGate
+      url: https://www.researchgate.net/profile/Mohammad-Ilyas-16?ev=hdr_xprf
+    - name: ORCID
+      url: https://orcid.org/0009-0000-0860-9839
+- title: Social
+  icon: social
+  links:
+    - name: Instagram
+      url: https://www.instagram.com/ilyasferozi313
+    - name: Facebook
+      url: https://www.facebook.com/ilyasferozi313
+    - name: X (Twitter)
+      url: https://x.com/ilyas_ferozi

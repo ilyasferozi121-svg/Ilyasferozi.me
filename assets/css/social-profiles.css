@@ -1,0 +1,70 @@
+/* A small profile directory shared by the homepage and Contact page. */
+.social-profiles {
+  --profiles-ink: var(--ink, #172b3a);
+  --profiles-muted: var(--muted, #52636f);
+  --profiles-link: var(--teal, #17605b);
+  --profiles-line: var(--line, #d9dedb);
+  --profiles-hover: #edf3ec;
+  margin-top: 32px;
+  padding: 28px 30px;
+  border: 1px solid var(--profiles-line);
+  border-radius: 4px;
+  background: var(--surface, #fdfcf9);
+  color: var(--profiles-ink);
+}
+.social-profiles-heading { margin-bottom: 24px; }
+.social-profiles .social-profiles-title { margin: 0; color: var(--profiles-ink); font: 700 1.8rem/1.2 var(--serif, Georgia, serif); letter-spacing: -.025em; }
+.social-profiles-heading > p { margin: 10px 0 0; color: var(--profiles-muted); font-size: .9rem; line-height: 1.8; }
+.social-profiles-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+.social-profiles-group { min-width: 0; }
+.social-profiles .social-profiles-group-title { display: flex; align-items: center; gap: 8px; margin: 0 0 9px; color: var(--profiles-muted); font: 700 .68rem/1.5 var(--sans, system-ui, sans-serif); letter-spacing: .11em; text-transform: uppercase; }
+.social-profiles-icon, .social-profiles-icon svg { display: block; flex: 0 0 18px; width: 18px; height: 18px; }
+.social-profiles-list { display: grid; gap: 2px; margin: 0; padding: 0; list-style: none; }
+.social-profiles-list li { min-width: 0; }
+.social-profiles-list a { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; padding: 8px 10px; border-bottom: 1px solid var(--profiles-line); border-radius: 2px; color: var(--profiles-link); font-size: .87rem; font-weight: 600; line-height: 1.6; text-decoration: none; transition: background-color 180ms ease; }
+.social-profiles-list a > span { min-width: 0; overflow-wrap: anywhere; }
+.social-profiles-list a:hover { background: var(--profiles-hover); text-decoration: underline; text-underline-offset: 4px; }
+.social-profiles-list a:focus-visible { outline: 2px solid var(--profiles-link); outline-offset: 3px; }
+.social-profiles-arrow { flex: 0 0 14px; opacity: .75; }
+
+.social-profiles.is-compact {
+  --profiles-ink: #fff8e9;
+  --profiles-muted: #cadbd4;
+  --profiles-link: #f2f7ed;
+  --profiles-line: rgba(215, 235, 224, .22);
+  --profiles-hover: rgba(255, 255, 255, .065);
+  margin-top: 28px;
+  padding: 25px 0 0;
+  border: 0;
+  border-top: 1px solid var(--profiles-line);
+  border-radius: 0;
+  background: transparent;
+}
+.social-profiles.is-compact .social-profiles-title { font-size: 1.35rem; }
+.social-profiles.is-compact .social-profiles-heading { margin-bottom: 20px; }
+.social-profiles.is-compact .social-profiles-group-title { color: #dec58e; }
+.social-profiles.is-compact .social-profiles-list a { font-size: .82rem; }
+.social-profiles.is-compact .social-profiles-list a:focus-visible { outline-color: #dec58e; }
+
+@media (max-width: 700px) {
+  .social-profiles { padding: 25px; }
+  .social-profiles-grid { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+  .social-profiles .social-profiles-title { font-size: 1.65rem; }
+  .social-profiles.is-compact { padding: 24px 0 0; }
+  .social-profiles.is-compact .social-profiles-title { font-size: 1.3rem; }
+}
+@media (max-width: 380px) {
+  .social-profiles { padding: 23px 20px; }
+  .social-profiles.is-compact { padding-inline: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .social-profiles-list a { transition: none; }
+}
+@media print {
+  .social-profiles, .social-profiles.is-compact { --profiles-ink: #111; --profiles-muted: #222; --profiles-link: #111; --profiles-line: #ccc; padding: 16px 0; border: 0; border-top: 1px solid #ccc; background: #fff; }
+  .social-profiles-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+  .social-profiles .social-profiles-title { font-size: 17pt; }
+  .social-profiles.is-compact .social-profiles-group-title { color: #222; }
+  .social-profiles-list a { min-height: 0; padding: 5px 0; font-size: 9pt; }
+  .social-profiles-arrow { display: none; }
+}

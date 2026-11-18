@@ -1,0 +1,19 @@
+{% if include.compact %}{% assign profiles_heading = 'home-social-title' %}{% else %}{% assign profiles_heading = 'contact-social-title' %}{% endif %}
+<section class="social-profiles{% if include.compact %} is-compact{% endif %}" aria-labelledby="{{ profiles_heading }}">
+  <header class="social-profiles-heading">
+    {% if include.compact %}<h4 class="social-profiles-title" id="{{ profiles_heading }}">Elsewhere online</h4>{% else %}<h2 class="social-profiles-title" id="{{ profiles_heading }}">Elsewhere online.</h2><p>Follow my writing, explore my research profiles, or connect on social media.</p>{% endif %}
+  </header>
+  <div class="social-profiles-grid">
+    {% for group in site.data.social_profiles %}
+    <div class="social-profiles-group">
+      {% capture group_heading %}<span class="social-profiles-icon" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">{% case group.icon %}{% when 'writing' %}<path d="m15 4 5 5M4 20l5-1 12-12a2.1 2.1 0 0 0-5-5L4 14l-1 7Z"/>{% when 'research' %}<path d="m2 8 10-5 10 5-10 5L2 8Zm4 2v6c4 3 8 3 12 0v-6M22 8v8"/>{% when 'social' %}<circle cx="8" cy="8" r="3"/><path d="M2 21v-3a6 6 0 0 1 12 0v3M16 5a3 3 0 0 1 0 6M17 15a5 5 0 0 1 5 5v1"/>{% endcase %}</svg></span><span>{{ group.title | escape }}</span>{% endcapture %}
+      {% if include.compact %}<h5 class="social-profiles-group-title">{{ group_heading }}</h5>{% else %}<h3 class="social-profiles-group-title">{{ group_heading }}</h3>{% endif %}
+      <ul class="social-profiles-list">
+        {% for profile in group.links %}
+        <li><a href="{{ profile.url | escape }}" target="_blank" rel="noopener noreferrer"><span>{{ profile.name | escape }}</span><svg class="social-profiles-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 18 12-12M6 6h12v12"/></svg></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endfor %}
+  </div>
+</section>
