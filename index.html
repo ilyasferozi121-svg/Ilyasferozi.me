@@ -131,7 +131,7 @@ description: "Mohammad Ilyas is an International Relations graduate and MPhil st
       <div class="home-section-head"><span class="card-index">08 / Blogs</span><h3 id="home-blogs-title">A place to think<br>in longer form.</h3><p class="section-description">Essays and reflections on international relations and the questions that connect policy, people, and regions.</p></div>
       <div class="home-section-body home-blog-content">
         {% if site.posts.size > 0 %}
-        <div class="home-post-previews">{% for post in site.posts limit: 2 %}<a class="home-post-preview" href="{{ post.url | relative_url }}"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d %B %Y' }}</time><h4>{{ post.title | escape }}</h4><p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 34 | escape }}</p></a>{% endfor %}</div>
+        <div class="home-post-previews">{% for post in site.posts limit: 2 %}<a class="home-post-preview" href="{{ post.url | relative_url }}">{% include post-thumbnail.html post=post sizes='(max-width: 760px) calc(100vw - 100px), 480px' %}<time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d %B %Y' }}</time><h4>{{ post.title | escape }}</h4><p>{{ post.description | default: post.excerpt | strip_html | truncatewords: 34 | escape }}</p></a>{% endfor %}</div>
         {% else %}
         <p class="blog-status">A space for essays and reflections</p><blockquote class="blog-question">How can regional cooperation respond to challenges that cross borders?</blockquote><p>No articles have been published yet. New writing will appear here as it is added to the blog.</p>
         {% endif %}

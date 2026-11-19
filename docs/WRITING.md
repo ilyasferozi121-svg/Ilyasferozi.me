@@ -20,6 +20,17 @@ Refresh the published-article library and open an article to revise it. Its repo
 
 Existing frontmatter is preserved when supported. The editor refuses an update when it cannot safely read the original metadata instead of silently discarding it. Such files can still be edited directly in GitHub.
 
+### Delete a published article
+
+1. Sign in at the writing desk and choose **Refresh articles**.
+2. Select the article and choose **Open article**. Check its title and repository filename.
+3. Choose **Delete published article**, then type the exact filename shown in the confirmation panel.
+4. Confirm the deletion. The editor rechecks the loaded file’s SHA and stops if the article changed in GitHub.
+
+A confirmed deletion removes the article file from `main`. GitHub Pages then rebuilds the Blogs page, homepage previews, related reading, and sitemap without that article. The site can continue to show the old version until deployment finishes. The local writing is retained as a separate recovery draft, and published versions remain recoverable through GitHub history. Deleting an article does not erase repository history or delete image files, which may be used by other articles. **Delete draft** only removes a browser draft; it does not delete a published article.
+
+If a response is interrupted or cannot be confirmed, check the `_posts` folder on GitHub before retrying. If a file changed since you opened it, reopen the current article before deciding whether to delete that version.
+
 ## Write and format
 
 Add an article title, Pakistan-time publication date, short introduction, topics, and body. New publication dates must be today or earlier. The introduction appears to readers and in article listings. Topics are comma-separated and help select related reading.
@@ -62,7 +73,7 @@ Add captions and credits with the image tools. The portable caption convention i
 *Explain the image — Credit: Photographer or source*
 ```
 
-Uploaded static images also include inline kramdown attributes with dimensions and responsive sources, directly after the closing image parenthesis. Keep these attributes on the same line as the image when editing Markdown directly. The optional cover appears above the article and supplies the social sharing image. Cover captions and credits are distinct from alternative text.
+Uploaded static images also include inline kramdown attributes with dimensions and responsive sources, directly after the closing image parenthesis. Keep these attributes on the same line as the image when editing Markdown directly. The optional cover appears above the article, supplies the social sharing image, and serves as the thumbnail on Blogs, homepage previews, and related articles. Choose **The article cover** when uploading, or set its URL under **Customize the article cover**, then publish or update. Without a cover, cards use the first picture in the article; articles with no picture show a styled placeholder. A failed image request also reveals that placeholder. Cover captions and credits are distinct from alternative text.
 
 ## Search appearance and publishing
 
@@ -74,7 +85,7 @@ Publish creates `_posts/YYYY-MM-DD-slug.md` on `main`; updates modify the existi
 
 Published articles automatically receive canonical and social metadata, cover-based sharing images when supplied, `BlogPosting` structured data, and sitemap entries. The author links to About. The original publication date stays intact. An actual update supplies `last_modified_at`; merely rebuilding the website does not make an article appear newly updated.
 
-Article and image commits explicitly use **Mohammad Ilyas** and GitHub’s noreply identity for both author and committer. For edits made with other tools, also enable **Keep my email addresses private** and **Block command line pushes that expose my email** in [GitHub email settings](https://github.com/settings/emails).
+Article publishing, deletion, and image commits explicitly use **Mohammad Ilyas** and GitHub’s noreply identity for both author and committer. For edits made with other tools, also enable **Keep my email addresses private** and **Block command line pushes that expose my email** in [GitHub email settings](https://github.com/settings/emails).
 
 ## Edit Markdown in GitHub
 

@@ -67,6 +67,10 @@
   <link rel="stylesheet" href="{{ '/assets/css/article.css' | relative_url }}?v={{ asset_version }}">
   <script src="{{ '/assets/js/article.js' | relative_url }}?v={{ asset_version }}" defer></script>
   {% endif %}
+  {% if page.page_id == 'home' or page.page_id == 'blogs' or page.collection == 'posts' %}
+  <link rel="stylesheet" href="{{ '/assets/css/post-thumbnails.css' | relative_url }}?v={{ asset_version }}">
+  <script src="{{ '/assets/js/post-thumbnails.js' | relative_url }}?v={{ asset_version }}" defer></script>
+  {% endif %}
   {% if page.editor %}
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob: https:; connect-src https://api.github.com; object-src 'none'; base-uri 'self'; form-action 'none'">
   <link rel="stylesheet" href="{{ '/assets/css/editor.css' | relative_url }}?v={{ asset_version }}">

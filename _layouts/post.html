@@ -23,7 +23,7 @@ layout: default
       {% if shared_topic %}
         {% assign related_count = related_count | plus: 1 %}
         {% assign related_urls = related_urls | append: candidate.url | append: '|' %}
-        <a class="related-article" href="{{ candidate.url | relative_url }}"><time datetime="{{ candidate.date | date_to_xmlschema }}">{{ candidate.date | date: '%d %B %Y' }}</time><h3>{{ candidate.title | escape }}</h3>{% if candidate.description %}<p>{{ candidate.description | strip_html | truncatewords: 28 | escape }}</p>{% endif %}<span class="related-read">Read article <span aria-hidden="true">↗</span></span></a>
+        <a class="related-article" href="{{ candidate.url | relative_url }}">{% include post-thumbnail.html post=candidate sizes='(max-width: 640px) calc(100vw - 100px), 360px' %}<time datetime="{{ candidate.date | date_to_xmlschema }}">{{ candidate.date | date: '%d %B %Y' }}</time><h3>{{ candidate.title | escape }}</h3>{% if candidate.description %}<p>{{ candidate.description | strip_html | truncatewords: 28 | escape }}</p>{% endif %}<span class="related-read">Read article <span aria-hidden="true">↗</span></span></a>
       {% endif %}
     {% endif %}
   {% endfor %}
@@ -33,7 +33,7 @@ layout: default
       {% unless related_urls contains candidate_marker %}
         {% assign related_count = related_count | plus: 1 %}
         {% assign related_urls = related_urls | append: candidate.url | append: '|' %}
-        <a class="related-article" href="{{ candidate.url | relative_url }}"><time datetime="{{ candidate.date | date_to_xmlschema }}">{{ candidate.date | date: '%d %B %Y' }}</time><h3>{{ candidate.title | escape }}</h3>{% if candidate.description %}<p>{{ candidate.description | strip_html | truncatewords: 28 | escape }}</p>{% endif %}<span class="related-read">Read article <span aria-hidden="true">↗</span></span></a>
+        <a class="related-article" href="{{ candidate.url | relative_url }}">{% include post-thumbnail.html post=candidate sizes='(max-width: 640px) calc(100vw - 100px), 360px' %}<time datetime="{{ candidate.date | date_to_xmlschema }}">{{ candidate.date | date: '%d %B %Y' }}</time><h3>{{ candidate.title | escape }}</h3>{% if candidate.description %}<p>{{ candidate.description | strip_html | truncatewords: 28 | escape }}</p>{% endif %}<span class="related-read">Read article <span aria-hidden="true">↗</span></span></a>
       {% endunless %}
     {% endif %}
   {% endfor %}

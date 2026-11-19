@@ -126,7 +126,19 @@ noindex: true
       <div class="actions writer-actions">
         <button class="btn" id="publish-post" type="submit" disabled>Publish article</button>
         <button class="btn secondary" id="download-post" type="button">Download Markdown</button>
+        <button class="writer-delete-button" id="delete-published" type="button" aria-controls="delete-article-panel" aria-expanded="false" disabled hidden>Delete published article</button>
       </div>
+      <section class="delete-article-panel" id="delete-article-panel" aria-labelledby="delete-article-heading" hidden>
+        <h2 id="delete-article-heading">Delete this published article?</h2>
+        <p class="delete-article-title" id="delete-article-title"></p>
+        <code id="delete-article-path"></code>
+        <p id="delete-article-effect">This removes the article file from GitHub. Its page and listings disappear after GitHub Pages deploys. Your writing stays as a browser draft. Picture files are kept because other articles may use them.</p>
+        <label for="delete-article-confirmation">Type the exact filename to confirm</label>
+        <p class="field-hint" id="delete-article-filename-hint"></p>
+        <input id="delete-article-confirmation" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="delete-article-effect delete-article-filename-hint">
+        <div class="actions"><button class="writer-delete-button" id="confirm-delete-article" type="button" disabled>Delete published article</button><button class="writer-text-button" id="cancel-delete-article" type="button">Cancel</button></div>
+        <p class="media-status" id="delete-article-status" role="status" aria-live="polite"></p>
+      </section>
       <p class="field-hint publishing-hint">Publishing saves your article to GitHub. Updates keep its existing address; the website changes after GitHub Pages finishes its build.</p>
       <div class="writer-notice" id="publish-notice" role="status" aria-live="polite" hidden></div>
     </form>

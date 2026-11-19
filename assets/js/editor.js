@@ -34,6 +34,9 @@
   let sessionGeneration = 0;
   let loginBusy = false;
   let publishBusy = false;
+  let deleteBusy = false;
+  let deleteController = null;
+  let pendingDeletion = null;
   let publishedCurrentDraft = false;
   let loginController = null;
   let publishController = null;
@@ -49,6 +52,7 @@
   let draftGeneration = 0;
   const seenDraftVersions = new Map();
   const deletedDraftIds = new Set();
+  const removedArticlePaths = new Set();
   const validPostPath = path => typeof path === 'string' && /^_posts\/\d{4}-\d{2}-\d{2}-[^/\\\u0000-\u001f]+\.(?:md|markdown)$/i.test(path) && !path.includes('..');
   const validSha = value => typeof value === 'string' && /^(?:[0-9a-f]{40}|[0-9a-f]{64})$/i.test(value);
 
@@ -150,7 +154,7 @@
       if (item === active || !previous || item.updatedAt >= previous.updatedAt) merged.set(item.id, item);
     }
     if (merged.size > 100) throw new Error('The draft library is full. Download a backup and remove drafts you no longer need.');
-    const next = { version: 2, activeId: draftLibrary.activeId, drafts: [...merged.values()] };
+    const next = { version: 2, activeId: draftLibrary.activeId, drafts: [...merged.values()].map(item => item.source && removedArticlePaths.has(item.source.path) ? { ...item, frontmatterLines: item.frontmatterLines?.length ? item.frontmatterLines : [...item.source.frontmatterLines], source: null } : item) };
     localStorage.setItem(storageKey, JSON.stringify(next));
     draftLibrary = next;
     deletedDraftIds.clear();
@@ -428,7 +432,7 @@
   }
 
   function updateEditorControls() {
-    const busy = publishBusy || uploadBusy || libraryBusy;
+    const busy = publishBusy || uploadBusy || libraryBusy || deleteBusy;
     form.setAttribute('aria-busy', String(busy));
     for (const control of form.querySelectorAll('input, textarea, select, button')) control.disabled = busy || !authenticated;
     document.querySelector('#new-draft').disabled = busy || !authenticated;
@@ -441,6 +445,13 @@
     fields.slug.readOnly = Boolean(currentSource);
     fields.date.readOnly = Boolean(currentSource);
     if (!busy && authenticated && !publishedCurrentDraft) publishButton.textContent = currentSource ? 'Update article' : 'Publish article';
+    const deleteButton = document.querySelector('#delete-published');
+    deleteButton.hidden = !authenticated || !currentSource;
+    deleteButton.disabled = busy || !authenticated || !currentSource;
+    const confirmation = document.querySelector('#delete-article-confirmation');
+    confirmation.disabled = busy || !authenticated || !pendingDeletion;
+    document.querySelector('#confirm-delete-article').disabled = busy || !authenticated || !pendingDeletion || !currentSource || currentSource.path !== pendingDeletion.path || currentSource.sha !== pendingDeletion.sha || confirmation.value !== pendingDeletion.filename;
+    document.querySelector('#confirm-delete-article').textContent = deleteBusy ? 'Deleting…' : 'Delete published article';
   }
 
   async function requestGitHub(path, credential, options = {}) {
@@ -472,7 +483,7 @@
   }
 
   function canChangeDraft() {
-    return authenticated && !publishBusy && !uploadBusy && !libraryBusy;
+    return authenticated && !publishBusy && !uploadBusy && !libraryBusy && !deleteBusy;
   }
 
   function safeToLeaveDraft() {
@@ -547,6 +558,7 @@
       values.slug ||= path.split('/').at(-1).replace(/^\d{4}-\d{2}-\d{2}-/, '').replace(/\.(?:md|markdown)$/i, '');
       const existing = draftLibrary.drafts.find(item => item.source?.path === path);
       const item = newDraftRecord(values);
+      removedArticlePaths.delete(path);
       item.source = { path, sha: file.sha, frontmatterLines: parsed.frontmatterLines, originalValues: { ...values }, url: articleUrl(path, parsed.frontmatterLines, values) };
       if (existing && JSON.stringify(existing.values) === JSON.stringify(existing.source?.originalValues)) {
         item.id = existing.id; item.revisions = existing.revisions; draftLibrary.drafts = draftLibrary.drafts.filter(draft => draft.id !== existing.id);
@@ -659,6 +671,16 @@
     document.querySelector('#writer-grid').dataset.view = 'split';
     unsavedChanges = false;
     publishedCurrentDraft = false;
+    pendingDeletion = null;
+    document.querySelector('#delete-article-panel').hidden = true;
+    document.querySelector('#delete-article-panel').removeAttribute('aria-busy');
+    document.querySelector('#delete-published').setAttribute('aria-expanded', 'false');
+    document.querySelector('#delete-article-confirmation').value = '';
+    document.querySelector('#delete-article-title').textContent = '';
+    document.querySelector('#delete-article-path').textContent = '';
+    document.querySelector('#delete-article-filename-hint').textContent = '';
+    document.querySelector('#delete-article-status').textContent = '';
+    document.querySelector('#delete-article-status').removeAttribute('data-state');
     publishNotice.hidden = true;
     publishNotice.replaceChildren();
     setStatus('Drafts are saved in this browser as you write.');
@@ -666,7 +688,7 @@
   }
 
   function signOut(message = '') {
-    const wasPublishing = publishBusy || uploadBusy;
+    const wasPublishing = publishBusy || uploadBusy || deleteBusy;
     const hadWriting = authenticated && hasWriting();
     if (hadWriting) {
       pendingDraft = draftValues();
@@ -678,10 +700,13 @@
     loginController?.abort();
     publishController?.abort();
     uploadController?.abort();
+    deleteController?.abort();
     libraryController?.abort();
     loginController = null;
     publishController = null;
     uploadController = null;
+    deleteController = null;
+    deleteBusy = false;
     libraryController = null;
     libraryBusy = false;
     libraryGeneration++;
@@ -703,7 +728,7 @@
     document.querySelector('#published-articles').replaceChildren(new Option('Refresh to load articles', ''));
     document.querySelector('#editor-mode').textContent = 'Sign in to open your drafts.';
     setPublishingBusy(false);
-    const detail = wasPublishing ? 'Signed out. If an article or picture upload was in progress, check GitHub before trying again.' : pendingDraftUnsaved ? 'Signed out. Draft storage was unavailable; sign in again in this tab to recover your writing before closing it.' : hadWriting ? 'Signed out. Your saved draft will return after administrator sign-in.' : 'Signed out. Sign in again to open the writing desk.';
+    const detail = wasPublishing ? 'Signed out. If an article save, deletion, or picture upload was in progress, check GitHub before trying again.' : pendingDraftUnsaved ? 'Signed out. Draft storage was unavailable; sign in again in this tab to recover your writing before closing it.' : hadWriting ? 'Signed out. Your saved draft will return after administrator sign-in.' : 'Signed out. Sign in again to open the writing desk.';
     setSignInStatus(message || detail);
     tokenInput.focus();
   }
@@ -812,6 +837,141 @@
     publishNotice.dataset.state = 'success';
     publishNotice.hidden = false;
   }
+
+  function showDeleteStatus(message, state) {
+    const notice = document.querySelector('#delete-article-status');
+    notice.className = `media-status${state === 'error' ? ' is-error' : state === 'success' ? ' is-success' : ''}`;
+    notice.textContent = message;
+    notice.dataset.state = state;
+  }
+
+  function closeDeletePanel() {
+    if (deleteBusy) return;
+    pendingDeletion = null;
+    document.querySelector('#delete-article-panel').hidden = true;
+    document.querySelector('#delete-article-confirmation').value = '';
+    document.querySelector('#delete-published').setAttribute('aria-expanded', 'false');
+    updateEditorControls();
+    if (currentSource) document.querySelector('#delete-published').focus();
+    else fields.title.focus();
+  }
+
+  function confirmDeletedPost(result) {
+    if (!result || result.content !== null || !Object.prototype.hasOwnProperty.call(result, 'content') || !validSha(result.commit?.sha)) return null;
+    const sha = result.commit.sha;
+    if (result.commit.html_url !== undefined) {
+      try {
+        const url = new URL(result.commit.html_url);
+        if (url.origin !== 'https://github.com' || url.username || url.password || url.pathname !== `/${repository}/commit/${sha}` || url.search || url.hash) return null;
+      } catch { return null; }
+    }
+    return sha;
+  }
+
+  document.querySelector('#delete-published').addEventListener('click', () => {
+    if (!canChangeDraft() || !currentSource || !administratorToken) return;
+    const source = cleanSource(currentSource);
+    if (!source) return;
+    if (!saveDraft(true)) { setPublishMessage('Your browser could not save the recovery draft. Download your writing before deleting the published article.', true); return; }
+    pendingDeletion = { ...source, filename: source.path.split('/').at(-1), title: source.originalValues.title || fields.title.value || source.path, session: sessionGeneration, draftVersion: draftGeneration, draftId: draftLibrary.activeId };
+    document.querySelector('#delete-article-heading').textContent = 'Delete this published article?';
+    document.querySelector('#delete-article-title').textContent = pendingDeletion.title;
+    document.querySelector('#delete-article-path').textContent = source.path;
+    document.querySelector('#delete-article-filename-hint').textContent = pendingDeletion.filename;
+    document.querySelector('#delete-article-confirmation').value = '';
+    document.querySelector('#cancel-delete-article').textContent = 'Cancel';
+    document.querySelector('#delete-article-status').textContent = '';
+    document.querySelector('#delete-article-status').removeAttribute('data-state');
+    document.querySelector('#delete-article-panel').hidden = false;
+    document.querySelector('#delete-published').setAttribute('aria-expanded', 'true');
+    updateEditorControls();
+    document.querySelector('#delete-article-confirmation').focus();
+  });
+  document.querySelector('#cancel-delete-article').addEventListener('click', closeDeletePanel);
+  document.querySelector('#delete-article-confirmation').addEventListener('input', updateEditorControls);
+  document.querySelector('#delete-article-confirmation').addEventListener('keydown', event => {
+    if (event.key === 'Enter') { event.preventDefault(); if (!document.querySelector('#confirm-delete-article').disabled) document.querySelector('#confirm-delete-article').focus(); }
+    if (event.key === 'Escape') { event.preventDefault(); closeDeletePanel(); }
+  });
+  document.querySelector('#confirm-delete-article').addEventListener('click', async () => {
+    if (!canChangeDraft() || !currentSource || !pendingDeletion || !administratorToken) return;
+    const source = pendingDeletion;
+    if (source.session !== sessionGeneration || source.draftVersion !== draftGeneration || source.draftId !== draftLibrary.activeId || source.path !== currentSource.path || source.sha !== currentSource.sha) { showDeleteStatus('This article selection changed. Close this confirmation and open it again for the current article.', 'error'); return; }
+    if (document.querySelector('#delete-article-confirmation').value !== source.filename) { showDeleteStatus('Type the exact filename shown above before deleting.', 'error'); return; }
+    if (!saveDraft(true)) { showDeleteStatus('Your recovery draft could not be saved in this browser. Download it before deleting the published article.', 'error'); return; }
+    const credential = administratorToken;
+    const generation = sessionGeneration;
+    const draftVersion = draftGeneration;
+    const draftId = draftLibrary.activeId;
+    const controller = new AbortController();
+    deleteController = controller;
+    deleteBusy = true;
+    updateEditorControls();
+    document.querySelector('#delete-article-panel').setAttribute('aria-busy', 'true');
+    showDeleteStatus('Checking that the published article has not changed…', 'pending');
+    const timeout = setTimeout(() => controller.abort(), 60000);
+    let deleteAttempted = false;
+    const currentSession = () => {
+      if (generation !== sessionGeneration || draftVersion !== draftGeneration || draftId !== draftLibrary.activeId || !authenticated || currentSource?.path !== source.path || currentSource?.sha !== source.sha) return false;
+      if (controller.signal.aborted) throw new GitHubError('The deletion could not be confirmed in time. Check GitHub before trying again; your browser draft is kept.');
+      return true;
+    };
+    try {
+      const contentsPath = `/repos/${repository}/contents/${source.path.split('/').map(encodeURIComponent).join('/')}`;
+      const existing = await requestGitHub(`${contentsPath}?ref=main`, credential, { signal: controller.signal });
+      if (!currentSession()) return;
+      if (!existing.ok) throw new GitHubError('GitHub could not verify the published article. Refresh the article library before trying again; your draft is kept.', existing.status);
+      const latest = await responseJson(existing);
+      if (!currentSession()) return;
+      if (latest.path !== source.path || latest.sha !== source.sha) throw new GitHubError('This article changed on GitHub after you opened it. Nothing was deleted. Download your draft, then reopen the current article before deciding whether to delete it.', 409);
+      showDeleteStatus('Removing the article file from GitHub…', 'pending');
+      deleteAttempted = true;
+      const response = await requestGitHub(contentsPath, credential, {
+        method: 'DELETE', signal: controller.signal,
+        body: { message: `Delete blog: ${source.title}`, sha: source.sha, branch: 'main', author: commitIdentity, committer: commitIdentity }
+      });
+      if (!currentSession()) return;
+      if (response.status !== 200) throw new GitHubError('GitHub did not confirm article deletion. Check the repository before trying again; your draft is kept.', response.status);
+      const result = await responseJson(response);
+      if (!currentSession()) return;
+      const commit = confirmDeletedPost(result);
+      if (!commit) throw new GitHubError('GitHub returned an incomplete deletion confirmation. Check the repository before trying again; your draft is kept.');
+      removedArticlePaths.add(source.path);
+      draftLibrary.drafts = draftLibrary.drafts.map(item => item.source?.path === source.path ? { ...item, frontmatterLines: item.frontmatterLines?.length ? item.frontmatterLines : [...item.source.frontmatterLines], source: null } : item);
+      currentSource = null;
+      publishedCurrentDraft = false;
+      draftGeneration++;
+      pendingDeletion = null;
+      articleEntries = articleEntries.filter(item => item.path !== source.path);
+      const removedUrls = new Set([source.url, articleUrl(source.path), articleUrl(source.path, source.frontmatterLines, source.originalValues)].filter(Boolean).map(url => url.replace(/\/$/, '')));
+      for (const option of [...document.querySelector('#internal-link-select').options]) if (removedUrls.has(option.value.replace(/\/$/, ''))) option.remove();
+      fillArticleChoices();
+      const recoverySaved = saveDraft(true);
+      renderPreview();
+      document.querySelector('#delete-article-heading').textContent = 'Article removed from GitHub';
+      document.querySelector('#delete-article-confirmation').value = '';
+      document.querySelector('#cancel-delete-article').textContent = 'Close';
+      document.querySelector('#delete-published').setAttribute('aria-expanded', 'false');
+      showDeleteStatus(recoverySaved ? 'The article was deleted from GitHub. Your writing is saved as an independent browser draft. The public page and listings update after GitHub Pages deploys. Picture files were kept.' : 'The article was deleted from GitHub. Your writing is still open, but the browser could not save the recovery draft. Download Markdown or all drafts before closing this page. Public pages update after deployment; picture files were kept.', 'success');
+      const link = document.createElement('a'); link.href = `${githubBase}/commit/${commit}`; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = 'View deletion commit';
+      document.querySelector('#delete-article-status').append(' ', link);
+      if (recoverySaved) setStatus('Recovery draft saved. It is separate from the deleted article; publishing it would create an article again.');
+      document.querySelector('#delete-article-status').tabIndex = -1;
+      document.querySelector('#delete-article-status').focus();
+    } catch (error) {
+      if (generation !== sessionGeneration || draftVersion !== draftGeneration || draftId !== draftLibrary.activeId) return;
+      if (error instanceof GitHubError && error.statusCode === 401) { signOut('Your GitHub session expired. Your draft is kept. If deletion was in progress, check GitHub before trying again.'); return; }
+      let message;
+      if (error instanceof GitHubError && error.statusCode === 403) message = 'GitHub denied this request. Check that your token has Contents read and write permission. Your article draft is kept.';
+      else if (error instanceof GitHubError && [409, 422].includes(error.statusCode)) message = deleteAttempted ? 'The article changed or GitHub refused the deletion. Check the repository before retrying; your draft is kept.' : error.message;
+      else if (error instanceof GitHubError) message = error.message;
+      else message = deleteAttempted ? 'The deletion request could not be confirmed. Check GitHub before retrying; the article may already have been removed. Your draft is kept.' : 'GitHub could not be reached. Nothing was deleted by this request; your draft is kept.';
+      showDeleteStatus(message, 'error');
+    } finally {
+      clearTimeout(timeout);
+      if (deleteController === controller) { deleteController = null; deleteBusy = false; document.querySelector('#delete-article-panel').removeAttribute('aria-busy'); updateEditorControls(); }
+    }
+  });
 
   let editorSelection = { start: 0, end: 0 };
   let insertionKind = 'link';
@@ -1144,6 +1304,7 @@
       if (!sha) throw new GitHubError('GitHub returned an incomplete confirmation. Check the repository before trying again; the article may already have been saved.');
       fields.last_modified_at.value = modifiedAt || fields.last_modified_at.value;
       const parsed = content.parsePost(post.markdown);
+      removedArticlePaths.delete(postPath);
       currentSource = { path: postPath, sha: result.content.sha, frontmatterLines: parsed.frontmatterLines, originalValues: cleanValues(draftValues()), url: source?.url || articleUrl(postPath, parsed.frontmatterLines, post.values) };
       publishedCurrentDraft = true;
       saveDraft();
@@ -1202,7 +1363,7 @@
   });
   window.addEventListener('beforeunload', event => {
     const unsavedWriting = authenticated && unsavedChanges && hasWriting() && !saveDraft();
-    if (publishBusy || uploadBusy || unsavedWriting || pendingDraftUnsaved) {
+    if (publishBusy || uploadBusy || deleteBusy || unsavedWriting || pendingDraftUnsaved) {
       event.preventDefault();
       event.returnValue = '';
     }

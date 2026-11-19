@@ -12,10 +12,13 @@ description: "Explore the writing section of Mohammad Ilyas's academic portfolio
 <div class="blog-list">
   {% for post in site.posts %}
   <a class="blog-card" href="{{ post.url | relative_url }}">
+    {% include post-thumbnail.html post=post %}
+    <div class="blog-card-content">
     <div class="post-meta"><time datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: '%d %B %Y' }}</time>{% if post.tags.size > 0 %}<span aria-hidden="true">·</span><span>{{ post.tags | first | escape }}</span>{% endif %}</div>
     <h2>{{ post.title | escape }}</h2>
     <p class="blog-excerpt">{{ post.description | default: post.excerpt | strip_html | truncatewords: 36 | escape }}</p>
     <span class="card-link">Read article <span aria-hidden="true">→</span></span>
+    </div>
   </a>
   {% endfor %}
 </div>

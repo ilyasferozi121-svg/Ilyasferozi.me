@@ -1,0 +1,31 @@
+{%- assign thumbnail_post = include.post -%}
+{%- assign thumbnail_image = thumbnail_post.cover_image | default: '' | strip -%}
+{%- assign thumbnail_srcset = thumbnail_post.cover_srcset | default: '' -%}
+{%- assign thumbnail_width = thumbnail_post.cover_width | plus: 0 -%}
+{%- assign thumbnail_height = thumbnail_post.cover_height | plus: 0 -%}
+{%- if thumbnail_image == '' -%}
+  {%- assign thumbnail_html = thumbnail_post.content | markdownify -%}
+  {%- assign thumbnail_images = thumbnail_html | split: '<img ' -%}
+  {%- if thumbnail_images.size > 1 -%}
+    {%- assign thumbnail_tag = thumbnail_images[1] | split: '>' | first -%}
+    {%- assign thumbnail_sources = thumbnail_tag | split: 'src="' -%}
+    {%- if thumbnail_sources.size > 1 -%}{%- assign thumbnail_image = thumbnail_sources[1] | split: '"' | first | replace: '&amp;', '&' -%}{%- endif -%}
+    {%- assign thumbnail_sets = thumbnail_tag | split: 'srcset="' -%}
+    {%- if thumbnail_sets.size > 1 -%}{%- assign thumbnail_srcset = thumbnail_sets[1] | split: '"' | first | replace: '&amp;', '&' -%}{%- endif -%}
+    {%- assign thumbnail_widths = thumbnail_tag | split: 'width="' -%}
+    {%- assign thumbnail_heights = thumbnail_tag | split: 'height="' -%}
+    {%- if thumbnail_widths.size > 1 -%}{%- assign thumbnail_width = thumbnail_widths[1] | split: '"' | first | plus: 0 -%}{%- endif -%}
+    {%- if thumbnail_heights.size > 1 -%}{%- assign thumbnail_height = thumbnail_heights[1] | split: '"' | first | plus: 0 -%}{%- endif -%}
+  {%- endif -%}
+{%- endif -%}
+{%- assign thumbnail_first = thumbnail_image | slice: 0, 1 -%}
+{%- assign thumbnail_second = thumbnail_image | slice: 1, 1 -%}
+{%- assign thumbnail_scheme = thumbnail_image | slice: 0, 8 -%}
+{%- assign thumbnail_safe = false -%}
+{%- if thumbnail_first == '/' and thumbnail_second != '/' -%}{%- assign thumbnail_safe = true -%}{%- elsif thumbnail_scheme == 'https://' -%}{%- assign thumbnail_safe = true -%}{%- endif -%}
+<span class="post-thumbnail" data-post-thumbnail aria-hidden="true">
+  <span class="post-thumbnail-art"><svg width="42" height="42" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.4" focusable="false"><path d="M12 10h18l6 6v22H12zM30 10v8h6M18 24h12M18 29h12M18 34h7"/></svg><span>Notes &amp; perspectives</span></span>
+  {%- if thumbnail_safe -%}
+  <img src="{{ thumbnail_image | relative_url | escape }}" alt=""{% if thumbnail_width > 0 and thumbnail_height > 0 and thumbnail_width <= 40000 and thumbnail_height <= 40000 %} width="{{ thumbnail_width }}" height="{{ thumbnail_height }}"{% endif %}{% if thumbnail_srcset != '' %} srcset="{{ thumbnail_srcset | escape }}" sizes="{{ include.sizes | default: '(max-width: 640px) calc(100vw - 80px), 320px' | escape }}"{% endif %} loading="lazy" decoding="async" referrerpolicy="no-referrer">
+  {%- endif -%}
+</span>
