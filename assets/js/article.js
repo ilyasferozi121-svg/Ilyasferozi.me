@@ -21,8 +21,8 @@
   });
 
   article.querySelectorAll('img').forEach((image) => {
-    image.loading = 'lazy';
-    image.decoding = 'async';
+    if (!image.hasAttribute('loading')) image.loading = 'lazy';
+    if (!image.hasAttribute('decoding')) image.decoding = 'async';
     image.referrerPolicy = 'no-referrer';
   });
 

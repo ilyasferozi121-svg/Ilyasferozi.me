@@ -3,7 +3,6 @@
 <head>
   {% unless page.editor %}
   <!-- Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y63PLDENHK"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -48,6 +47,7 @@
   {% endif %}
   {% if page.noindex %}<meta name="robots" content="noindex,follow">{% endif %}
   {% assign asset_version = site.time | date: '%s' %}
+  {% unless page.editor %}<script src="{{ '/assets/js/analytics.js' | relative_url }}?v={{ asset_version }}" data-measurement-id="G-Y63PLDENHK" defer></script>{% endunless %}
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}?v={{ asset_version }}">
   <link rel="stylesheet" href="{{ '/assets/css/interactions.css' | relative_url }}?v={{ asset_version }}">
   <script src="{{ '/assets/js/navigation.js' | relative_url }}?v={{ asset_version }}" defer></script>
@@ -132,7 +132,7 @@
   <a class="skip-link" href="#main-content">Skip to content</a>
   <header class="topbar">
     <div class="wrap nav">
-      <a class="brand" href="{{ '/' | relative_url }}"{% if page.page_id == 'home' %} aria-current="page"{% endif %}><img class="brand-portrait" src="{{ '/source-assets/portrait/mohammad-ilyas-profile.webp' | relative_url }}" alt="" width="32" height="32" decoding="async"><span>Mohammad Ilyas</span></a>
+      <a class="brand" href="{{ '/' | relative_url }}"{% if page.page_id == 'home' %} aria-current="page"{% endif %}><img class="brand-portrait" src="{{ '/source-assets/portrait/mohammad-ilyas-profile-96.webp' | relative_url }}" alt="" width="32" height="32" decoding="async"><span>Mohammad Ilyas</span></a>
       <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-controls="main-navigation" aria-expanded="false">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
       </button>

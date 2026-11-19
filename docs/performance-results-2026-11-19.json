@@ -1,0 +1,167 @@
+{
+  "date": "2026-11-19",
+  "method": "Controlled mobile Lighthouse comparison of gzip-served site builds and the same TLS-verified cached Analytics library; not live PageSpeed or field data.",
+  "lighthouse_version": "12.8.2",
+  "chromium_version": "156.0.8078.79",
+  "device": {
+    "mobile": true,
+    "viewport": [
+      412,
+      823
+    ],
+    "dpr": 1.75,
+    "simulated_rtt_ms": 150,
+    "simulated_throughput_kbps": 1638.4,
+    "cpu_slowdown": 4
+  },
+  "pages": {
+    "home": {
+      "before": {
+        "samples": [
+          {
+            "score": 93,
+            "FCP_ms": 1066.00845,
+            "LCP_ms": 2644.0084500000003,
+            "TBT_ms": 230,
+            "CLS": 0,
+            "transfer_bytes": 279666
+          },
+          {
+            "score": 90,
+            "FCP_ms": 1059.4794000000002,
+            "LCP_ms": 2613.4794,
+            "TBT_ms": 295.68039999999996,
+            "CLS": 0,
+            "transfer_bytes": 279666
+          },
+          {
+            "score": 88,
+            "FCP_ms": 1054.2682499999999,
+            "LCP_ms": 2598.26825,
+            "TBT_ms": 389,
+            "CLS": 0,
+            "transfer_bytes": 279666
+          }
+        ],
+        "median": {
+          "score": 90,
+          "FCP_ms": 1059.479,
+          "LCP_ms": 2613.479,
+          "TBT_ms": 295.68,
+          "CLS": 0,
+          "transfer_bytes": 279666
+        }
+      },
+      "after": {
+        "samples": [
+          {
+            "score": 95,
+            "FCP_ms": 1071.4598999999998,
+            "LCP_ms": 1521.4598999999998,
+            "TBT_ms": 244,
+            "CLS": 0,
+            "transfer_bytes": 242323
+          },
+          {
+            "score": 95,
+            "FCP_ms": 1055.8545,
+            "LCP_ms": 1252.8545,
+            "TBT_ms": 271,
+            "CLS": 0,
+            "transfer_bytes": 242323
+          },
+          {
+            "score": 93,
+            "FCP_ms": 1065.59505,
+            "LCP_ms": 1515.59505,
+            "TBT_ms": 334.5,
+            "CLS": 0,
+            "transfer_bytes": 242323
+          }
+        ],
+        "median": {
+          "score": 95,
+          "FCP_ms": 1065.595,
+          "LCP_ms": 1515.595,
+          "TBT_ms": 271,
+          "CLS": 0,
+          "transfer_bytes": 242323
+        }
+      }
+    },
+    "about": {
+      "before": {
+        "samples": [
+          {
+            "score": 67,
+            "FCP_ms": 906.2938999999999,
+            "LCP_ms": 3099.2938999999997,
+            "TBT_ms": 1634.85305,
+            "CLS": 0,
+            "transfer_bytes": 262487
+          },
+          {
+            "score": 85,
+            "FCP_ms": 904.0645,
+            "LCP_ms": 3034.0645,
+            "TBT_ms": 381,
+            "CLS": 0,
+            "transfer_bytes": 262487
+          },
+          {
+            "score": 94,
+            "FCP_ms": 906.0662,
+            "LCP_ms": 2485.0662,
+            "TBT_ms": 215,
+            "CLS": 0,
+            "transfer_bytes": 262487
+          }
+        ],
+        "median": {
+          "score": 85,
+          "FCP_ms": 906.066,
+          "LCP_ms": 3034.064,
+          "TBT_ms": 381,
+          "CLS": 0,
+          "transfer_bytes": 262487
+        }
+      },
+      "after": {
+        "samples": [
+          {
+            "score": 92,
+            "FCP_ms": 904.979,
+            "LCP_ms": 1129.979,
+            "TBT_ms": 362,
+            "CLS": 0,
+            "transfer_bytes": 216700
+          },
+          {
+            "score": 94,
+            "FCP_ms": 903.5450000000001,
+            "LCP_ms": 1128.545,
+            "TBT_ms": 276.5,
+            "CLS": 0,
+            "transfer_bytes": 216700
+          },
+          {
+            "score": 92,
+            "FCP_ms": 903.4166,
+            "LCP_ms": 1128.4166,
+            "TBT_ms": 343.5,
+            "CLS": 0,
+            "transfer_bytes": 216700
+          }
+        ],
+        "median": {
+          "score": 92,
+          "FCP_ms": 903.545,
+          "LCP_ms": 1128.545,
+          "TBT_ms": 343.5,
+          "CLS": 0,
+          "transfer_bytes": 216700
+        }
+      }
+    }
+  }
+}

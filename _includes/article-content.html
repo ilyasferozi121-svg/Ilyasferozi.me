@@ -1,0 +1,120 @@
+{%- comment -%}
+  Kramdown emits lowercase img tags. Add native loading hints before the browser's
+  preload scanner sees article images; preserve author attributes and all content.
+  Parse attribute names rather than matching words inside alt/src/data values.
+{%- endcomment -%}
+{%- assign article_html_chunks = include.content | append: ' ' | split: '<img' -%}
+{%- if article_html_chunks.size > 1 -%}
+{{- article_html_chunks | first -}}
+{%- assign article_img_continuation = false -%}
+{%- assign article_img_count = 0 -%}
+{%- for article_img_original_chunk in article_html_chunks offset: 1 -%}
+  {%- assign article_img_chunk = article_img_original_chunk -%}
+  {%- if forloop.last -%}
+    {%- assign article_img_chunk_size = article_img_chunk.size | minus: 1 -%}
+    {%- assign article_img_chunk = article_img_chunk | slice: 0, article_img_chunk_size -%}
+  {%- endif -%}
+  {%- assign article_img_boundary = article_img_chunk | slice: 0, 1 -%}
+  {%- assign article_img_boundary_space = article_img_boundary | strip -%}
+  {%- assign article_img_is_tag = false -%}
+  {%- if article_img_continuation == false -%}
+    {%- if article_img_boundary_space == '' or article_img_boundary == '>' or article_img_boundary == '/' -%}
+    {%- assign article_img_is_tag = true -%}
+    {%- endif -%}
+  {%- endif -%}
+  {%- assign article_img_has_loading = false -%}
+  {%- assign article_img_has_decoding = false -%}
+  {%- assign article_img_tag_closed = false -%}
+  {%- if article_img_is_tag or article_img_continuation -%}
+    {%- unless article_img_continuation -%}
+      {%- assign article_img_state = 'before_name' -%}
+      {%- assign article_img_name = '' -%}
+      {%- assign article_img_quote = '' -%}
+    {%- endunless -%}
+    {%- assign article_img_characters = article_img_chunk | split: '' -%}
+    {%- for article_img_character in article_img_characters -%}
+      {%- assign article_img_space = article_img_character | strip -%}
+      {%- assign article_img_finished_name = '' -%}
+      {%- if article_img_state == 'quoted_value' -%}
+        {%- if article_img_character == article_img_quote -%}
+          {%- assign article_img_state = 'before_name' -%}
+        {%- endif -%}
+      {%- elsif article_img_state == 'unquoted_value' -%}
+        {%- if article_img_space == '' -%}
+          {%- assign article_img_state = 'before_name' -%}
+        {%- elsif article_img_character == '>' -%}
+          {%- assign article_img_tag_closed = true -%}
+        {%- endif -%}
+      {%- elsif article_img_state == 'before_value' -%}
+        {%- if article_img_character == '"' or article_img_character == "'" -%}
+          {%- assign article_img_quote = article_img_character -%}
+          {%- assign article_img_state = 'quoted_value' -%}
+        {%- elsif article_img_character == '>' -%}
+          {%- assign article_img_tag_closed = true -%}
+        {%- elsif article_img_space != '' -%}
+          {%- assign article_img_state = 'unquoted_value' -%}
+        {%- endif -%}
+      {%- elsif article_img_state == 'name' -%}
+        {%- if article_img_character == '=' -%}
+          {%- assign article_img_finished_name = article_img_name -%}
+          {%- assign article_img_name = '' -%}
+          {%- assign article_img_state = 'before_value' -%}
+        {%- elsif article_img_space == '' or article_img_character == '/' or article_img_character == '>' -%}
+          {%- assign article_img_finished_name = article_img_name -%}
+          {%- assign article_img_name = '' -%}
+          {%- if article_img_character == '>' -%}
+            {%- assign article_img_tag_closed = true -%}
+          {%- elsif article_img_character == '/' -%}
+            {%- assign article_img_state = 'before_name' -%}
+          {%- else -%}
+            {%- assign article_img_state = 'after_name' -%}
+          {%- endif -%}
+        {%- else -%}
+          {%- assign article_img_lower_character = article_img_character | downcase -%}
+          {%- assign article_img_name = article_img_name | append: article_img_lower_character -%}
+        {%- endif -%}
+      {%- elsif article_img_state == 'after_name' -%}
+        {%- if article_img_character == '=' -%}
+          {%- assign article_img_state = 'before_value' -%}
+        {%- elsif article_img_character == '>' -%}
+          {%- assign article_img_tag_closed = true -%}
+        {%- elsif article_img_character == '/' -%}
+          {%- assign article_img_state = 'before_name' -%}
+        {%- elsif article_img_space != '' -%}
+          {%- assign article_img_name = article_img_character | downcase -%}
+          {%- assign article_img_state = 'name' -%}
+        {%- endif -%}
+      {%- else -%}
+        {%- if article_img_character == '>' -%}
+          {%- assign article_img_tag_closed = true -%}
+        {%- elsif article_img_space != '' and article_img_character != '/' -%}
+          {%- assign article_img_name = article_img_character | downcase -%}
+          {%- assign article_img_state = 'name' -%}
+        {%- endif -%}
+      {%- endif -%}
+      {%- if article_img_finished_name == 'loading' -%}
+        {%- assign article_img_has_loading = true -%}
+      {%- elsif article_img_finished_name == 'decoding' -%}
+        {%- assign article_img_has_decoding = true -%}
+      {%- endif -%}
+      {%- if article_img_tag_closed -%}{%- break -%}{%- endif -%}
+    {%- endfor -%}
+    {%- if article_img_tag_closed -%}
+      {%- assign article_img_continuation = false -%}
+    {%- else -%}
+      {%- assign article_img_continuation = true -%}
+    {%- endif -%}
+  {%- endif -%}
+  {{- '<img' -}}
+  {%- if article_img_is_tag and article_img_tag_closed -%}
+    {%- assign article_img_count = article_img_count | plus: 1 -%}
+    {%- unless article_img_has_loading -%}
+      {%- if include.eager_first_image and article_img_count == 1 -%}{{- ' loading="eager"' -}}{%- else -%}{{- ' loading="lazy"' -}}{%- endif -%}
+    {%- endunless -%}
+    {%- unless article_img_has_decoding -%}{{- ' decoding="async"' -}}{%- endunless -%}
+  {%- endif -%}
+  {{- article_img_chunk -}}
+{%- endfor -%}
+{%- else -%}
+  {{- include.content -}}
+{%- endif -%}

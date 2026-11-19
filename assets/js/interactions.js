@@ -22,6 +22,13 @@
       revealItems.forEach(reveal);
       return;
     }
+    // Read geometry together before changing reveal classes. Content already on
+    // screen should stay visible while the observer handles sections below it.
+    const viewportHeight = window.innerHeight;
+    const inViewport = new Set(revealItems.filter(item => {
+      const bounds = item.getBoundingClientRect();
+      return bounds.bottom > 0 && bounds.top < viewportHeight;
+    }));
     observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
@@ -32,7 +39,7 @@
     revealItems.forEach((item, index) => {
       item.classList.add('reveal-item');
       item.style.setProperty('--reveal-delay', `${Math.min(index % 3, 2) * 65}ms`);
-      if (item.contains(document.activeElement)) reveal(item);
+      if (inViewport.has(item) || item.contains(document.activeElement)) reveal(item);
       else if (!item.classList.contains('is-revealed')) observer.observe(item);
     });
     root.classList.add('motion-ready');
@@ -152,7 +159,7 @@
     });
   }
 
-  const portrait = document.querySelector('.portrait-frame');
+  const portrait = document.querySelector('.portrait-frame:not(.profile-portrait)');
   let portraitFrame;
   let pointerX = 0;
   let pointerY = 0;
@@ -167,13 +174,16 @@
   if (portrait) {
     portrait.addEventListener('pointermove', event => {
       if (!finePointer.matches || reducedMotion.matches || event.pointerType === 'touch') return;
-      const bounds = portrait.getBoundingClientRect();
-      pointerX = Math.max(-1, Math.min(1, (event.clientX - bounds.left) / bounds.width * 2 - 1));
-      pointerY = Math.max(-1, Math.min(1, (event.clientY - bounds.top) / bounds.height * 2 - 1));
+      pointerX = event.clientX;
+      pointerY = event.clientY;
       if (!portraitFrame) portraitFrame = window.requestAnimationFrame(() => {
         portraitFrame = null;
-        portrait.style.setProperty('--portrait-rotate-x', `${(-pointerY * 2.5).toFixed(2)}deg`);
-        portrait.style.setProperty('--portrait-rotate-y', `${(pointerX * 2.5).toFixed(2)}deg`);
+        const bounds = portrait.getBoundingClientRect();
+        if (!bounds.width || !bounds.height) return;
+        const relativeX = Math.max(-1, Math.min(1, (pointerX - bounds.left) / bounds.width * 2 - 1));
+        const relativeY = Math.max(-1, Math.min(1, (pointerY - bounds.top) / bounds.height * 2 - 1));
+        portrait.style.setProperty('--portrait-rotate-x', `${(-relativeY * 2.5).toFixed(2)}deg`);
+        portrait.style.setProperty('--portrait-rotate-y', `${(relativeX * 2.5).toFixed(2)}deg`);
       });
     });
     portrait.addEventListener('pointerleave', resetPortrait);

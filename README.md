@@ -36,6 +36,12 @@ See [the writing guide](docs/WRITING.md) for token setup, drafts, publishing, an
 
 Run `node scripts/check-authoring.cjs` for the dependency-free authoring-helper regression checks. Authentication, upload, and publishing browser tests must mock GitHub mutations; do not create test posts or images in the live repository.
 
+## Loading performance
+
+The hero uses responsive WebP sources and the header uses a small, high-density portrait. Initial page headings remain visible while below-fold content retains scroll animations. Article images receive native loading hints during Jekyll rendering. Analytics keeps its existing queue and measurement ID, with its library requested during an idle period after parsing; it remains excluded from `/write/`.
+
+See [the performance review](docs/PERFORMANCE.md) and [measured results](docs/performance-results-2026-11-19.json) for the controlled mobile comparison, verification, and hosting/cache limitations. No production package dependencies or additional build service were added.
+
 ## Edit and publish
 
 Edit page content in the root HTML files, the shared header/footer in `_layouts/default.html`, navigation in `_data/navigation.yml`, and shared design in `assets/css/site.css`. The contact details, portrait, and 22 certificates remain in their existing locations.
