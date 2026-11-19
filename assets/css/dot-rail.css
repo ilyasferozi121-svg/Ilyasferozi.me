@@ -5,6 +5,7 @@
   --dot-ring: rgba(23, 96, 91, .15);
   --tooltip-bg: var(--ink, #172b3a);
   --tooltip-text: var(--paper, #f8f6f1);
+  --current-label-bg: var(--paper, #f8f6f1);
   position: fixed;
   z-index: 40;
   top: 50%;
@@ -72,13 +73,26 @@
 }
 
 .page-home .dot-rail-link:hover .dot-rail-label,
-.page-home .dot-rail-link:focus-visible .dot-rail-label {
+.page-home .dot-rail-link:focus-visible .dot-rail-label,
+.page-home .dot-rail-link[aria-current="true"] .dot-rail-label {
   opacity: 1;
   pointer-events: auto;
   transform: translate(0, -50%);
 }
 
-.page-home .dot-rail-link.is-tooltip-dismissed .dot-rail-label {
+.page-home .dot-rail-link[aria-current="true"] .dot-rail-label {
+  padding: .2rem .45rem;
+  border: 1px solid var(--dot-ring);
+  background: var(--current-label-bg);
+  box-shadow: none;
+  color: var(--dot-active);
+  font-size: .7rem;
+  letter-spacing: .015em;
+}
+
+.page-home .dot-rail-link[aria-current="true"] .dot-rail-label-index { display: none; }
+
+.page-home .dot-rail-link.is-tooltip-dismissed:not([aria-current="true"]) .dot-rail-label {
   opacity: 0;
   pointer-events: none;
   transform: translate(6px, -50%);
@@ -103,11 +117,16 @@
   --dot-ring: rgba(169, 213, 185, .18);
   --tooltip-bg: #edf3ec;
   --tooltip-text: #173b3e;
+  --current-label-bg: #173b3e;
 }
 
 @media (min-width: 1025px) {
-  /* Keep the dots outside the document, including at small desktop widths. */
-  .page-home main > .wrap { width: min(1120px, calc(100% - 144px)); }
+  /* Reserve room for the persistent name while retaining the wide-screen center. */
+  .page-home main > .wrap {
+    width: min(1120px, calc(100% - 208px));
+    margin-left: max(32px, min(calc((100% - 1120px) / 2), calc(100% - 1296px)));
+    margin-right: auto;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -120,10 +139,11 @@
   .page-home .dot-rail-link[aria-current="true"] .dot-rail-dot { transform: none; }
   .page-home .dot-rail-label,
   .page-home .dot-rail-link:hover .dot-rail-label,
-  .page-home .dot-rail-link:focus-visible .dot-rail-label { transform: translateY(-50%); }
+  .page-home .dot-rail-link:focus-visible .dot-rail-label,
+  .page-home .dot-rail-link[aria-current="true"] .dot-rail-label { transform: translateY(-50%); }
 }
 
 @media print {
   .page-home .dot-rail { display: none; }
-  .page-home main > .wrap { width: 100%; }
+  .page-home main > .wrap { width: 100%; margin-inline: auto; }
 }
