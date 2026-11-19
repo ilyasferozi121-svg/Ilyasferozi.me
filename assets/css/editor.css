@@ -283,14 +283,14 @@
 .writer-delete-button { min-height: 44px; padding: 11px 16px; border: 1px solid #a65342; border-radius: 3px; background: #fffaf6; color: #8c3729; font: 600 .82rem/1.4 var(--sans); cursor: pointer; }
 .writer-delete-button:hover:not(:disabled) { border-color: #833428; background: #f7e8df; color: #76291f; }
 .writer-space .writer-delete-button:disabled { cursor: default; opacity: .55; }
-.delete-article-panel { margin-top: 24px; padding: 22px; border: 1px solid #cb9d8b; border-left: 3px solid #a65342; border-radius: 3px; background: #fff7ef; overflow-wrap: anywhere; }
+.delete-article-panel { margin: 0 0 28px; padding: 22px; border: 1px solid #cb9d8b; border-left: 3px solid #a65342; border-radius: 3px; background: #fff7ef; overflow-wrap: anywhere; scroll-margin-top: 110px; }
 .delete-article-panel h2 { margin: 0 0 12px; color: #853e2c; font: 700 1.35rem/1.3 var(--serif); }
 .delete-article-title { margin: 0 0 8px; font-weight: 700; }
 #delete-article-path { display: block; margin-bottom: 16px; font-size: .78rem; }
-.delete-article-panel > p { font-size: .86rem; line-height: 1.7; }
+.delete-article-panel > p { max-width: 78ch; font-size: .86rem; line-height: 1.7; }
 .delete-article-panel > label { display: block; margin-top: 18px; font-size: .86rem; font-weight: 650; }
 #delete-article-filename-hint { margin: 7px 0; font-size: .77rem; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
-#delete-article-confirmation { display: block; width: 100%; min-width: 0; padding: 12px; border: 1px solid #ac8476; border-radius: 3px; background: #fffdfa; color: var(--ink); font: 400 1rem/1.6 var(--sans); }
+#delete-article-confirmation { display: block; width: 100%; max-width: 680px; min-width: 0; padding: 12px; border: 1px solid #ac8476; border-radius: 3px; background: #fffdfa; color: var(--ink); font: 400 1rem/1.6 var(--sans); }
 #delete-article-confirmation:focus { outline: 2px solid #96523d; outline-offset: 2px; }
 .delete-article-panel .actions { margin-top: 16px; }
 #delete-article-status { margin-bottom: 0; }
@@ -336,6 +336,7 @@
 .writer-dashboard .actions { gap: 10px; margin-top: 15px; }
 .writer-dashboard .btn { min-height: 42px; padding: 9px 13px; font-size: .78rem; }
 .writer-dashboard .writer-text-button { font-size: .78rem; line-height: 1.5; }
+#delete-selected-article { min-height: 44px; padding: 10px 13px; font-size: .78rem; }
 .writer-dashboard button:disabled { cursor: not-allowed; }
 .writer-dashboard [aria-busy="true"] button:disabled { cursor: wait; }
 .writer-dashboard details { margin-top: 20px; padding-top: 17px; border-top: 1px solid var(--line); }

@@ -37,6 +37,8 @@
   let deleteBusy = false;
   let deleteController = null;
   let pendingDeletion = null;
+  let deleteReturnTarget = null;
+  let articleSelectionGeneration = 0;
   let publishedCurrentDraft = false;
   let loginController = null;
   let publishController = null;
@@ -442,6 +444,10 @@
     publishButton.textContent = publishBusy ? 'Publishing…' : publishedCurrentDraft ? 'Committed to GitHub' : 'Publish article';
     document.querySelector('#upload-image').textContent = uploadBusy ? 'Uploading picture…' : 'Upload & insert';
     document.querySelectorAll('.writer-dashboard button, .writer-dashboard select, .writer-dashboard input').forEach(control => { control.disabled = busy || !authenticated; });
+    const selectedPath = document.querySelector('#published-articles').value;
+    const hasSelectedArticle = validPostPath(selectedPath) && articleEntries.some(item => item.path === selectedPath);
+    document.querySelector('#open-article').disabled = busy || !authenticated || !hasSelectedArticle;
+    document.querySelector('#delete-selected-article').disabled = busy || !authenticated || !hasSelectedArticle;
     fields.slug.readOnly = Boolean(currentSource);
     fields.date.readOnly = Boolean(currentSource);
     if (!busy && authenticated && !publishedCurrentDraft) publishButton.textContent = currentSource ? 'Update article' : 'Publish article';
@@ -452,6 +458,7 @@
     confirmation.disabled = busy || !authenticated || !pendingDeletion;
     document.querySelector('#confirm-delete-article').disabled = busy || !authenticated || !pendingDeletion || !currentSource || currentSource.path !== pendingDeletion.path || currentSource.sha !== pendingDeletion.sha || confirmation.value !== pendingDeletion.filename;
     document.querySelector('#confirm-delete-article').textContent = deleteBusy ? 'Deleting…' : 'Delete published article';
+    document.querySelector('#cancel-delete-article').disabled = busy || !authenticated;
   }
 
   async function requestGitHub(path, credential, options = {}) {
@@ -505,6 +512,8 @@
 
   async function refreshArticles() {
     if (!canChangeDraft()) return;
+    articleSelectionGeneration++;
+    closeDeletePanel({ restoreFocus: false });
     const generation = sessionGeneration;
     const requestGeneration = ++libraryGeneration;
     const credential = administratorToken;
@@ -533,12 +542,15 @@
     }
   }
 
-  async function openPublishedArticle() {
-    if (!canChangeDraft() || !safeToLeaveDraft()) return;
+  async function openPublishedArticle(options = {}) {
+    if (!canChangeDraft()) return null;
     const path = document.querySelector('#published-articles').value;
-    if (!validPostPath(path) || !articleEntries.some(item => item.path === path)) { document.querySelector('#article-library-status').textContent = 'Choose an article first.'; return; }
+    if (!validPostPath(path) || !articleEntries.some(item => item.path === path) || (options.expectedPath && options.expectedPath !== path)) { document.querySelector('#article-library-status').textContent = 'Choose an article first.'; return null; }
+    if (!safeToLeaveDraft()) return null;
+    closeDeletePanel({ restoreFocus: false });
     const generation = sessionGeneration;
     const draftVersion = draftGeneration;
+    const selectionVersion = articleSelectionGeneration;
     const credential = administratorToken;
     const controller = new AbortController();
     libraryController = controller; libraryBusy = true; updateEditorControls();
@@ -549,6 +561,7 @@
       if (!response.ok) throw new GitHubError('GitHub could not open this article. Refresh the article library and try again.', response.status);
       const file = await responseJson(response);
       if (generation !== sessionGeneration || draftVersion !== draftGeneration || controller.signal.aborted) return;
+      if (selectionVersion !== articleSelectionGeneration || document.querySelector('#published-articles').value !== path) { notice.textContent = 'The article selection changed. Choose the article again before opening it.'; return null; }
       if (file.path !== path || !validSha(file.sha) || file.encoding !== 'base64' || typeof file.content !== 'string' || file.content.length > 1600000) throw new GitHubError('GitHub returned an unsupported article file. Edit it directly in GitHub instead.');
       const binary = atob(file.content.replace(/\s/g, ''));
       const markdown = new TextDecoder('utf-8', { fatal: true }).decode(Uint8Array.from(binary, character => character.charCodeAt(0)));
@@ -565,10 +578,12 @@
       }
       if (draftLibrary.drafts.length >= 100) throw new GitHubError('Your draft library is full. Export a backup and remove an unused draft before opening another article.');
       draftLibrary.drafts.push(item); draftLibrary.activeId = item.id;
-      applyDraft(item); saveDraft();
-      notice.textContent = 'Article opened. Changes stay in this browser until you choose Update article.';
+      applyDraft(item);
+      const recoverySaved = saveDraft();
+      notice.textContent = recoverySaved ? 'Article opened. Changes stay in this browser until you choose Update article.' : 'Article opened, but its browser draft could not be saved. Download your writing before deleting it.';
       const internal = document.querySelector('#internal-link-select');
       if (![...internal.options].some(option => option.value === item.source.url)) internal.append(new Option(values.title || path, item.source.url));
+      return recoverySaved ? cleanSource(currentSource) : null;
     } catch (error) {
       if (generation !== sessionGeneration || draftVersion !== draftGeneration) return;
       if (error instanceof GitHubError && error.statusCode === 401) { signOut('Your GitHub session expired. Sign in again to open articles.'); return; }
@@ -587,6 +602,21 @@
 
   document.querySelector('#refresh-articles').addEventListener('click', refreshArticles);
   document.querySelector('#open-article').addEventListener('click', openPublishedArticle);
+  document.querySelector('#published-articles').addEventListener('change', () => {
+    articleSelectionGeneration++;
+    if (!deleteBusy) closeDeletePanel({ restoreFocus: false });
+    updateEditorControls();
+  });
+  document.querySelector('#delete-selected-article').addEventListener('click', async () => {
+    if (!canChangeDraft() || !administratorToken) return;
+    const path = document.querySelector('#published-articles').value;
+    if (!validPostPath(path) || !articleEntries.some(item => item.path === path)) return;
+    const generation = sessionGeneration;
+    const selectionVersion = articleSelectionGeneration;
+    const source = await openPublishedArticle({ expectedPath: path });
+    if (!source || !canChangeDraft() || generation !== sessionGeneration || selectionVersion !== articleSelectionGeneration || document.querySelector('#published-articles').value !== path || currentSource?.path !== path || currentSource?.sha !== source.sha) return;
+    openDeletePanel(document.querySelector('#delete-selected-article'));
+  });
   document.querySelector('#run-checks').addEventListener('click', () => { if (canChangeDraft()) runPublishChecks(); });
   document.querySelector('#open-draft').addEventListener('click', () => {
     if (!canChangeDraft() || !safeToLeaveDraft()) return;
@@ -672,9 +702,11 @@
     unsavedChanges = false;
     publishedCurrentDraft = false;
     pendingDeletion = null;
+    deleteReturnTarget = null;
     document.querySelector('#delete-article-panel').hidden = true;
     document.querySelector('#delete-article-panel').removeAttribute('aria-busy');
     document.querySelector('#delete-published').setAttribute('aria-expanded', 'false');
+    document.querySelector('#delete-selected-article').setAttribute('aria-expanded', 'false');
     document.querySelector('#delete-article-confirmation').value = '';
     document.querySelector('#delete-article-title').textContent = '';
     document.querySelector('#delete-article-path').textContent = '';
@@ -845,14 +877,25 @@
     notice.dataset.state = state;
   }
 
-  function closeDeletePanel() {
+  function closeDeletePanel({ restoreFocus = true } = {}) {
     if (deleteBusy) return;
+    const returnTarget = deleteReturnTarget;
+    deleteReturnTarget = null;
     pendingDeletion = null;
     document.querySelector('#delete-article-panel').hidden = true;
     document.querySelector('#delete-article-confirmation').value = '';
     document.querySelector('#delete-published').setAttribute('aria-expanded', 'false');
+    document.querySelector('#delete-selected-article').setAttribute('aria-expanded', 'false');
+    document.querySelector('#delete-article-title').textContent = '';
+    document.querySelector('#delete-article-path').textContent = '';
+    document.querySelector('#delete-article-filename-hint').textContent = '';
+    document.querySelector('#delete-article-status').textContent = '';
+    document.querySelector('#delete-article-status').removeAttribute('data-state');
     updateEditorControls();
-    if (currentSource) document.querySelector('#delete-published').focus();
+    if (!restoreFocus) return;
+    if (returnTarget?.isConnected && !returnTarget.hidden && !returnTarget.disabled) returnTarget.focus();
+    else if (returnTarget?.id === 'delete-selected-article' && authenticated) document.querySelector('#published-articles').focus();
+    else if (currentSource) document.querySelector('#delete-published').focus();
     else fields.title.focus();
   }
 
@@ -868,11 +911,17 @@
     return sha;
   }
 
-  document.querySelector('#delete-published').addEventListener('click', () => {
+  function openDeletePanel(origin) {
     if (!canChangeDraft() || !currentSource || !administratorToken) return;
     const source = cleanSource(currentSource);
     if (!source) return;
-    if (!saveDraft(true)) { setPublishMessage('Your browser could not save the recovery draft. Download your writing before deleting the published article.', true); return; }
+    if (!saveDraft(true)) {
+      const message = 'Your browser could not save the recovery draft. Download your writing before deleting the published article.';
+      if (origin?.id === 'delete-selected-article') { document.querySelector('#article-library-status').className = 'media-status is-error'; document.querySelector('#article-library-status').textContent = message; }
+      else setPublishMessage(message, true);
+      return;
+    }
+    deleteReturnTarget = origin;
     pendingDeletion = { ...source, filename: source.path.split('/').at(-1), title: source.originalValues.title || fields.title.value || source.path, session: sessionGeneration, draftVersion: draftGeneration, draftId: draftLibrary.activeId };
     document.querySelector('#delete-article-heading').textContent = 'Delete this published article?';
     document.querySelector('#delete-article-title').textContent = pendingDeletion.title;
@@ -884,13 +933,18 @@
     document.querySelector('#delete-article-status').removeAttribute('data-state');
     document.querySelector('#delete-article-panel').hidden = false;
     document.querySelector('#delete-published').setAttribute('aria-expanded', 'true');
+    document.querySelector('#delete-selected-article').setAttribute('aria-expanded', 'true');
     updateEditorControls();
-    document.querySelector('#delete-article-confirmation').focus();
-  });
+    document.querySelector('#delete-article-panel').scrollIntoView({ block: 'start', behavior: 'auto' });
+    document.querySelector('#delete-article-confirmation').focus({ preventScroll: true });
+  }
+  document.querySelector('#delete-published').addEventListener('click', event => openDeletePanel(event.currentTarget));
   document.querySelector('#cancel-delete-article').addEventListener('click', closeDeletePanel);
   document.querySelector('#delete-article-confirmation').addEventListener('input', updateEditorControls);
   document.querySelector('#delete-article-confirmation').addEventListener('keydown', event => {
     if (event.key === 'Enter') { event.preventDefault(); if (!document.querySelector('#confirm-delete-article').disabled) document.querySelector('#confirm-delete-article').focus(); }
+  });
+  document.querySelector('#delete-article-panel').addEventListener('keydown', event => {
     if (event.key === 'Escape') { event.preventDefault(); closeDeletePanel(); }
   });
   document.querySelector('#confirm-delete-article').addEventListener('click', async () => {
@@ -952,6 +1006,7 @@
       document.querySelector('#delete-article-confirmation').value = '';
       document.querySelector('#cancel-delete-article').textContent = 'Close';
       document.querySelector('#delete-published').setAttribute('aria-expanded', 'false');
+      document.querySelector('#delete-selected-article').setAttribute('aria-expanded', 'false');
       showDeleteStatus(recoverySaved ? 'The article was deleted from GitHub. Your writing is saved as an independent browser draft. The public page and listings update after GitHub Pages deploys. Picture files were kept.' : 'The article was deleted from GitHub. Your writing is still open, but the browser could not save the recovery draft. Download Markdown or all drafts before closing this page. Public pages update after deployment; picture files were kept.', 'success');
       const link = document.createElement('a'); link.href = `${githubBase}/commit/${commit}`; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = 'View deletion commit';
       document.querySelector('#delete-article-status').append(' ', link);

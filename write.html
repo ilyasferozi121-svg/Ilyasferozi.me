@@ -28,9 +28,20 @@ noindex: true
   <div id="administrator-workspace" hidden>
   <div class="administrator-session"><p id="administrator-identity"></p><button class="writer-text-button" id="administrator-logout" type="button">Sign out</button></div>
   <section class="writer-dashboard" aria-label="Articles and drafts">
-    <div class="writer-library"><h2>Published articles</h2><p class="field-hint">Open an article to update it while keeping its web address.</p><label for="published-articles">Choose an article</label><select id="published-articles"><option value="">Refresh to load articles</option></select><div class="actions"><button class="writer-text-button" id="refresh-articles" type="button">Refresh articles</button><button class="btn secondary" id="open-article" type="button">Open article</button></div><p class="media-status" id="article-library-status" role="status"></p></div>
+    <div class="writer-library"><h2>Published articles</h2><p class="field-hint">Open an article to update it while keeping its web address.</p><label for="published-articles">Choose an article</label><select id="published-articles"><option value="">Refresh to load articles</option></select><div class="actions"><button class="writer-text-button" id="refresh-articles" type="button">Refresh articles</button><button class="btn secondary" id="open-article" type="button" disabled>Open article</button><button class="writer-delete-button" id="delete-selected-article" type="button" aria-controls="delete-article-panel" aria-expanded="false" aria-describedby="delete-selection-help" disabled>Delete selected article</button></div><p class="field-hint" id="delete-selection-help">Delete selected article opens a confirmation. Nothing is removed until you type its filename and confirm.</p><p class="media-status" id="article-library-status" role="status"></p></div>
     <div class="draft-library"><h2>Your draft library</h2><label for="saved-drafts">Saved in this browser</label><select id="saved-drafts"><option value="">No saved drafts</option></select><div class="actions"><button class="writer-text-button" id="open-draft" type="button">Open draft</button><button class="writer-text-button" id="duplicate-draft" type="button">Duplicate</button><button class="writer-text-button" id="delete-draft" type="button">Delete draft</button></div><details class="draft-tools"><summary>Snapshots and backups</summary><p class="field-hint">Up to 20 snapshots are kept per draft.</p><label for="draft-revisions">Revision snapshots</label><select id="draft-revisions"><option value="">No snapshots yet</option></select><div class="actions"><button class="writer-text-button" id="snapshot-draft" type="button">Save snapshot</button><button class="writer-text-button" id="restore-revision" type="button">Restore snapshot</button></div><label for="import-post">Import Markdown or a draft backup</label><input id="import-post" type="file" accept=".md,.markdown,.json,text/markdown,application/json"><button class="writer-text-button" id="export-drafts" type="button">Download all drafts</button></details></div>
   </section>
+      <section class="delete-article-panel" id="delete-article-panel" aria-labelledby="delete-article-heading" hidden>
+        <h2 id="delete-article-heading">Delete this published article?</h2>
+        <p class="delete-article-title" id="delete-article-title"></p>
+        <code id="delete-article-path"></code>
+        <p id="delete-article-effect">This removes the article file from GitHub. Its page and listings disappear after GitHub Pages deploys. Your writing stays as a browser draft. Picture files are kept because other articles may use them.</p>
+        <label for="delete-article-confirmation">Type the exact filename to confirm</label>
+        <p class="field-hint" id="delete-article-filename-hint"></p>
+        <input id="delete-article-confirmation" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="delete-article-effect delete-article-filename-hint">
+        <div class="actions"><button class="writer-delete-button" id="confirm-delete-article" type="button" disabled>Delete published article</button><button class="writer-text-button" id="cancel-delete-article" type="button">Cancel</button></div>
+        <p class="media-status" id="delete-article-status" role="status" aria-live="polite"></p>
+      </section>
   <div class="writer-intro">
     <p>Your draft stays in this browser. Publish when your article is ready; your GitHub repository keeps the published version.</p>
     <button class="writer-text-button" id="new-draft" type="button">Start a new draft</button>
@@ -128,17 +139,7 @@ noindex: true
         <button class="btn secondary" id="download-post" type="button">Download Markdown</button>
         <button class="writer-delete-button" id="delete-published" type="button" aria-controls="delete-article-panel" aria-expanded="false" disabled hidden>Delete published article</button>
       </div>
-      <section class="delete-article-panel" id="delete-article-panel" aria-labelledby="delete-article-heading" hidden>
-        <h2 id="delete-article-heading">Delete this published article?</h2>
-        <p class="delete-article-title" id="delete-article-title"></p>
-        <code id="delete-article-path"></code>
-        <p id="delete-article-effect">This removes the article file from GitHub. Its page and listings disappear after GitHub Pages deploys. Your writing stays as a browser draft. Picture files are kept because other articles may use them.</p>
-        <label for="delete-article-confirmation">Type the exact filename to confirm</label>
-        <p class="field-hint" id="delete-article-filename-hint"></p>
-        <input id="delete-article-confirmation" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" aria-describedby="delete-article-effect delete-article-filename-hint">
-        <div class="actions"><button class="writer-delete-button" id="confirm-delete-article" type="button" disabled>Delete published article</button><button class="writer-text-button" id="cancel-delete-article" type="button">Cancel</button></div>
-        <p class="media-status" id="delete-article-status" role="status" aria-live="polite"></p>
-      </section>
+
       <p class="field-hint publishing-hint">Publishing saves your article to GitHub. Updates keep its existing address; the website changes after GitHub Pages finishes its build.</p>
       <div class="writer-notice" id="publish-notice" role="status" aria-live="polite" hidden></div>
     </form>

@@ -23,9 +23,11 @@ Existing frontmatter is preserved when supported. The editor refuses an update w
 ### Delete a published article
 
 1. Sign in at the writing desk and choose **Refresh articles**.
-2. Select the article and choose **Open article**. Check its title and repository filename.
-3. Choose **Delete published article**, then type the exact filename shown in the confirmation panel.
-4. Confirm the deletion. The editor rechecks the loaded file’s SHA and stops if the article changed in GitHub.
+2. In **Published articles**, select the article and choose **Delete selected article** beside **Open article**.
+3. The writing desk loads that selected article and shows its title and filename in the nearby confirmation panel. Check both, then type the exact filename shown.
+4. Choose **Delete published article** in that confirmation panel. The editor rechecks the loaded file’s SHA and stops if the article changed in GitHub. **Cancel** closes the panel without removing anything.
+
+Choosing an article or opening the confirmation does not delete it. Existing draft writing is saved before switching articles. You can also open an article normally and use the delete button beside its publishing actions; both controls use the same confirmation and protection checks.
 
 A confirmed deletion removes the article file from `main`. GitHub Pages then rebuilds the Blogs page, homepage previews, related reading, and sitemap without that article. The site can continue to show the old version until deployment finishes. The local writing is retained as a separate recovery draft, and published versions remain recoverable through GitHub history. Deleting an article does not erase repository history or delete image files, which may be used by other articles. **Delete draft** only removes a browser draft; it does not delete a published article.
 
